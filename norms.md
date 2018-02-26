@@ -35,14 +35,14 @@ Issues:
   - If necessary, submit a help ticket
 
 - If the group is divided on a certain decision we will take the following steps:
-  ~ Take 10-15 minute break
-  ~ Give everyone the floor for 2 minutes to explain their position
-  ~ Find a compromise
-  ~ If no consensus is found, escalate to a fellow or instructor
+  - Take 10-15 minute break
+  - Give everyone the floor for 2 minutes to explain their position
+  - Find a compromise
+  - If no consensus is found, escalate to a fellow or instructor
 
 - If you are frustrated
-  ~ Take a walk or get some water
-  ~ Hold a quick stand-up meeting, or bring frustrations up in scheduled stand-up
-  ~ Give the frustrated person the floor for a couple of minutes to talk it out
-  ~ Discuss potential solutions, careful to listen and avoid interruptions
-  ~ Bring in a 3rd party (e.g. fellow, instructor) to mediate if you feel too frustrated
+  - Take a walk or get some water
+  - Hold a quick stand-up meeting, or bring frustrations up in scheduled stand-up
+  - Give the frustrated person the floor for a couple of minutes to talk it out
+  - Discuss potential solutions, careful to listen and avoid interruptions
+  - Bring in a 3rd party (e.g. fellow, instructor) to mediate if you feel too frustrated
