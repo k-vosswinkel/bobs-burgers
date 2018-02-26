@@ -1,4 +1,5 @@
 Project Name: Shopping Trifecta
+
 Project Description: Selling burgers to the masses online
 
 *This document describes our team social contract for this project*
