@@ -29,10 +29,10 @@ Team expectations:
 
 Issues:
 - If you are stuck:
-  ~ Don’t struggle for more than a half-day
-  ~ Bring up the issue at the next stand-up
-  ~ Get help from teammates
-  ~ If necessary, submit a help ticket
+  - Don’t struggle for more than a half-day
+  - Bring up the issue at the next stand-up
+  - Get help from teammates
+  - If necessary, submit a help ticket
 
 - If the group is divided on a certain decision we will take the following steps:
   ~ Take 10-15 minute break
