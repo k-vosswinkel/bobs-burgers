@@ -1,0 +1,30 @@
+const Sequelize = require('sequelize')
+const db = require('../db')
+
+const Product = db.define('product', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  description: {
+
+  },
+  imgUrl: {
+
+  },
+  price: {
+
+  },
+  inventory: {
+
+  }
+})
+
+module.exports = Product
+
+/**
+ * instanceMethods
+ */
+Product.prototype.Available = function (candidatePwd) {
+  ///stuff here
+}
