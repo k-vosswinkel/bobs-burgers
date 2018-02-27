@@ -24,13 +24,12 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   }
+}, {
+  getterMethods: {
+    available() {
+      return this.inventory > 0;
+    }
+  }
 })
 
 module.exports = Product
-
-/**
- * instanceMethods
- */
-Product.prototype.Available = function () {
-  return this.inventory > 0
-}
