@@ -3,13 +3,13 @@ const { Category } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Category.findAll()
+  Category.findAll({ include: [{ all: true }] })
     .then(categories => res.json(categories))
     .catch(next)
 })
 
 router.get('/:categoryId', (req, res, next) => {
-  Category.findById(req.params.categoryId)
+  Category.findById(req.params.categoryId, { include: [{ all: true }] })
     .then(category => res.json(category))
     .catch(next)
 })

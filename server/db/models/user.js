@@ -31,16 +31,18 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   }
-},
-{
-  scopes: {
-    populated: () => {
-      include: [{
-        model: Order, Review
-      }]
-    }
-  }
-})
+}
+// ,
+// {
+//   scopes: {
+//     populated: () => {
+//       include: [{
+//         model: Order, Review
+//       }]
+//     }
+//   }
+// }
+)
 
 module.exports = User
 
