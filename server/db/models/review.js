@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-export const Review = db.define('review', {
+const Review = db.define('review', {
   text: {
-    type: text,
+    type: Sequelize.TEXT,
     allowNull: false
   },
   rating: {
@@ -15,3 +15,5 @@ export const Review = db.define('review', {
     }
   }
 })
+
+module.exports = Review

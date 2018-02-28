@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const LineItem= db.define('order', {
+const LineItem = db.define('lineItem', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false
@@ -13,7 +13,7 @@ const LineItem= db.define('order', {
 },
 { getterMethods: {
   totalPrice: function() {
-    return this.getDataValue('unitPrice') * this.getDataValue('quantity');
+    return this.getDataValue('currentPrice') * this.getDataValue('quantity');
     }
 },
   hooks: {
@@ -26,4 +26,4 @@ const LineItem= db.define('order', {
   }
 })
 
-module.exports = lineItem
+module.exports = LineItem

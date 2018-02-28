@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Order= db.define('order', {
+const Order = db.define('order', {
   email: {
     type: Sequelize.STRING,
     allowNull: true
@@ -22,15 +22,15 @@ const Order= db.define('order', {
 },
 { getterMethods: {
   priceTotal: function() {
-    const total = 0
-    this.getLineItems()
+    let total = 0
+    this.getLineItem()
       .then(lineItems => {
-        forEach(lineItem => {total += lineItem.price})
+        lineItems.forEach(lineItem => {total += lineItem.price})
       })
     return total;
   },
   quantityTotal: function() {
-    return this.getlineItems()
+    return this.getlineItem()
       .then(lineItems => {
         return lineItems.length;
       })
@@ -40,5 +40,4 @@ const Order= db.define('order', {
 })
 
 module.exports = Order
-
 

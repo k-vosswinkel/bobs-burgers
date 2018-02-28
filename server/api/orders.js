@@ -4,7 +4,7 @@ module.exports = router
 
 // get all orders & get, update, and post a single order
 router.get('/', (req, res, next) => {
-  Order.findAll({})
+  Order.findAll({include: [{ all: true }]})
     .then(orders => res.json(orders))
     .catch(next)
 });

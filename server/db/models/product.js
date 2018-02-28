@@ -12,6 +12,7 @@ const Product = db.define('product', {
   },
   imgUrl: {
     type: Sequelize.TEXT,
+    defaultValue: 'https://vignette.wikia.nocookie.net/ronaldmcdonald/images/0/0f/Imgres.jpeg/revision/latest?cb=20150625050506',
     validate: {
       isUrl: true
     }
