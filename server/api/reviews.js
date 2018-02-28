@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { Review } = require('../db/models/review')
 module.exports = router
 
-router.params('id', (req, res, next, id) => {
+router.param('id', (req, res, next, id) => {
   Review.findById(id)
   .then(review => {
     if (!review) {
