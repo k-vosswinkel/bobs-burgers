@@ -21,6 +21,7 @@ const LineItem = db.define('lineItem', {
       lineItem.getProduct()
         .then(product => {
           lineItem.currentPrice = product.price
+          lineItem.save()
         })
     }
   }
