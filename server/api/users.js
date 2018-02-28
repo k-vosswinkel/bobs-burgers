@@ -31,14 +31,14 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
-router.post('/:id', (req, res, next) => {
+router.post('/', (req, res, next) => {
   User.create(req.body)
   .then(user => res.json(user))
   .catch(next);
 })
 
 router.put('/:id', (req, res, next) => {
-  User.update(req.body)
+  req.user.update(req.body)
     .then(() => req.user.reload({ include: [{ all: true }] }))
   .then(result => res.json(result))
   .catch(next);
