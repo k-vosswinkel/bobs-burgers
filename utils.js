@@ -9,6 +9,7 @@ const isLoggedIn = (req, res, next) => {
   next();
 }
 
+
 const isAdmin = (req, res, next) => {
   if (!req.user.isAdmin) return next(makeError('403', 'Forbidden'))
   next()
