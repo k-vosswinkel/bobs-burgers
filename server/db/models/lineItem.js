@@ -8,7 +8,7 @@ const LineItem = db.define('lineItem', {
   },
   currentPrice: {
     type: Sequelize.FLOAT,
-    allowNull: false
+    allowNull: true
   }
 },
 { getterMethods: {
