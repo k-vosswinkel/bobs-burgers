@@ -1,21 +1,24 @@
 const router = require('express').Router()
 const {LineItem, Order} = require('../db/models')
+const {isLoggedIn, isAdmin, makeError} = require('../../utils.js')
 module.exports = router
 
 // get all orders & get, update, and post a single order
-router.get('/', (req, res, next) => {
-  Order.findAll({include: [{ all: true }]})
+router.get('/', isLoggedIn, (req, res, next) => {
+  let query = req.user.isAdmin ? {} : {where: {userId: req.user.id}}
+  Order.findAll(query, {include: [{ all: true }]})
     .then(orders => res.json(orders))
     .catch(next)
 });
 
-router.get('/:orderId', (req, res, next) => {
+router.get('/:orderId', isLoggedIn, (req, res, next) => {
   Order.findById(req.params.orderId, {include: [{ all: true }]})
       .then(order => {
         if (!order) {
           const err = {status: 404};
           next(err);
         } else {
+          if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
           res.json(order);
         }
       })
@@ -28,7 +31,7 @@ router.post('/', (req, res, next) => {
       .catch(next)
 })
 
-router.put('/:orderId', (req, res, next) => {
+router.put('/:orderId', isLoggedIn, isAdmin, (req, res, next) => {
   Order.update(req.body, {
     where: {id: req.params.orderId},
     returning: true
