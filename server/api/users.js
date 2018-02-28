@@ -3,7 +3,7 @@ const {User} = require('../db/models')
 module.exports = router
 
 
-router.param('id', (req,res,next,id) => {
+router.param('id', (req, res, next, id) => {
   User.findById(id)
   .then(user => {
     if (!user) {
@@ -13,7 +13,7 @@ router.param('id', (req,res,next,id) => {
     }
     next();
   })
-  .catch(err)
+  .catch(next)
 })
 router.get('/', (req, res, next) => {
   User.findAll({
@@ -26,26 +26,27 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:id', (req,res,next) => {
-  req.user.reload()
+router.get('/:id', (req, res, next) => {
+  req.user.reload({ include: [{ all: true }] })
   .then(user => {res.json(user)})
+  .catch(next)
 })
 
-router.post('/:id', (req,res,next) => {
+router.post('/:id', (req, res, next) => {
   User.create(req.body)
   .then(user => res.json(user))
   .catch(next);
 })
 
-router.put('/:id', (req,res,next) => {
+router.put('/:id', (req, res, next) => {
   User.update(req.body)
-  .then(result => req.user.reload())
+    .then(() => req.user.reload({ include: [{ all: true }] }))
   .then(result => res.json(result))
   .catch(next);
 })
 
-router.delete('/:id', (req,res,next) => {
+router.delete('/:id', (req, res, next) => {
   req.user.destroy()
-  .then(result => res.json(req.user))
+  .then(() => res.json(req.user))
   .catch(next);
 })
