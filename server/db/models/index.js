@@ -1,5 +1,8 @@
 const User = require('./user')
 const Order = require('./order')
+const Review = require('./review')
+const Product = require('./product')
+const Category = require('./category')
 const LineItem = require('./lineItem')
 const Review = require('./review')
 const Product = require('./product')
@@ -26,8 +29,8 @@ LineItem.belongsTo(Order);
 module.exports = {
   User,
   Order,
-  LineItem,
   Review,
   Product,
-  Category
+  Category,
+  LineItem
 }
