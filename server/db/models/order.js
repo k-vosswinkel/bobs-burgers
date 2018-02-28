@@ -23,14 +23,14 @@ const Order = db.define('order', {
 { getterMethods: {
   priceTotal: function() {
     let total = 0
-    this.getLineItem()
+    this.getLineItems()
       .then(lineItems => {
         lineItems.forEach(lineItem => {total += lineItem.price})
       })
     return total;
   },
   quantityTotal: function() {
-    return this.getlineItem()
+    return this.getLineItems()
       .then(lineItems => {
         return lineItems.length;
       })
