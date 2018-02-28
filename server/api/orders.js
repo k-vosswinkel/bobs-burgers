@@ -39,6 +39,16 @@ router.put('/:orderId', (req, res, next) => {
   .catch(next)
 });
 
+router.delete('/:orderId', (req, res, next) => {
+  Order.destroy({
+    where: {
+      id: req.params.orderId
+    }
+  })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
 // post, update, and delete line items within an order
 router.post('/:orderId', (req, res, next) => {
   LineItem.create(req.body)
