@@ -1,7 +1,11 @@
 const router = require('express').Router()
 const { Category } = require('../db/models')
+const { isAdmin } = require('../../utils.js')
+
 module.exports = router
 
+//we need to leave these get requests unauthenticated because of displaying all
+//categories on landing/product pages, right?
 router.get('/', (req, res, next) => {
   Category.findAll({ include: [{ all: true }] })
     .then(categories => res.json(categories))
@@ -14,20 +18,20 @@ router.get('/:categoryId', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/:categoryId', (req, res, next) => {
+router.put('/:categoryId', isAdmin, (req, res, next) => {
   Category.findById(req.params.categoryId)
     .then(category => category.update(req.body))
     .then(category => res.json(category))
     .catch(next)
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
   Category.create(req.body)
     .then(category => res.json(category))
     .catch(next)
 })
 
-router.delete('/:categoryId', (req, res, next) => {
+router.delete('/:categoryId', isAdmin, (req, res, next) => {
   Category.destroy({
     where: {
       id: req.params.categoryId
