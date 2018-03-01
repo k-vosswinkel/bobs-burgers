@@ -20,7 +20,8 @@ const Order = db.define('order', {
     defaultValue: new Date()
   }
 }
-// { getterMethods: {
+
+//getterMethods: {
 //   priceTotal: function() {
 //     let total = 0
 //     this.getLineItems()
@@ -45,7 +46,6 @@ const Order = db.define('order', {
 //       })
 //     }
   // }
-// }
 )
 
 module.exports = Order

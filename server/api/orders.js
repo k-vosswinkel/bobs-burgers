@@ -15,8 +15,7 @@ router.get('/:orderId', isLoggedIn, (req, res, next) => {
   Order.findById(req.params.orderId, {include: [{ all: true }]})
       .then(order => {
         if (!order) {
-          const err = {status: 404};
-          next(err);
+          return next(makeError('404', 'Not Found'))
         } else {
           if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
           res.json(order);
@@ -53,13 +52,13 @@ router.delete('/:orderId', (req, res, next) => {
 })
 
 // post, update, and delete line items within an order
-router.post('/:orderId', (req, res, next) => {
+router.post('/:orderId/lineItems', (req, res, next) => {
   LineItem.create(req.body)
     .then(lineItem => res.json(lineItem))
     .catch(next)
 });
 
-router.put('/:orderId/:lineItemId', (req, res, next) => {
+router.put('/:orderId/lineItems/:lineItemId', (req, res, next) => {
   LineItem.update(req.body, {
     where: {id: req.params.lineItemId},
     returning: true
@@ -70,8 +69,12 @@ router.put('/:orderId/:lineItemId', (req, res, next) => {
   .catch(next);
 });
 
-router.delete('/:orderId/:lineItemId', (req, res, next) => {
-  LineItem.delete(req.params.lineItemId)
+router.delete('/:orderId/lineItems/:lineItemId', (req, res, next) => {
+  LineItem.destroy({
+    where: {
+      id: req.params.lineItemId
+    }
+  })
     .then(() => res.sendStatus(204))
     .catch(next);
 })
