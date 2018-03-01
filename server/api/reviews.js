@@ -31,7 +31,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 //only logged-in users can create a review
-router.post('/', (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => {
   Review.create(req.body)
   .then(result => res.json(result))
   .catch(next);
@@ -48,7 +48,7 @@ router.put('/:id', isAdmin, (req, res, next) => {
 
 //when you're logged in, can you see all of your reviews and delete them?
 //Just to keep it simple for now, I am only letting admins delete reviews.
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', isAdmin, (req, res, next) => {
   req.review.destroy()
   .then(() => res.json(req.review))
   .catch(next);
