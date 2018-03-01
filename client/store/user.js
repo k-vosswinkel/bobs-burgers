@@ -1,26 +1,20 @@
 import axios from 'axios'
 import history from '../history'
 
-/**
- * ACTION TYPES
- */
-const GET_USER = 'GET_USER'
-const REMOVE_USER = 'REMOVE_USER'
-
-/**
- * INITIAL STATE
- */
+//Initial State
 const defaultUser = {}
 
-/**
- * ACTION CREATORS
- */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+//Action Types
+const GET_USER = 'GET_USER'
+const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
-/**
- * THUNK CREATORS
- */
+//Action Creators
+const getUser = user => ({type: GET_USER, user})
+const removeUser = userId => ({type: REMOVE_USER, userId})
+const updateUser = user => ({type: UPDATE_USER, user})
+
+//Thunk Creators
 export const me = () =>
   dispatch =>
     axios.get('/auth/me')
@@ -48,15 +42,28 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
-/**
- * REDUCER
- */
+export const editUser = (user) => {
+  return function thunk(dispatch) {
+    let userId = user.id;
+    return axios.put(`/api/auth/${userId}`, user)
+      .then(res => res.data)
+      .then(updatedUser => {
+        dispatch(updateUser(userId));
+        history.push(`/auth/${updatedUser.id}`);
+      })
+      .catch(err => console.error('Updating user unsuccessful', err));
+  }
+}
+
+//Reducer
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case UPDATE_USER:
+      return action.user
     default:
       return state
   }
