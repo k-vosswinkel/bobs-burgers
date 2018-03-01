@@ -7,7 +7,7 @@ const GET_NEW_CATEGORY = 'GET_NEW_CATEGORY';
 const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 
 // action creators
-const getAllCategories = category => ({
+const getAllCategories = categories => ({
   type: GET_ALL_CATEGORIES,
   categories: categories
 });
