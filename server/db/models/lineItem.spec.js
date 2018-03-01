@@ -33,7 +33,6 @@ describe('Line Item model', () => {
       // our afterCreate hook is not!
       describe('afterCreate hook', () => {
         it('correctly stamps the price of the related product', () => {
-          console.log('testLineItem', testLineItem)
           expect(testLineItem.currentPrice).to.equal(4.00)
         })
       })
