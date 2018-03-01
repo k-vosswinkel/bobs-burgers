@@ -7,6 +7,10 @@ async function seed () {
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
 
+  // await Promise.all([generateCategories(),generateUsers(),generateProducts(),generateOrderUser(),generateOrderGuest(),generateReviews(),generateLineItem()])
+
+
+
   //currently working:
   await Promise.all([generateCategories(),generateUsers(), generateProducts(), generateOrderGuest()])
 
