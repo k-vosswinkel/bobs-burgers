@@ -7,7 +7,7 @@ router.param('id', (req, res, next, id) => {
   User.findById(id)
   .then(user => {
     if (!user) {
-      throw Error;
+      throw Error; // make a more explicit error (status 404) -- KHLS
     } else {
       req.requestedUser = user;
     }
@@ -26,27 +26,27 @@ router.get('/', isLoggedIn, isAdmin, (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:id', isLoggedIn, (req, res, next) => {
+router.get('/:id', isLoggedIn, (req, res, next) => { // if the admin wants to look at a different user that's fine, but otherwise... adminOrSelf -- KHLS
   req.requestedUser.reload({ include: [{ all: true }] })
   .then(user => {res.json(user)})
   .catch(next)
 })
 
-router.post('/', isLoggedIn, (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => { // this is only used by admin (because we have signup) -- KHLS
   User.create(req.body)
-  .then(user => res.json(user))
+  .then(user => res.json(user)) // status of 201 probably -- KHLS
   .catch(next);
 })
 
-router.put('/:id', isLoggedIn, (req, res, next) => {
+router.put('/:id', isLoggedIn, (req, res, next) => { // adminOrSelf. Only admin make other admins -- KHLS
   req.requestedUser.update(req.body)
-    .then(() => req.user.reload({ include: [{ all: true }] }))
+    .then(() => req.user.reload({ include: [{ all: true }] })) // spacing!?! -- KHLS
   .then(result => res.json(result))
   .catch(next);
 })
 
 router.delete('/:id', isLoggedIn, isAdmin, (req, res, next) => {
   req.requestedUser.destroy()
-  .then(() => res.json(req.user))
+  .then(() => res.json(req.user)) // sending the user? I would think maybe a status 204 -- KHLS
   .catch(next);
 })

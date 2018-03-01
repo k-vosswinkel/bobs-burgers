@@ -35,7 +35,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     const name = profile.displayName
     const email = profile.emails[0].value
 
-    User.find({where: {googleId}})
+    User.find({where: {googleId}}) // do a thing here to check email maybe -- KHLS
       .then(foundUser => (foundUser
         ? done(null, foundUser)
         : User.create({name, email, googleId})

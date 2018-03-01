@@ -8,7 +8,7 @@ router.param('id', (req, res, next, id) => {
   Review.findById(id)
   .then(review => {
     if (!review) {
-      throw Error
+      throw Error // same as before -- KHLS
     }
     else {
       req.review = review;
@@ -31,7 +31,8 @@ router.get('/:id', (req, res, next) => {
 })
 
 //only logged-in users can create a review
-router.post('/', isLoggedIn, (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => { // adminOrSelf (author is self) -- KHLS
+  // is req.body.author_id = req.user (or check and throw error :D ) -- KHLS
   Review.create(req.body)
   .then(result => res.json(result))
   .catch(next);
@@ -41,7 +42,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
 //Just to keep it simple for now, I am only letting admins edit reviews.
 router.put('/:id', isAdmin, (req, res, next) => {
   req.review.update(req.body)
-    .then(() => req.review.reload({ include: [{ all: true }] }))
+    .then(() => req.review.reload({ include: [{ all: true }] })) // spacing? -- KHLS
   .then(review => res.json(review))
   .catch(next)
 })
@@ -50,6 +51,6 @@ router.put('/:id', isAdmin, (req, res, next) => {
 //Just to keep it simple for now, I am only letting admins delete reviews.
 router.delete('/:id', isAdmin, (req, res, next) => {
   req.review.destroy()
-  .then(() => res.json(req.review))
+  .then(() => res.json(req.review)) // 204 -- KHLS
   .catch(next);
 })

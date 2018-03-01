@@ -18,8 +18,11 @@ const Order = db.define('order', {
   orderDate: {
     type: Sequelize.DATE,
     defaultValue: new Date()
-  }
-}
+  },
+//   priceTotal: Sequelize.DECIMAL, -- KHLS
+//   quantityTotal: Sequelize.INTEGER
+// }
+
 // { getterMethods: {
 //   priceTotal: function() {
 //     let total = 0
@@ -47,5 +50,7 @@ const Order = db.define('order', {
   // }
 // }
 )
+
+// order hook to decrement product inventory -- KHLS
 
 module.exports = Order

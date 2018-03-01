@@ -9,8 +9,8 @@ async function seed () {
 
   //currently working:
   await Promise.all([generateCategories(),generateUsers(), generateProducts(), generateOrderGuest()])
-
-   /***** not working yet : generateOrderUser(), generateReviews()generateLineItem()  ******/
+  // await Promise.all([generateOrderUser(), generateReviews()]) maybe this works? -- KHLS
+   /***** not working yet : generateOrderUser(), generateReviews(), generateLineItem()  ******/
 
   console.log(`seeded successfully`)
 }
@@ -55,7 +55,7 @@ function doTimes(n, fn) {
   return results;
 }
 
-const randUser = () => {
+const randUser = () => { // consider the fact that you could make this modular for your test specs as well -- KHLS
   return User.create({
     email: chance.email(),
     password: chance.string({ length: 6 }),

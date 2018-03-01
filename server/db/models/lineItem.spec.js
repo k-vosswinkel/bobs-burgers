@@ -1,5 +1,7 @@
 /* global describe beforeEach it */
 
+// I LOVE YOU HAVE TESTS -- KHLS
+
 const {expect} = require('chai')
 const db = require('../index')
 const LineItem = db.model('lineItem')

@@ -1,13 +1,13 @@
 const router = require('express').Router()
 const { Category } = require('../db/models')
 const { isAdmin } = require('../../utils.js')
-
+/// hiii ? -- KHLS
 module.exports = router
 
 //we need to leave these get requests unauthenticated because of displaying all
 //categories on landing/product pages, right?
 router.get('/', (req, res, next) => {
-  Category.findAll({ include: [{ all: true }] })
+  Category.findAll({ include: [{ all: true }] }) // consider defaultScope -- KHLS
     .then(categories => res.json(categories))
     .catch(next)
 })
@@ -18,8 +18,8 @@ router.get('/:categoryId', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/:categoryId', isAdmin, (req, res, next) => {
-  Category.findById(req.params.categoryId)
+router.put('/:categoryId', isAdmin, (req, res, next) => { // router.params? I would think only admin can add/delete products probably -- KHLS
+  Category.findById(req.params.categoryId) // this is different from router.params as well as the bulk update used in orders -- KHLS
     .then(category => category.update(req.body))
     .then(category => res.json(category))
     .catch(next)
@@ -27,7 +27,7 @@ router.put('/:categoryId', isAdmin, (req, res, next) => {
 
 router.post('/', isAdmin, (req, res, next) => {
   Category.create(req.body)
-    .then(category => res.json(category))
+    .then(category => res.json(category)) // 201 -- KHLS
     .catch(next)
 })
 

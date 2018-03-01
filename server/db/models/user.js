@@ -5,7 +5,7 @@ const db = require('../db')
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
-    unique: true,
+    unique: true, // could cause weird problems with how we do Google OAuth. Leave this though and if you do anything do it in OAUTH verification callback -- KHLS
     allowNull: false
   },
   password: {
@@ -27,16 +27,23 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  admin: {
+  admin: { // isAdmin for a boolean -- KHLS
     type: Sequelize.BOOLEAN,
     defaultValue: false
   }
 }
 // ,
 // {
+  // defaultScope: { // maybe makes sense? -- KHLS
+  //   include: [Order, Review]
+  // }
 //   scopes: {
+  // sanitized: () => {
+  //   attributes: exclude(['salt']) // probably wrong syntax -- KHLS
+  // }
 //     populated: () => {
-//       include: [{
+//       include: [
+// {
 //         model: Order, Review
 //       }]
 //     }

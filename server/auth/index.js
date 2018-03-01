@@ -17,7 +17,7 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/signup', (req, res, next) => {
-  User.create(req.body)
+  User.create(req.body) // make sure a user can't make themselves admin -- KHLS
     .then(user => {
       req.login(user, err => (err ? next(err) : res.json(user)))
     })
