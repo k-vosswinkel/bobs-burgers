@@ -7,8 +7,7 @@ const LineItem = db.define('lineItem', {
     allowNull: false
   },
   currentPrice: {
-    type: Sequelize.FLOAT,
-    allowNull: false
+    type: Sequelize.FLOAT
   }
 },
 { getterMethods: {
@@ -21,6 +20,7 @@ const LineItem = db.define('lineItem', {
       lineItem.getProduct()
         .then(product => {
           lineItem.currentPrice = product.price
+          console.log('line item current price', lineItem.currentPrice)
           lineItem.save()
         })
     }

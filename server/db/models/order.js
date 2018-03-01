@@ -25,17 +25,25 @@ const Order = db.define('order', {
     let total = 0
     this.getLineItems()
       .then(lineItems => {
-        lineItems.forEach(lineItem => {total += lineItem.price})
+        lineItems.forEach(lineItem => {
+          total += lineItem.totalPrice
+        })
+        console.log('test price total', total)
+        return total;
       })
-    return total;
   },
   quantityTotal: function() {
-    return this.getLineItems()
+    let total = 0;
+    this.getLineItems()
       .then(lineItems => {
-        return lineItems.length;
+        lineItems.forEach(lineItem => {
+          total += lineItem.quantity
+        })
+        console.log('test quantity total', total)
+        return total;
       })
+    }
   }
-}
 
 })
 
