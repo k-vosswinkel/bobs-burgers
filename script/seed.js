@@ -1,63 +1,45 @@
-/**
- * Welcome to the seed file! This seed file uses a newer language feature called...
- *
- *                  -=-= ASYNC...AWAIT -=-=
- *
- * Async-await is a joy to use! Read more about it in the MDN docs:
- *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
- *
- * Now that you've got the main idea, check it out in practice below!
+const db = require('../server/db')
+const { User, Category, LineItem, Product, Review, Order } = require('../server/db/models')
+
+async function seed () {
+  await db.sync({force: true})
+  console.log('db synced!')
+  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
+  // executed until that promise resolves!
+
+  //currently working:
+  await Promise.all([generateCategories(),generateUsers(), generateProducts(), generateOrderGuest()])
+
+   /***** not working yet : generateOrderUser(), generateReviews()generateLineItem()  ******/
+
+  console.log(`seeded successfully`)
+}
+
+// Execute the `seed` function
+// `Async` functions always return a promise, so we can use `catch` to handle any errors
+// that might occur inside of `seed`
+seed()
+  .catch(err => {
+    console.error(err.message)
+    console.error(err.stack)
+    process.exitCode = 1
+  })
+  .then(() => {
+    console.log('closing db connection')
+    db.close()
+    console.log('db connection closed')
+  })
+
+/*
+ * note: everything outside of the async function is totally synchronous
+ * The console.log below will occur before any of the logs that occur inside
+ * of the async function
  */
-// const db = require('../server/db')
-// const {User} = require('../server/db/models')
+console.log('seeding...')
 
-// async function seed () {
-//   await db.sync({force: true})
-//   console.log('db synced!')
-//   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-//   // executed until that promise resolves!
-
-//   const users = await Promise.all([
-//     User.create({email: 'cody@email.com', password: '123'}),
-//     User.create({email: 'murphy@email.com', password: '123'})
-//   ])
-//   // Wowzers! We can even `await` on the right-hand side of the assignment operator
-//   // and store the result that the promise resolves to in a variable! This is nice!
-//   console.log(`seeded ${users.length} users`)
-//   console.log(`seeded successfully`)
-// }
-
-// // Execute the `seed` function
-// // `Async` functions always return a promise, so we can use `catch` to handle any errors
-// // that might occur inside of `seed`
-// seed()
-//   .catch(err => {
-//     console.error(err.message)
-//     console.error(err.stack)
-//     process.exitCode = 1
-//   })
-//   .then(() => {
-//     console.log('closing db connection')
-//     db.close()
-//     console.log('db connection closed')
-//   })
-
-// /*
-//  * note: everything outside of the async function is totally synchronous
-//  * The console.log below will occur before any of the logs that occur inside
-//  * of the async function
-//  */
-// console.log('seeding...')
-
-
-//--------------------
-//OUR SEED FILE
 const Chance = require('chance');
 const Promise = require('bluebird'); //Promise.map is not available in default promises
 const chance = new Chance();
-const { User, Category, LineItem, Product, Review, Order } = require('../server/db/models')
-const db = require('../server/db')
 
 let numOrders = 25;
 let numUsers = 50;
@@ -208,57 +190,62 @@ const generateLineItem = () => {
   return doTimes(numLineItems, () => randLineItem());
 }
 
-function createUsers() {
-  return Promise.map(generateUsers(), user => user.save());
-}
+//BEGIN OLD SEED FILE CODE...
 
-function createReviews() {
-  return Promise.map(generateReviews(), review => review.save());
-}
+// function createUsers() {
+//   return Promise.map(generateUsers(), user => user.save());
+// }
 
-function createCategories() {
-  return Promise.map(generateCategories(), category => category.save());
-}
+// function createReviews() {
+//   return Promise.map(generateReviews(), review => review.save());
+// }
 
-function createOrdersUsers() {
-  return Promise.map(generateOrderUser(), orderUser => orderUser.save());
-}
+// function createCategories() {
+//   return Promise.map(generateCategories(), category => category.save());
+// }
 
-function createOrdersGuests() {
-  return Promise.map(generateOrderGuest(), orderGuest => orderGuest.save());
-}
+// function createOrdersUsers() {
+//   return Promise.map(generateOrderUser(), orderUser => orderUser.save());
+// }
 
-function createLineItems() {
-  return Promise.map(generateLineItem(), lineItem => lineItem.save());
-}
+// function createOrdersGuests() {
+//   return Promise.map(generateOrderGuest(), orderGuest => orderGuest.save());
+// }
 
-function createProducts() {
-  return Promise.map(generateProducts(), product => product.save());
-}
+// function createLineItems() {
+//   return Promise.map(generateLineItem(), lineItem => lineItem.save());
+// }
 
-function seed() {
-  return createCategories()
-    .then(createUsers())
-    .then(createProducts())
-    .then(createOrdersUsers())
-    .then(createOrdersGuests())
-    .then(createReviews())
-    .then(createLineItems());
-}
+// function createProducts() {
+//   return Promise.map(generateProducts(), product => product.save());
+// }
 
-console.log('Syncing database');
+// function seed() {
+//   return createCategories()
+//     .then(createUsers())
+//     .then(createProducts())
+//     .then(createOrdersUsers())
+//     .then(createOrdersGuests())
+//     .then(createReviews())
+//     .then(createLineItems());
+// }
 
-db.sync({ force: true })
-  .then(() => {
-    console.log('Seeding database');
-    return seed();
-  })
-  .then(() => console.log('Seeding successful'))
-  .catch(err => {
-    console.error('Error while seeding');
-    console.error(err.stack);
-  })
-  .finally(() => {
-    db.close();
-    return null;
-  });
+// console.log('Syncing database');
+
+// db.sync({ force: true })
+//   .then(() => {
+//     console.log('Seeding database');
+//     return seed();
+//   })
+//   .then(() => console.log('Seeding successful'))
+//   .catch(err => {
+//     console.error('Error while seeding');
+//     console.error(err.stack);
+//   })
+//   .finally(() => {
+//     db.close();
+//     return null;
+//   });
+
+
+//END OLD SEED FILE
