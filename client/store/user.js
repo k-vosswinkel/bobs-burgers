@@ -68,3 +68,6 @@ export default function (state = defaultUser, action) {
       return state
   }
 }
+
+//Don't worry about updating methods on users right now
+//Add Delete User action and change "remove" to "logout"
