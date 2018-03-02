@@ -8,10 +8,10 @@ const ADD_USER = 'ADD_USER';
 const UPDATE_USER = 'UPDATE_USER';
 
 //Action Creators
-const getAllUsers = products => ({ type: GET_ALL_USERS, products });
+const getAllUsers = users => ({ type: GET_ALL_USERS, users });
 const removeUser = id => ({ type: REMOVE_USER, id });
-const addUser = product => ({ type: ADD_USER, product })
-const updateUser = product => ({ type: UPDATE_USER, product })
+const addUser = user => ({ type: ADD_USER, user })
+const updateUser = user => ({ type: UPDATE_USER, user })
 
 //Reducer
 export default (users = [], action) => {

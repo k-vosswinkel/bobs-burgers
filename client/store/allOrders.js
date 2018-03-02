@@ -10,7 +10,7 @@ const UPDATE_ORDER = 'UPDATE_ORDER';
 //Changed the order and verbiage here to match across reducers
 
 //Action Creators
-const getAllOrders = order => ({ type: GET_ALL_ORDERS, order })
+const getAllOrders = orders => ({ type: GET_ALL_ORDERS, orders })
 const removeOrder = id => ({ type: REMOVE_ORDER, id })
 const addOrder = order => ({ type: ADD_ORDER, order })
 const updateOrder = order => ({ type: UPDATE_ORDER, order })
