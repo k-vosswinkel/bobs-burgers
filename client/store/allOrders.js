@@ -8,34 +8,27 @@ const DELETE_ORDER = 'DELETE_ORDER';
 const UPDATE_ORDER = 'UPDATE_ORDER';
 
 //Action Creators
-const gotAllOrdersFromServer = order => ({type: GOT_ALL_ORDERS_FROM_SERVER, order})
+const gotAllOrdersFromServer = orders => ({type: GOT_ALL_ORDERS_FROM_SERVER, orders})
 const addOrder = order => ({type: ADD_ORDER, order})
 const deleteOrder = orderId => ({type: DELETE_ORDER, orderId})
 const updateOrder = (order) => ({type: UPDATE_ORDER, order})
 
 //Thunks
-export const gotAllOrdersThunkCreator = () => {
-  return function thunk(dispatch) {
-    return axios.get('/api/orders')
-    .then(res => res.data)
-    .then(orders => {
-      dispatch(gotAllOrdersFromServer(orders))
-    })
-    .catch(err => console.error('Getting all orders unsuccessful', err))
-  }
+export const gotAllOrdersThunkCreator = () => dispatch => {
+  axios.get('/api/orders')
+  .then(orders => (dispatch(gotAllOrdersFromServer(orders.data)))
+  .catch(err => console.error('Getting all orders unsuccessful', err)))
 }
 
-export const postOrder = (order) => {
-  return function thunk(dispatch) {
-    axios.post('/api/orders', order)
-      .then(res => res.data)
-      .then(newOrder => {
-        dispatch(addOrder(newOrder));
-        history.push(`/orders/${newOrder.id}`)
-      })
-      .catch(err => console.error('Creating order unsuccessful', err));
-  }
+export const postOrder = (order) => dispatch => {
+  axios.post('/api/orders', order)
+  .then(newOrder => {
+    dispatch(addOrder(newOrder.data));
+    history.push(`/orders/${newOrder.id}`)
+  })
+  .catch(err => console.error('Creating order unsuccessful', err));
 }
+
 
 export const deleteOrderThunkCreator = (orderId) => {
   return function thunk(dispatch) {
@@ -61,10 +54,10 @@ export const updateOrderThunkCreator = (order) => {
 }
 
 //Reducer
-export default function (state = {}, action) {
+export default function (orders = [], action) {
   switch (action.type) {
     case GOT_ALL_ORDERS_FROM_SERVER:
-      return Object.assign({}, state, { orders: action.orders });
+      return action.orders;
     case ADD_ORDER:
       return Object.assign({}, state, { orders: state.orders.concat(action.order) });
     case DELETE_ORDER:
@@ -75,6 +68,7 @@ export default function (state = {}, action) {
           return order.id === action.orderId ? action.order : order
         })
       })
-    default: return state
+    default:
+      return orders
   }
 }

@@ -8,5 +8,4 @@ const SingleItem = ({name, imgUrl}) =>
     </div>
   )
 
-
 export default SingleItem;

@@ -4,19 +4,15 @@ import axios from 'axios';
 const GET_SINGLE_CATEGORY = 'GET_SINGLE_CATEGORY'
 
 // action creator
-const getSingleCategory = category => ({
-  type: GET_SINGLE_CATEGORY,
-  category: category
-});
+const getSingleCategory = category => ({ type: GET_SINGLE_CATEGORY, category });
 
 // reducer
 export default (currentCategory = {}, action) => {
   switch (action.type) {
     case GET_SINGLE_CATEGORY:
-    return action.category
-
-  default:
-    return currentCategory;
+      return action.category
+    default:
+      return currentCategory;
   }
 }
 

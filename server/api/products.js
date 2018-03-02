@@ -11,21 +11,21 @@ router.get('/', (req, res, next) => {
 
 router.get('/:productId', (req, res, next) => {
   Product.findById(req.params.productId, { include: [{ all: true }] })
-    .then(product => res.json(product))
-    .catch(next)
+  .then(product => (res.json(product)))
+  .catch(next)
 })
 
 router.put('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
   Product.findById(req.params.productId)
-    .then(product => product.update(req.body))
-    .then(product => res.json(product))
-    .catch(next)
+  .then(product => product.update(req.body))
+  .then(product => res.json(product))
+  .catch(next)
 })
 
 router.post('/', isLoggedIn, isAdmin, (req, res, next) => {
   Product.create(req.body)
-    .then(product => res.json(product))
-    .catch(next)
+  .then(product => res.json(product))
+  .catch(next)
 })
 
 router.delete('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
@@ -34,6 +34,6 @@ router.delete('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
       id: req.params.productId
     }
   })
-    .then(() => res.sendStatus(204))
-    .catch(next)
+  .then(() => res.sendStatus(204))
+  .catch(next)
 })
