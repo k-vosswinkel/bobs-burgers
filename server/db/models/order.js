@@ -18,7 +18,9 @@ const Order = db.define('order', {
   orderDate: {
     type: Sequelize.DATE,
     defaultValue: new Date()
-  }
+  },
+  totalPrice: Sequelize.FLOAT,
+  totalQuantity: Sequelize.INTEGER
 }
 
 //getterMethods: {
