@@ -1,56 +1,37 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchReviews} from '../store/allReviews';
-import {postReview, deleteReview} from '../store/currentReview';
+import {postReview, deleteReview, fetchReviews} from '../store/allReviews';
+import {fetchCurrentProduct} from '../store/singleProduct';
 
 class Reviews extends Component {
-  constructor(props) {
-    super();
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
+  componentDidMount() {
+    this.props.fetchCurrentProduct(1);
   }
 
-componentDidMount() {
-  this.props.getReviews();
-}
+  handleClick = () => {
+    this.props.postReview({text: 'hey', rating: 4, productId: 1});
+  }
 
-handleClick() {
-  this.props.addReview();
-}
-
-handleRemove() {
-  this.props.removeReview(this.props.currentReview);
-}
+  handleRemove = (review) => { this.props.deleteReview(review) }
 
   render() {
-    console.log(this.props.reviews);
-    return (
+    const {singleProduct} = this.props;
+    if (!singleProduct.reviews) {return null}
+    else {
+      return (
       <div>
         <button onClick={this.handleClick}>Test Add!</button>
-        <button onClick={this.handleRemove}>Test Remove!</button>
         {
-          this.props.reviews.length ? this.props.reviews.map(review => <h1 key={review.id}>{review.text}</h1>) : null
+          singleProduct.reviews.length ? singleProduct.reviews.map(review => <h1 key={review.id}>{review.text}<button onClick={() => this.handleRemove(review)}>-</button></h1>) : <p>There are no reviews for this product</p>
         }
       </div>
     )
+    }
   }
 }
 
-const mapState = (state) => ({
-  reviews: state.allReviews,
-  currentReview: state.currentReview
-})
-const mapDispatch = (dispatch) => ({
-  getReviews: () => {
-    dispatch(fetchReviews());
-  },
-  addReview: () => {
-    dispatch(postReview({ text: 'hey', rating: 4}))
-  },
-  removeReview: (review) => {
-    dispatch(deleteReview(review))
-  }
-})
+const mapState = ({singleProduct, allReviews, currentReview}) => ({ singleProduct, allReviews, currentReview })
+
+const mapDispatch = {fetchCurrentProduct, fetchReviews, postReview, deleteReview};
 
 export default connect(mapState, mapDispatch)(Reviews);

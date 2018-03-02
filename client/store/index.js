@@ -12,6 +12,7 @@ import currentOrder from './currentOrder';
 import currentProduct from './currentProduct';
 import currentReview from './currentReview';
 import currentUser from './currentUser';
+import allLineItems from './allLineItems';
 
 const reducer = combineReducers({
   allCategories,

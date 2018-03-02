@@ -1,20 +1,17 @@
 import axios from 'axios';
 import history from '../history';
-//using history to push redirects after delete/update/add
 
 //Action Types
 const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 const REMOVE_ORDER = 'REMOVE_ORDER';
 const ADD_ORDER = 'ADD_ORDER';
 const UPDATE_ORDER = 'UPDATE_ORDER';
-//Changed the order and verbiage here to match across reducers
 
 //Action Creators
 const getAllOrders = orders => ({ type: GET_ALL_ORDERS, orders })
 const removeOrder = id => ({ type: REMOVE_ORDER, id })
 const addOrder = order => ({ type: ADD_ORDER, order })
 const updateOrder = order => ({ type: UPDATE_ORDER, order })
-//Changed the order and verbiage here to match across reducers
 
 //Reducer
 export default (orders = [], action) => {
@@ -35,11 +32,10 @@ export default (orders = [], action) => {
       return orders
   }
 }
-//how do we want to tab in reducers? I just picked a compromise between what we had all been doing, but lmk if there is a best practice that I'm missing. Maybe something to ask Leigh.
 
 //Thunks
 export const fetchOrders = () => {
-  return function thunk(dispatch) {
+  return dispatch => {
     return axios.get('/api/orders')
       .then(res => res.data)
       .then(orders => {
@@ -59,7 +55,6 @@ export const deleteProduct = id => {
       .catch(err => console.error(`error deleting product id: ${id})`, err))
   }
 }
-//added redirect
 
 export const postOrder = order => {
   return dispatch => {
@@ -83,3 +78,4 @@ export const editOrder = order => {
       .catch(err => console.error(`error editing product id: ${order.id}`, err))
   }
 }
+

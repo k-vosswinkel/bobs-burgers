@@ -7,12 +7,8 @@ module.exports = router
 router.param('id', (req, res, next, id) => {
   Review.findById(id)
   .then(review => {
-    if (!review) {
-      throw Error
-    }
-    else {
-      req.review = review;
-    }
+    if (!review) { throw Error }
+    else { req.review = review; }
     next();
   })
   .catch(next);
@@ -41,7 +37,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
 //Just to keep it simple for now, I am only letting admins edit reviews.
 router.put('/:id', isAdmin, (req, res, next) => {
   req.review.update(req.body)
-    .then(() => req.review.reload({ include: [{ all: true }] }))
+  .then(() => req.review.reload({ include: [{ all: true }] }))
   .then(review => res.json(review))
   .catch(next)
 })

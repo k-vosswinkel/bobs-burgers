@@ -1,39 +1,43 @@
 import React, {Component} from 'react';
 import SingleItem from './SingleItem';
 import {connect} from 'react-redux';
+import {oneOrderThunkCreator} from '../store/order';
+
 
 class Cart extends Component {
-
-    // props - list of products, handleadd, handleremove, handlecheckout
-
-
-  constructor(props){
-    super();
+  componentDidMount() {
+    this.props.oneOrderThunkCreator(2);
   }
 
-  handleAdd = (product) => {
+  handleAdd = () => {};
 
-  }
+  handleRemove = () => {};
 
   render() {
-    return (
-      <div>
-        <ul>
-        {
-          this.props.products.length ? props.products.map(product =>
-            <li key={product.id}><SingleItem product={product} /><button onClick= {() => this.props.handleAdd(product)}>+</button><button onClick={() => this.props.handleRemove(product)}>-</button></li>
-          ) : null
-        }
-      </ul>
-      <button onClick={() => this.props.handleCheckOut}>Checkout</button>
-      </div>
-    )
+    const {order} = this.props;
+    if (!order) { return <p>Cart is empty</p> }
+    else {
+      return (order.lineItems ?
+      <CartContainer products={order.lineItems} handleAdd={this.addLineItem} handleReduce={this.removeLineItem} />
+      : null
+    )}
   }
 }
 
-const mapState = () => {
+const CartContainer = ({products, handleAdd, handleReduce, handleCheckout}) => (
+  <div>
+    <ul>
+    { products.map(product =>
+        <li key={product.id}><SingleItem product={product} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
+    )}
+    </ul>
+    <button onClick={() => handleCheckout}>Checkout</button>
+  </div>
+)
 
-}
-const mapDispatch = null;
+
+const mapState = ({order}) => ({order});
+
+const mapDispatch = {oneOrderThunkCreator};
 
 export default connect(mapState, mapDispatch)(Cart);
