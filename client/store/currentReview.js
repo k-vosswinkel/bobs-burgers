@@ -39,7 +39,7 @@ export const postReview = (review) => dispatch => {
     dispatch(getCurrentReview(res.data));
     dispatch(fetchReviews());
     })
-  .catch(err => console.log(`Couldn't post review ${review.id}`, err));
+  .catch(err => console.log(`Couldn't post review`, err));
 }
 
 export const updateReview = (review) => dispatch => {
