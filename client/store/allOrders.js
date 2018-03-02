@@ -1,74 +1,81 @@
-import axios from 'axios'
-import history from '../history'
+import axios from 'axios';
+import history from '../history';
 
 //Action Types
-const GOT_ALL_ORDERS_FROM_SERVER = 'GOT_ALL_ORDERS_FROM_SERVER';
+const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
+const REMOVE_ORDER = 'REMOVE_ORDER';
 const ADD_ORDER = 'ADD_ORDER';
-const DELETE_ORDER = 'DELETE_ORDER';
 const UPDATE_ORDER = 'UPDATE_ORDER';
 
 //Action Creators
-const gotAllOrdersFromServer = orders => ({type: GOT_ALL_ORDERS_FROM_SERVER, orders})
-const addOrder = order => ({type: ADD_ORDER, order})
-const deleteOrder = orderId => ({type: DELETE_ORDER, orderId})
-const updateOrder = (order) => ({type: UPDATE_ORDER, order})
-
-//Thunks
-export const gotAllOrdersThunkCreator = () => dispatch => {
-  axios.get('/api/orders')
-  .then(orders => (dispatch(gotAllOrdersFromServer(orders.data)))
-  .catch(err => console.error('Getting all orders unsuccessful', err)))
-}
-
-export const postOrder = (order) => dispatch => {
-  axios.post('/api/orders', order)
-  .then(newOrder => {
-    dispatch(addOrder(newOrder.data));
-    history.push(`/orders/${newOrder.id}`)
-  })
-  .catch(err => console.error('Creating order unsuccessful', err));
-}
-
-
-export const deleteOrderThunkCreator = (orderId) => {
-  return function thunk(dispatch) {
-    return axios.delete(`/api/orders/${orderId}`)
-    .then(() => {
-      dispatch(deleteOrder(orderId))
-    })
-    .catch(err => console.error('Deleting order unsuccessful', err))
-  }
-}
-
-export const updateOrderThunkCreator = (order) => {
-  return function thunk(dispatch) {
-    let orderId = order.id
-    return axios.put(`/api/orders/${orderId}`, order)
-    .then(res => res.data)
-    .then(updatedOrder => {
-      dispatch(updateOrder(orderId))
-      history.push(`/orders/${updatedOrder.id}`)
-    })
-    .catch(err => console.error('Updating order unsuccessful', err))
-  }
-}
+const getAllOrders = orders => ({ type: GET_ALL_ORDERS, orders })
+const removeOrder = id => ({ type: REMOVE_ORDER, id })
+const addOrder = order => ({ type: ADD_ORDER, order })
+const updateOrder = order => ({ type: UPDATE_ORDER, order })
 
 //Reducer
-export default function (orders = [], action) {
+export default (orders = [], action) => {
   switch (action.type) {
-    case GOT_ALL_ORDERS_FROM_SERVER:
-      return action.orders;
+    case GET_ALL_ORDERS:
+      return [action.orders]
+
+    case REMOVE_ORDER:
+      return orders.filter(order => order.id !== action.orderId)
+
     case ADD_ORDER:
-      return Object.assign({}, state, { orders: state.orders.concat(action.order) });
-    case DELETE_ORDER:
-      return Object.assign({}, state, { orders: state.orders.filter(order => order.id !== action.orderId) });
+      return [...orders, action.order]
+
     case UPDATE_ORDER:
-      return Object.assign({}, state, {
-        orders: state.orders.map(order => {
-          return order.id === action.orderId ? action.order : order
-        })
-      })
+      return orders.map(order => (order.id === action.order.id ? action.order : order))
+
     default:
       return orders
   }
 }
+
+//Thunks
+export const fetchOrders = () => {
+  return dispatch => {
+    return axios.get('/api/orders')
+      .then(res => res.data)
+      .then(orders => {
+        dispatch(getAllOrders(orders))
+      })
+      .catch(err => console.error('Getting all orders unsuccessful', err))
+  }
+}
+
+export const deleteProduct = id => {
+  return dispatch => {
+    return axios.delete(`/api/orders/${id}`)
+      .then(() => {
+        dispatch(removeOrder(id));
+        history.push(`/orders`);
+      })
+      .catch(err => console.error(`error deleting product id: ${id})`, err))
+  }
+}
+
+export const postOrder = order => {
+  return dispatch => {
+    return axios.post('/api/orders', order)
+      .then(newOrder => {
+        dispatch(addOrder(newOrder));
+        history.push(`/orders/${newOrder.id}`);
+      })
+      .catch(err => console.error('Creating order unsuccessful', err));
+  }
+}
+
+export const editOrder = order => {
+  return dispatch => {
+    return axios.put(`/api/orders/${order.id}`, order)
+      .then(res => res.data)
+      .then(updatedOrder => {
+        dispatch(updateOrder(order))
+        history.push(`/orders/${updatedOrder.id}`)
+      })
+      .catch(err => console.error(`error editing product id: ${order.id}`, err))
+  }
+}
+
