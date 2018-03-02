@@ -11,18 +11,26 @@ router.get('/', isLoggedIn, (req, res, next) => {
     .catch(next)
 });
 
+//For Testing purposes due to logged in requirement - AS
+// router.get('/:orderId', (req, res, next) => {
+//   Order.findById(req.params.orderId, {include: [{ all: true }]})
+//   .then(order => res.json(order))
+//   .catch(next)
+// });
+
 router.get('/:orderId', isLoggedIn, (req, res, next) => {
   Order.findById(req.params.orderId, {include: [{ all: true }]})
-      .then(order => {
-        if (!order) {
-          return next(makeError('404', 'Not Found'))
-        } else {
-          if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
-          res.json(order);
-        }
-      })
-      .catch(next)
+    .then(order => {
+      if (!order) {
+        return next(makeError('404', 'Not Found'))
+      } else {
+        if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
+        res.json(order);
+      }
+    })
+    .catch(next)
 });
+
 
 router.post('/', (req, res, next) => {
   Order.create(req.body)

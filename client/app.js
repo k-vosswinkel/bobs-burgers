@@ -2,7 +2,8 @@ import React from 'react'
 
 import {Navbar} from './components'
 import Routes from './routes'
-import Reviews from './componoent/Reviews'
+import Reviews from './components/Reviews';
+import Cart from './components/Cart';
 
 
 const App = () => {
@@ -10,7 +11,8 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
-      <Reviews />
+      {/* <Reviews /> */}
+      {/* <Cart /> */}
     </div>
   )
 }
