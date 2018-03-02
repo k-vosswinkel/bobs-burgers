@@ -3,7 +3,7 @@ import axios from 'axios';
 // action types
 const GET_ALL_REVIEWS = 'GET_ALL_REVIEWS';
 const REMOVE_REVIEW = 'REMOVE_REVIEW';
-const GET_NEW_REVIEW = 'GET_NEW_REVIEW';
+const ADD_REVIEW = 'ADD_REVIEW';
 const UPDATE_REVIEW = 'UPDATE_REVIEW';
 
 // action creators
@@ -11,7 +11,7 @@ const getAllReviews = reviews => ({ type: GET_ALL_REVIEWS, reviews });
 
 const removeReview = id => ({type: REMOVE_REVIEW, id });
 
-const getNewReview = review => ({ type: GET_NEW_REVIEW, review })
+const addReview = review => ({ type: ADD_REVIEW, review })
 
 const updateReview = review => ({ type: UPDATE_REVIEW, review })
 
@@ -23,7 +23,7 @@ export default (reviews = [], action) => {
       return action.reviews;
     case REMOVE_REVIEW :
       return reviews.filter(review => review.id !== action.id)
-    case GET_NEW_REVIEW :
+    case ADD_REVIEW :
       return [...reviews, action.review];
     case UPDATE_REVIEW :
       return reviews.map(review => (review.id === action.review.id ? action.review : review))
@@ -32,12 +32,10 @@ export default (reviews = [], action) => {
   }
 }
 
-
 // thunks
 export const fetchReviews = () => dispatch => {
   axios.get('/api/reviews')
   .then(reviews => {
-    console.log('hi', reviews.data)
     dispatch(getAllReviews(reviews.data))
   })
   .catch(err => console.error('error fetching reviews', err))
@@ -51,16 +49,15 @@ export const deleteReview = review => dispatch => {
 
 export const postReview = review => dispatch => {
     axios.post('/api/reviews', review)
-    .then(newReview => dispatch(getNewReview(newReview.data)))
+    .then(newReview => dispatch(addReview(newReview.data)))
     .catch(err => console.error('error creating a new review', err))
 }
 
 export const editReview = review => dispatch => {
-  axios.put(`/api/REVIEWS/${review.id}`, review)
+  axios.put(`/api/reviews/${review.id}`, review)
   .then(editedReview => dispatch(updateReview(editedReview.data)))
-  .catch(err => console.error(`error editing REVIEW id: ${review.id}`, err))
+  .catch(err => console.error(`error editing review id: ${review.id}`, err))
 }
-
 
 // import axios from 'axios';
 // import history from '../history';

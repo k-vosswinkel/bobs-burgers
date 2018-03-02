@@ -19,7 +19,7 @@ export default (currentReview = {}, action) => {
 // thunks
 export const fetchCurrentReview = reviewId => dispatch => {
   axios.get(`/reviews/${reviewId}`)
-  .then(foundReview => dispatch(getSingleReview(foundReview.data)))
+  .then(foundReview => dispatch(getSingleReview(foundReview)))
   .catch(err => console.error(`error fetching review id: ${reviewId}`, err));
 }
 
