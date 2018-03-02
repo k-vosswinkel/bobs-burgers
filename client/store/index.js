@@ -19,6 +19,7 @@ const reducer = combineReducers({
   allProducts,
   allReviews,
   allUsers,
+  allLineItems,
   currentCategory,
   currentOrder,
   currentProduct,
