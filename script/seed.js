@@ -9,10 +9,8 @@ async function seed () {
 
   await Promise.all([generateCategories(),generateUsers(),generateProducts(),generateOrderUser(),generateOrderGuest(),generateReviews(),generateLineItem()])
 
-
-
   //currently working:
-  // await Promise.all([generateCategories(),generateUsers(), generateProducts(), generateOrderGuest()])
+  // await Promise.all([generateCategories(),generateUsers(), generateProducts(), generateOrderUser(), generateOrderGuest() ])
 
    /***** not working yet : generateOrderUser(), generateReviews()generateLineItem()  ******/
 
@@ -62,7 +60,7 @@ function doTimes(n, fn) {
 const randUser = () => {
   return User.create({
     email: chance.email(),
-    password: chance.string({ length: 6 }),
+    password: chance.string({ length: 3 }),
     admin: chance.bool({ likelihood: 10 })
   })
 }
@@ -171,6 +169,11 @@ const generateProducts = () => {
 
 //remaining 'generate' functions go here
 const generateUsers = () => {
+  User.create({
+    email: 'notBob@bob.com',
+    password: 'badtestpassword',
+    admin: true
+  })
   return doTimes(numUsers, () => randUser());
 }
 
@@ -183,6 +186,10 @@ const generateCategories = () => {
 }
 
 const generateOrderUser = () => {
+  Order.build({
+    userId: 1,
+    productId: chance.integer({ min: 1, max: 10 })
+  })
   return doTimes(numOrders, () => randOrderUser());
 }
 

@@ -12,6 +12,8 @@ class Reviews extends Component {
     this.props.postReview({text: 'hey', rating: 4, productId: 1});
   }
 
+  handleAdd
+
   handleRemove = (review) => { this.props.deleteReview(review) }
 
   render() {
@@ -21,6 +23,7 @@ class Reviews extends Component {
       return (
       <div>
         <button onClick={this.handleClick}>Test Add!</button>
+
         {
           singleProduct.reviews.length ? singleProduct.reviews.map(review => <h1 key={review.id}>{review.text}<button onClick={() => this.handleRemove(review)}>-</button></h1>) : <p>There are no reviews for this product</p>
         }
