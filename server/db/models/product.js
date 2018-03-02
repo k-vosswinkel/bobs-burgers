@@ -27,7 +27,7 @@ const Product = db.define('product', {
   }
 }, {
   getterMethods: {
-    available() {
+    isAvailable() {
       return this.inventory > 0;
     }
   }
