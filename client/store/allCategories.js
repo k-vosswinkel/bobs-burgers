@@ -71,11 +71,11 @@ export const postCategory = category => {
 
 export const editCategory = category => {
   return dispatch => {
-    return axios.put(`/api/products/${category.id}`, category)
+    return axios.put(`/api/categories/${category.id}`, category)
     //res.data?
     .then(editedCategory => {
       dispatch(updateCategory(editedCategory));
-      history.push(`/products/${editedCategory.id}`);
+      history.push(`/categories/${editedCategory.id}`);
     })
     .catch(err => console.error(`error editing category id: ${category.id}`, err))
   }
