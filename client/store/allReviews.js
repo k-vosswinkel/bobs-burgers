@@ -35,8 +35,7 @@ export default (reviews = [], action) => {
 // thunks
 export const fetchReviews = () => dispatch => {
   axios.get('/api/reviews')
-  .then(reviews => {
-    dispatch(getAllReviews(reviews.data))
+  .then(reviews => { dispatch(getAllReviews(reviews.data))
   })
   .catch(err => console.error('error fetching reviews', err))
 }
