@@ -14,6 +14,7 @@ class NewProduct extends Component {
       description: this.props.product ? this.props.product.description : '',
       price: this.props.product ? this.props.product.price : '',
       inventory: this.props.product ? this.props.product.inventory : '',
+      categories: this.props.product ? this.props.product.categoryIds : [],
       dirty: false
     }
     this.handleChange = this.handleChange.bind(this);
@@ -95,12 +96,21 @@ class NewProduct extends Component {
             />
           </label>
         </form>
+        <select multiple>Categories:
+        {this.props.allCategories.map(category => {
+          return (
+            <option key={category.id} value={category.id}>
+            {category.name}</option>
+          )
+        })}
+        </select>
       </div>
     )
   }
 
 }
 
+const mapState = ({allCategories}) => ({allCategories})
 const mapDispatch = {postProduct, editProduct}
-export default connect(null, mapDispatch)(NewProduct)
+export default connect(null, mapState, mapDispatch)(NewProduct)
 

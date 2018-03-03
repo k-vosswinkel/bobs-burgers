@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {fetchProducts} from '../store/allProducts'
+import {fetchProducts} from '../store/allProducts';
+import {fetchCategories} from '../store/allCategories';
 import { Link } from 'react-router-dom';
 
 // Component
@@ -19,6 +20,7 @@ class AllProducts extends Component {
 
   componentDidMount() {
     this.props.fetchProducts();
+    this.props.fetchCategories();
   }
 
   handleChange(event) {
@@ -83,7 +85,7 @@ class AllProducts extends Component {
 
 
 // Container
-const mapState  = ({allProducts, currentUser, currentCategory}) => ({allProducts, currentUser, currentCategory})
+const mapState  = ({allProducts, currentUser}) => ({allProducts, currentUser})
 const mapDispatch = {fetchProducts, fetchCategories}
 
 export default connect(mapState)(mapDispatch)(AllProducts)
