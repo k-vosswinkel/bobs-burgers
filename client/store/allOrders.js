@@ -45,7 +45,7 @@ export const fetchOrders = () => {
   }
 }
 
-export const deleteProduct = id => {
+export const deleteOrder = id => {
   return dispatch => {
     return axios.delete(`/api/orders/${id}`)
       .then(() => {

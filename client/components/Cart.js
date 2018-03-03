@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import SingleItem from './SingleItem';
+import SingleProduct from './SingleProduct';
 import {connect} from 'react-redux';
-import {oneOrderThunkCreator} from '../store/order';
+import {fetchCurrentOrder} from '../store';
 //import {fetchCurrentOrder} from '../store/currentOrder.js'; <-- after merge
 
 class CartDisplay extends Component {
@@ -44,7 +44,7 @@ const Cart = ({products, handleAdd, handleReduce, handleCheckout}) => {
     <div id="cart-display">
       <ul>
       { products.map(product =>
-          <li key={product.id}><SingleItem product={product} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
+          <li key={product.id}><SingleProduct product={product} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
       )}
       </ul>
       <button onClick={() => handleCheckout}>Checkout</button>
@@ -70,6 +70,6 @@ const Cart = ({products, handleAdd, handleReduce, handleCheckout}) => {
 
 const mapState = ({order}) => ({order});
 
-const mapDispatch = {/*fetchCurrentOrder */ oneOrderThunkCreator};
+const mapDispatch = {fetchCurrentOrder};
 
 export default connect(mapState, mapDispatch)(CartDisplay);
