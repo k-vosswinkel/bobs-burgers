@@ -17,10 +17,9 @@ router.get('/', (req, res, next) => {
 //   .then(order => res.json(order))
 //   .catch(next)
 // });
-//{include: [{ all: true }]}
 
 router.get('/:orderId', (req, res, next) => {
-  Order.findById(req.params.orderId)
+  Order.findById(req.params.orderId, { include: [{ all: true }] })
     .then(order => {
       if (!order) {
         return next(makeError('404', 'Not Found'))

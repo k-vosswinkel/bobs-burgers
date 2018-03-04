@@ -19,19 +19,32 @@ class SingleOrder extends Component {
 
   render() {
     let currentOrder = this.props.currentOrder;
-    console.log(currentOrder);
+    console.log('display line items up top: ', currentOrder.lineItems);
     if (!currentOrder) {
-      return (
-        <div>No Order Selected</div>
-      )
+      return <div>No Order Selected</div>
     } else {
-      return (
-        <div key={currentOrder.id} className="lineItem">
-          <div>order id: {currentOrder.id}</div>
-          <div>order status: {currentOrder.status}</div>
-          <div>email address: {currentOrder.email}</div>
-        </div>
-      )
+      let lineItems = this.props.currentOrder.lineItems;
+      if (!lineItems){
+        return <div>There are no line items to display</div>
+      } else {
+        return (
+          <div key={currentOrder.id} className="lineItem">
+            <div>order id: {currentOrder.id}</div>
+            <div>order status: {currentOrder.status}</div>
+            <div>email address: {currentOrder.email}</div>
+            {lineItems.map(lineItem => {
+                return (
+                  <div key={lineItem.id}>
+                    <div>Line item name will go here</div>
+                    <div>quantity: {lineItem.quantity}</div>
+                    <div>price: {lineItem.currentPrice}</div>
+                  </div>
+                )
+              })
+            }
+          </div>
+        )
+      }
     }
   }
 }

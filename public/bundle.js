@@ -10712,7 +10712,7 @@ var SingleOrder = function (_Component) {
     key: 'render',
     value: function render() {
       var currentOrder = this.props.currentOrder;
-      console.log(currentOrder);
+      console.log('display line items up top: ', currentOrder.lineItems);
       if (!currentOrder) {
         return _react2.default.createElement(
           'div',
@@ -10720,28 +10720,60 @@ var SingleOrder = function (_Component) {
           'No Order Selected'
         );
       } else {
-        return _react2.default.createElement(
-          'div',
-          { key: currentOrder.id, className: 'lineItem' },
-          _react2.default.createElement(
+        var lineItems = this.props.currentOrder.lineItems;
+        if (!lineItems) {
+          return _react2.default.createElement(
             'div',
             null,
-            'order id: ',
-            currentOrder.id
-          ),
-          _react2.default.createElement(
+            'There are no line items to display'
+          );
+        } else {
+          return _react2.default.createElement(
             'div',
-            null,
-            'order status: ',
-            currentOrder.status
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            'email address: ',
-            currentOrder.email
-          )
-        );
+            { key: currentOrder.id, className: 'lineItem' },
+            _react2.default.createElement(
+              'div',
+              null,
+              'order id: ',
+              currentOrder.id
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              'order status: ',
+              currentOrder.status
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              'email address: ',
+              currentOrder.email
+            ),
+            lineItems.map(function (lineItem) {
+              return _react2.default.createElement(
+                'div',
+                { key: lineItem.id },
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  'Line item name will go here'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  'quantity: ',
+                  lineItem.quantity
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  'price: ',
+                  lineItem.currentPrice
+                )
+              );
+            })
+          );
+        }
       }
     }
   }]);
