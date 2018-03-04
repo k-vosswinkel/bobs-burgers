@@ -11,24 +11,39 @@ router.get('/', (req, res, next) => {
 
 router.get('/:productId', (req, res, next) => {
   Product.findById(req.params.productId, { include: [{ all: true }] })
-  .then(product => (res.json(product)))
+  .then(product => res.json(product))
   .catch(next)
 })
 
-router.put('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
+router.put('/:productId',
+// isLoggedIn,
+// isAdmin,
+(req, res, next) => {
   Product.findById(req.params.productId)
   .then(product => product.update(req.body))
   .then(product => res.json(product))
   .catch(next)
 })
 
-router.post('/', isLoggedIn, isAdmin, (req, res, next) => {
-  Product.create(req.body)
-  .then(product => res.json(product))
+router.post('/',
+// isLoggedIn,
+// isAdmin,
+(req, res, next) => {
+  const {name, url, description, price, inventory, categories} = req.body
+  Product.create({name, url, description, price, inventory
+  })
+  // .then(draftProduct => {
+  //   const mappedCategories = categories.map(categoryString => Number(categoryString))
+  //   return draftProduct.setCategories(mappedCategories)
+  // })
+  .then(finishedProduct => res.json(finishedProduct))
   .catch(next)
 })
 
-router.delete('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
+router.delete('/:productId',
+// isLoggedIn,
+// isAdmin,
+(req, res, next) => {
   Product.destroy({
     where: {
       id: req.params.productId

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../store/allProducts';
 import {fetchCategories} from '../store/allCategories';
+import {fetchCurrentCategory} from '../store/currentCategory';
 import { Link } from 'react-router-dom';
 
 // Component
@@ -10,67 +10,89 @@ class AllProducts extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      currentCategory: ''
+      currentCategory: this.props.currentCategory,
+      selectedCategory: ''
     }
-    this.handleChange = this.handleChange.bind(this.handleChange)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   componentDidMount() {
-    this.props.fetchProducts();
-    this.props.fetchCategories();
+    this.props.fetchData();
+  }
+
+  componentWillReceiveProps(newProps, oldProps) {
+    if (newProps.currentCategory !== oldProps.currentCategory) {
+      this.setState({
+        currentCategory: newProps.currentCategory
+      })
+    }
   }
 
   handleChange(event) {
-    this.setState({currentCategory: event.target.value});
+    this.setState({selectedCategory: event.target.value})
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const categoryId = Number(this.state.selectedCategory)
+    // redirect to categories/categoryId
+    if (event.target.value !== "All") {
+      this.props.fetchCurrentCategory(categoryId)
+    }
   }
 
   render() {
-    const allProducts = this.state.currentCategory
-    ? this.props.allProducts.filter(product => product.categoryId === this.state.currentCategory.id)
+
+    let displayProducts = this.props.currentCategory
+    ? this.props.currentCategory.products
     : this.props.allProducts
     const {allCategories, currentUser} = this.props;
-
 
     return (
     <div>
       <div className="page-header">
         <h2>All Products </h2>
-        {currentUser.isAdmin && <div>
-        <Link className="btn btn-primary new" to="/new-product"> <span className="glyphicon glyphicon-plus"></span>New Product</Link>
-        <Link className="btn btn-primary new" to="/categories"> <span className="glyphicon glyphicon-plus"></span>All Categories</Link>
-        </div>}
+        {/* {currentUser.isAdmin && <div> */}
+        <Link className="btn btn-primary new" to="/new-product"> <span className="glyphicon glyphicon-plus">New Product</span></Link>
+        <Link className="btn btn-primary" to="/categories"> <span className="glyphicon">All Categories</span></Link>
+        {/* </div>} */}
       </div>
 
       <div>
-        <select>
-          <h3>Select a Category</h3>
-          {allCategories.map(category => {
-            return (
-              <option key={category.id} value={category.id}>{category.name}</option>
-            )
-          })}
-          </select>
+        <h5>Select a category to view related products</h5>
+        <form onSubmit={this.handleSubmit}>
+          <select onChange={this.handleChange} value={this.state.selectedCategory}>
+          <option disabled selected value> -- select a category -- </option>
+            {allCategories.map(category => {
+              return (
+                <option key={category.id} value={category.id}>{category.name}</option>
+              )
+            })}
+            </select>
+            <button className="btn btn-success" type="submit">Go!</button>
+          </form>
       </div>
 
-      <div className="container">
-        {allProducts.map(product => {
+      {(displayProducts.length === 0) ?
+      <h1>There are no products </h1>
+      : <div className="container">
+        {displayProducts && displayProducts.map(product => {
           return (
               <Link to={`/products/${product.id}`} key={product.id}>
-              <div>
+              <div className="list-group-item-products">
                 <img className="thumbnail" src={ product.imgUrl } />
                 <div>
                   <h4>{product.name}</h4>
                   {currentUser.isAdmin && <div className="page-body">
                       <p> Current Inventory: {product.inventory} </p>
                     </div>}
-                  <h3>Price: {product.price}</h3>
-                  {product.ratings.length
-                  ? <h3>Average Rating: {product.ratings.reduce((acc, currVal) => acc + currVal.rating, 0) / product.ratings.length}</h3>
-                  : <h3> No ratings </h3>
-                  }
+                  <p>Price: {product.price}</p>
+                  {product.reviews && product.reviews.length
+                  ? <p>Average Rating: {product.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / product.reviews.length}</p>
+                  : <p> No ratings </p>
+                 }
                 </div>
               </div>
               </Link>
@@ -78,19 +100,27 @@ class AllProducts extends Component {
           })
         }
       </div>
+      }
     </div>
-      )
-    }
+  )
+  }
 }
 
 
 // Container
-const mapState  = ({allProducts, currentUser}) => ({allProducts, currentUser})
-const mapDispatch = {fetchProducts, fetchCategories}
+const mapState  = ({allProducts, currentUser, allCategories}) => ({allProducts, currentUser, allCategories})
 
-export default connect(mapState)(mapDispatch)(AllProducts)
-
-// Prop Types
-AllProducts.propTypes = {
-  allProducts: PropTypes.array
+const mapDispatch = dispatch => {
+  return {
+  fetchData: () => {
+    dispatch(fetchProducts());
+    dispatch(fetchCategories());
+    },
+  fetchCurrentCategory: (id) => {
+    dispatch(fetchCurrentCategory(id))
+    }
+  }
 }
+
+export default connect(mapState, mapDispatch)(AllProducts)
+

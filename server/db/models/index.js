@@ -15,10 +15,10 @@ Review.belongsTo(User);
 Review.belongsTo(Product);
 
 Product.hasMany(Review);
-Product.belongsToMany(Category, {through: 'ProductCategory'});
+Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
 Product.hasMany(LineItem);
 
-Category.belongsToMany(Product, { through: 'ProductCategory' });
+Category.belongsToMany(Product, { through: 'ProductCategory', foreignKey: 'categoryId' });
 
 LineItem.belongsTo(Product);
 LineItem.belongsTo(Order);

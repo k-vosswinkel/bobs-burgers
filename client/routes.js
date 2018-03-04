@@ -20,11 +20,14 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/categories" component={AllCategories} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/products" component={AllProducts} />
+        <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/reviews" component={Reviews} />
+        <Route path="/new-product" component={NewProduct} />
+        <Route path="/new-category" component={NewCategory} />
         {
           isLoggedIn &&
             <Switch>
@@ -34,10 +37,8 @@ class Routes extends Component {
         }
         {isAdmin &&
             <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/categories" component={AllCategories} />
-            <Route path="/new-product" component={NewProduct} />
-            <Route path="/new-category" component={NewCategory} />
+            {/* Routes placed here are only available as an admin*/}
+
           </Switch>
         }
         {/* Displays our Login component as a fallback */}
@@ -54,8 +55,8 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
-    isAdmin: !!state.user.id && state.user.isAdmin
+    isLoggedIn: !!state.currentUser.id,
+    isAdmin: !!state.currentUser.id && state.currentUser.isAdmin
   }
 }
 
