@@ -13,3 +13,4 @@ export {default as SingleProduct} from './SingleProduct';
 export {default as NewProduct} from './NewProduct';
 export {default as AllCategories} from './AllCategories';
 export {default as NewCategory} from './NewCategory';
+export {default as SingleCategory} from './SingleCategory'

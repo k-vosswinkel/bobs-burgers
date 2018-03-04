@@ -21,7 +21,8 @@ export default (currentCategory = {}, action) => {
 export const fetchCurrentCategory = id => {
   return dispatch => {
     return axios.get(`/api/categories/${id}`)
-      .then(foundCategory => dispatch(getCurrentCategory(foundCategory.data)))
+      .then(res => res.data)
+      .then(foundCategory => dispatch(getCurrentCategory(foundCategory)))
       .catch(err => console.error(`error fetching category id: ${id}`, err))
   }
 }

@@ -69,6 +69,13 @@ class SingleProduct extends Component {
               <button className="btn btn-submit new">Add To Cart</button>
               <p>Price: {currentProduct.price} </p>
               <p>Description: {currentProduct.description} </p>
+              <ul>Categories: {currentProduct.categories && currentProduct.categories.map(category => {
+                  return (
+                    <li key={category.id}>{category.name}</li>
+                    )
+                  })
+                 }
+                </ul>
               <img src={currentProduct.imageUrl} />
           </div>
 
