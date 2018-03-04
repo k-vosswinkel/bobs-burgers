@@ -23,7 +23,7 @@ class CartDisplay extends Component {
   }
 
   componentDidMount() {
-    this.props.oneOrderThunkCreator(26);
+    // this.props.fetchCurrentOrder(26);
   }
 
   render() {

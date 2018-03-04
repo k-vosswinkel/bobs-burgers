@@ -4,9 +4,9 @@ const {isLoggedIn, isAdmin, makeError} = require('../../utils.js')
 module.exports = router
 
 // get all orders & get, update, and post a single order
-router.get('/', isLoggedIn, (req, res, next) => {
-  let query = req.user.isAdmin ? {} : {where: {userId: req.user.id}}
-  Order.findAll(query, {include: [{ all: true }]})
+router.get('/', (req, res, next) => {
+  // let query = req.user.isAdmin ? {} : {where: {userId: req.user.id}}
+  Order.findAll({include: [{ all: true }]})
     .then(orders => res.json(orders))
     .catch(next)
 });
@@ -17,14 +17,15 @@ router.get('/', isLoggedIn, (req, res, next) => {
 //   .then(order => res.json(order))
 //   .catch(next)
 // });
+//{include: [{ all: true }]}
 
-router.get('/:orderId', isLoggedIn, (req, res, next) => {
-  Order.findById(req.params.orderId, {include: [{ all: true }]})
+router.get('/:orderId', (req, res, next) => {
+  Order.findById(req.params.orderId)
     .then(order => {
       if (!order) {
         return next(makeError('404', 'Not Found'))
       } else {
-        if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
+        // if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
         res.json(order);
       }
     })

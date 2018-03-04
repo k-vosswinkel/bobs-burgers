@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {deleteProduct} from '../store/allProducts'
 import {fetchCurrentProduct} from '../store/singleProduct'
 import NewProduct from './NewProduct';
-import AllReviews from './AllReviews';
+// import AllReviews from './AllReviews';
 import {connect} from 'react-redux';
 
 class SingleProduct extends Component {
