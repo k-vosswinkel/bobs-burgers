@@ -45,14 +45,14 @@ export const fetchOrders = () => {
   }
 }
 
-export const deleteProduct = id => {
+export const deleteOrder = id => {
   return dispatch => {
     return axios.delete(`/api/orders/${id}`)
       .then(() => {
         dispatch(removeOrder(id));
         history.push(`/orders`);
       })
-      .catch(err => console.error(`error deleting product id: ${id})`, err))
+      .catch(err => console.error(`error deleting order id: ${id})`, err))
   }
 }
 

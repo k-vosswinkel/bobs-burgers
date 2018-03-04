@@ -18,11 +18,8 @@ export default (currentOrder = {}, action) => {
 }
 
 //Thunks
-export const fetchCurrentOrder = id => {
-  return dispatch => {
+export const fetchCurrentOrder = id => dispatch => {
     return axios.get(`/api/orders/${id}`)
-      .then(res => res.data)
-      .then(order => dispatch(getCurrentOrder(order)))
-      .catch(err => console.error(`error fetching product id: ${id}`, err))
-  }
+    .then(order => dispatch(getCurrentOrder(order.data)))
+    .catch(err => console.error(`error fetching product id: ${id}`, err))
 }

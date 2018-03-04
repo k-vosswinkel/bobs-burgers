@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SingleItem from './SingleItem';
 import {connect} from 'react-redux';
 import {oneOrderThunkCreator} from '../store/order';
 //import {fetchCurrentOrder} from '../store/currentOrder.js'; <-- after merge
@@ -23,17 +22,20 @@ class CartDisplay extends Component {
   }
 
   componentDidMount() {
-    this.props.oneOrderThunkCreator(26);
+    this.props.oneOrderThunkCreator(27);
   }
 
   render() {
     const {order} = this.props;
-    return (
-      <div>
-        <button id="cart-btn" onClick={this.handleClick}>Cart</button>
-        { this.state.visible ? <Cart products={order.lineItems} handleAdd={this.addLineItem} handleReduce={this.removeLineItem} /> : null }
-      </div>
-    )
+    if (!order) { return null }
+    else {
+      return (
+        <div>
+          <button id="cart-btn" onClick={this.handleClick}>Cart</button>
+          { this.state.visible ? <Cart products={order.lineItems} handleAdd={this.addLineItem} handleReduce={this.removeLineItem} /> : null }
+        </div>
+      )
+    }
   }
 }
 
@@ -73,3 +75,11 @@ const mapState = ({order}) => ({order});
 const mapDispatch = {/*fetchCurrentOrder */ oneOrderThunkCreator};
 
 export default connect(mapState, mapDispatch)(CartDisplay);
+
+const SingleItem = ({name, imgUrl}) =>
+  (
+    <div>
+      <p>{name}</p>
+      <img src={imgUrl} />
+    </div>
+  )
