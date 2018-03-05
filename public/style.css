@@ -155,6 +155,18 @@ main {
   height: 200px;
 }
 
+.singleOrderContainer {
+  background: lightgray;
+  padding: 10px;
+  margin: 10px;
+}
+
+.lineItem {
+  background: white;
+  padding: 5px;
+  margin: 5px;
+}
+
 /* #products-list {
 
 } */
