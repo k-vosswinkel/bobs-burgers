@@ -23,7 +23,7 @@ class AllOrders extends Component {
         <div>No Orders to See Here!</div>
       )
     } else {
-      let allOrders = this.props.allOrders[0];
+      let allOrders = this.props.allOrders;
       console.log(allOrders);
       return (
         <div>

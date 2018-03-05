@@ -13,13 +13,11 @@ class SingleOrder extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.orderId)
     this.props.fetchCurrentOrder(this.props.match.params.orderId);
   }
 
   render() {
     let currentOrder = this.props.currentOrder;
-    console.log('display line items up top: ', currentOrder.lineItems);
     if (!currentOrder) {
       return <div>No Order Selected</div>
     } else {
@@ -27,21 +25,25 @@ class SingleOrder extends Component {
       if (!lineItems){
         return <div>There are no line items to display</div>
       } else {
+        let orderTotal = 0;
         return (
           <div key={currentOrder.id} className="lineItem">
             <div>order id: {currentOrder.id}</div>
             <div>order status: {currentOrder.status}</div>
             <div>email address: {currentOrder.email}</div>
             {lineItems.map(lineItem => {
+                orderTotal = orderTotal + lineItem.totalPrice;
                 return (
                   <div key={lineItem.id}>
                     <div>Line item name will go here</div>
                     <div>quantity: {lineItem.quantity}</div>
                     <div>price: {lineItem.currentPrice}</div>
+                    <div>Item total: {lineItem.totalPrice}</div>
                   </div>
                 )
               })
             }
+            <div>Order total: {orderTotal}</div>
           </div>
         )
       }

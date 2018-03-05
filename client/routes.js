@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, AllProducts, SingleProduct, NewProduct, AllCategories, NewCategory, Reviews, AllOrders, SingleOrder, AllUsers} from './components'
+import {Login, Signup, UserHome, AllProducts, SingleProduct, NewProduct, AllCategories, NewCategory, Reviews, AllOrders, SingleOrder, AllUsers, EditUser } from './components'
 import {me} from './store'
 
 /**
@@ -30,10 +30,10 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
-              <Route path="/orders" component={AllOrders} />
+              <Route exact path="/orders" component={AllOrders} />
               <Route path="/orders/:orderId" component={SingleOrder} />
-              <Route path="/users" component={AllUsers} />
-              <Route path="/users/:userId" component={UserHome} />
+              <Route exact path="/users" component={AllUsers} />
+              <Route path="/users/:userId" component={EditUser} />
             </Switch>
         }
         {isAdmin &&

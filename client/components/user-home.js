@@ -18,40 +18,47 @@ class UserHome extends Component {
     this.props.fetchOrders();
   }
 
- render(){
-   return (
-     <div>
-       <h3>Welcome, {this.state.email}</h3>
-       <h2>Your Orders:</h2>
-       {this.state.orders.map(order => {
-         if (this.state.orders.length) {
-           return (
-             <div key={order.id}>
-               <div>{order.id}</div>
-               <div>{order.email}</div>
-               <div>{order.shippingAddress}</div>
-               <div>{order.status}</div>
-               <div>{order.date}</div>
-             </div>
-           )
-         } else {
-           return <h2>No orders</h2>
-         }
-       })
-       }
-     </div>
-   )
- }
+  render(){
+    let userOrders = this.props.orders.filter(order => {
+      return order.userId === this.props.userId
+    })
+    if (!userOrders.length){
+      return (
+        <div>
+          <h3>Welcome {this.state.email}</h3>
+          <div>You Have No Orders</div>
+        </div>
+      )
+    } else {
+     return (
+      <div>
+         <h3>Welcome, {this.state.email}</h3>
+         <h2>Your Orders:</h2>
+         {
+           userOrders.map(order => {
+            return (
+              <div key={order.id}>
+                <div>{order.id}</div>
+                <div>{order.email}</div>
+                <div>{order.shippingAddress}</div>
+                <div>{order.status}</div>
+                <div>{order.date}</div>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+    }
+  }
 }
 
 //Container
 const mapState = (state) => {
-  console.log(state.allOrders)
   return {
+    userId: state.currentUser.id,
     email: state.currentUser.email,
-    orders: state.allOrders.filter(order => {
-      return order.userId === state.currentUser.id
-    })
+    orders: state.allOrders
   }
 }
 
