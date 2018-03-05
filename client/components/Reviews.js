@@ -22,16 +22,27 @@ class Reviews extends Component {
     else {
       return (
       <div id="reviews-section">
-        {currentUser ? <NewReview submitReview={this.submitReview} product={currentProduct} user={currentUser} /> : null}
+        {currentUser
+          ? <NewReview submitReview={this.submitReview} product={currentProduct} user={currentUser} />
+          : null}
         <h5>Average Rating</h5>
           {currentProduct.reviews && currentProduct.reviews.length
-            ? <p>Average Rating: {currentProduct.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / currentProduct.reviews.length}</p>
+            ? <p>Average Rating: {Math.round((currentProduct.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / currentProduct.reviews.length) * 10) / 10}</p>
             : <p> No ratings </p>
           }
           <h5>All Ratings </h5>
         {
-          currentProduct.reviews.length ? currentProduct.reviews.map(review => <li className="reviews-list-item" key={review.id}>{review.text}<button onClick={() => this.handleRemove(review)}>-</button></li>) : <p>There are no reviews for this product</p>
-        }
+          currentProduct.reviews.length
+          ? currentProduct.reviews.map(review => {
+          return (
+            <ul className="reviews-list-item" key={review.id}>
+              <p>Rating: {review.rating}</p>
+              <p>Comments: {review.text}</p>
+            {currentUser.isAdmin && <button onClick={() => this.handleRemove(review)}>-</button>}
+            </ul>)
+            })
+          : <p>There are no reviews for this product</p>
+          }
       </div>
     )
     }

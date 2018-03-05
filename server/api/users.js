@@ -27,19 +27,19 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:id', isLoggedIn, (req, res, next) => {
+router.get('/:id', isLoggedIn, isAdmin, (req, res, next) => {
   req.requestedUser.reload({ include: [{ all: true }] })
   .then(user => {res.json(user)})
   .catch(next)
 })
 
-router.post('/', isLoggedIn, (req, res, next) => {
+router.post('/', isLoggedIn, isAdmin, (req, res, next) => {
   User.create(req.body)
   .then(user => res.json(user))
   .catch(next);
 })
 
-router.put('/:id', isLoggedIn, (req, res, next) => {
+router.put('/:id', isLoggedIn, isAdmin, (req, res, next) => {
   req.requestedUser.update(req.body)
     .then(() => req.user.reload({ include: [{ all: true }] }))
   .then(result => res.json(result))
