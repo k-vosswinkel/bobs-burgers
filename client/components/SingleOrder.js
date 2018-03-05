@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrentOrder } from '../store/currentOrder'
+import { fetchCurrentOrder } from '../store'
 
 class SingleOrder extends Component {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      currentOrder: {}
-    }
+    super(props)
   }
 
   componentDidMount() {
@@ -57,9 +53,3 @@ const mapState = ({ allOrders, currentOrder }) => ({ allOrders, currentOrder })
 const mapDispatch = { fetchCurrentOrder }
 
 export default connect(mapState, mapDispatch)(SingleOrder);
-
-// Prop Types
-// AllOrders.propTypes = {
-//   allOrders: PropTypes.array
-// }
-

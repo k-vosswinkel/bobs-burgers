@@ -111,7 +111,7 @@ main {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: space-between;
-  color: white;
+  color: black;
   align-items: center;
 }
 
@@ -148,6 +148,13 @@ main {
   flex-direction: column;
 }
 
-#products-list {
-
+.orderContainer {
+  background: lightgray;
+  padding: 5px;
+  margin: 5px;
+  height: 200px;
 }
+
+/* #products-list {
+
+} */
