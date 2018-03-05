@@ -91,6 +91,13 @@ async function seed() {
 
   const users = await Promise.all(generateUsers())
 
+  //one admin user for testing purposes
+  await User.create({
+    email: 'test@test.com',
+    password: '1234',
+    admin: true
+  })
+
   const products = await Promise.all([
     Product.create({
       name: 'Sit and Spinach Burger',
@@ -160,6 +167,7 @@ async function seed() {
   const reviews = await Promise.all(generateReviews())
 
   const lineItems = await Promise.all(generateLineItems())
+
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
