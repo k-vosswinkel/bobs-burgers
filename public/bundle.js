@@ -11633,10 +11633,10 @@ var Routes = function (_Component) {
           _reactRouterDom.Switch,
           null,
           _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _components.UserHome }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/orders', component: _components.AllOrders }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/orders/:orderId', component: _components.SingleOrder }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/users', component: _components.AllUsers }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:userId', component: _components.UserHome })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/orders', component: _components.AllOrders }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:userId', component: _components.UserHome }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/users', component: _components.AllUsers })
         ),
         isAdmin && _react2.default.createElement(
           _reactRouterDom.Switch,
