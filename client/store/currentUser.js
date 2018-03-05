@@ -9,46 +9,11 @@ const REMOVE_USER = 'REMOVE_USER';
 // action creator
 const getCurrentUser = user => ({ type: GET_CURRENT_USER, user });
 const removeUser = userId => ({type: REMOVE_USER, userId});
-/**
- * ACTION CREATORS
- */
-export const getUser = user => ({ type: GET_USER, user })
-export const removeUser = () => ({ type: REMOVE_USER })
-
-/**
- * THUNK CREATORS
- */
-export const me = () =>
-  dispatch =>
-    axios.get('/auth/me')
-      .then(res =>
-        dispatch(getUser(res.data || currentUser)))
-      .catch(err => console.log(err))
-
-export const auth = (email, password, method) =>
-  dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
-      .then(res => {
-        dispatch(getUser(res.data))
-        history.push('/home')
-      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({ error: authError }))
-      })
-      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
-
-export const logout = () =>
-  dispatch =>
-    axios.post('/auth/logout')
-      .then(_ => {
-        dispatch(removeUser())
-        history.push('/login')
-      })
-      .catch(err => console.log(err))
 
 /**
  * REDUCER
  */
-export default function (state = currentUser, action) {
+export default function (currentUser = {}, action) {
   switch (action.type) {
     case GET_CURRENT_USER:
       return action.user;
@@ -92,5 +57,3 @@ export const logout = () =>
         history.push('/login')
       })
 .catch(err => console.log(err))
-
-
