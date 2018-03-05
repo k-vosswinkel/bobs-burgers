@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchCurrentOrder} from '../store/currentOrder.js'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {editLineItem, deleteLineItem} from '../store/allLineItems';
-import SingleProduct from './SingleProduct';
+import { Link } from 'react-router-dom';
+// import SingleProduct from './SingleProduct';
+// import CartDisplay from './CartDisplay';
 
-
-class CartDisplay extends Component {
+class GuestCart extends Component {
   constructor(props) {
     super();
     this.state = { visible: false }
@@ -17,13 +17,12 @@ class CartDisplay extends Component {
   }
 
   addLineItem = (lineItem) => {
-    const {currentOrder} = this.props;
     let newLineItem = {
       quantity: lineItem.quantity + 1,
       id: lineItem.id
     }
 
-    this.props.editLineItem(currentOrder.id, newLineItem);
+    // this.props.editLineItem(currentOrder.id, newLineItem);
   }
 
   reduceLineItem = (lineItem) => {
@@ -42,17 +41,26 @@ class CartDisplay extends Component {
   }
 
   render() {
-    const {currentOrder} = this.props;
+    const {allLineItems} = this.props;
+    console.log(this.props);
+    console.log('hits guest cart', allLineItems);
       return (
         <div>
           <button id="cart-btn" onClick={this.handleClick}>Cart</button>
-          {this.state.visible ? <Cart hideCart={this.handleClick} products={currentOrder.lineItems} handleAdd={this.addLineItem} handleReduce={this.reduceLineItem} /> : null}
+          {this.state.visible ? <GuestCartDisplay hideCart={this.handleClick} products={allLineItems} handleAdd={this.addLineItem} handleReduce={this.reduceLineItem} /> : null}
         </div>
       )
     }
 }
 
-const Cart = ({products, handleAdd, handleReduce, hideCart}) => {
+const mapState = ({allLineItems}) => ({allLineItems});
+
+const mapDispatch = {editLineItem, deleteLineItem};
+
+export default connect(mapState, mapDispatch)(GuestCart);
+
+const GuestCartDisplay = ({products, handleAdd, handleReduce, hideCart}) => {
+  console.log(products);
   if (!products) { return <p>Cart is empty</p> }
   return (
     <div id="cart-display">
@@ -67,19 +75,13 @@ const Cart = ({products, handleAdd, handleReduce, hideCart}) => {
   )
 }
 
-const mapState = ({currentOrder}) => ({currentOrder});
-
-const mapDispatch = {fetchCurrentOrder, editLineItem, deleteLineItem};
-
-export default connect(mapState, mapDispatch)(CartDisplay);
-
 const SingleItem = ({lineItem}) => {
  return  (
     <div>
-      <p>{lineItem.product.name}</p>
-      <img src={lineItem.product.imgUrl} />
-      <p>{lineItem.quantity}</p>
-      <p>{lineItem.quantity * lineItem.product.price}</p>
+      <p>{lineItem.name}</p>
+      <img src={lineItem.imgUrl} />
+      {/* <p>{lineItem.quantity}</p>
+      <p>{lineItem.quantity * lineItem.product.price}</p> */}
     </div>
   )
 }

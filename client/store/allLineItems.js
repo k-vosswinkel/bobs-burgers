@@ -15,6 +15,8 @@ const removeLineItem = id => ({ type: REMOVE_LINE_ITEM, id });
 const addLineItem = lineItem => ({ type: ADD_LINE_ITEM, lineItem });
 const updateLineItem = lineItem => ({ type: UPDATE_LINE_ITEM, lineItem });
 
+// const getCartLineItems = lineItems => ({ type: GET_ALL_LINE_ITEMS, })
+
 // reducer
 export default (lineItems = [], action) => {
   switch (action.type) {
@@ -45,7 +47,19 @@ export default (lineItems = [], action) => {
 //   }
 // }
 
-export const fetchLineItems = () => dispatch => {
+export const fetchCartItems = () => dispatch => {
+  let lineItems = window.sessionStorage.getItem('lineItems').split(',');
+  Promise.all(lineItems.map(lineItem => axios.get(`/api/products/${lineItem}`).then(result => result.data)))
+  .then(result => {
+    dispatch(getCurrentLineItems(result))
+  });
+}
+
+export const addCartItem = () => dispatch => {
+  //dispatch(getAddLineItems(window.sessionStorage.getItem('newItem')))
+}
+
+export const deleteCartItem = () => dispatch => {
 
 }
 
@@ -62,7 +76,7 @@ export const deleteLineItem = (orderId, lineItemId) => dispatch => {
 export const postLineItem = (orderId, lineItem) => dispatch => {
   axios.post(`/api/orders/${orderId}/lineItems`, lineItem)
   .then(newLineItem => {
-    dispatch(addLineItem(newLineItem.data));
+    // dispatch(addLineItem(newLineItem.data));
     dispatch(fetchCurrentOrder(orderId))
   })
   .catch(err => console.error('error creating a new line item', err))

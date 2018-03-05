@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {editOrder} from '../store/'
-import CartDisplay from './Cart';
 
 class Checkout extends Component {
   constructor(props) {

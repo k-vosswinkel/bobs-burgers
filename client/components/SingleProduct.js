@@ -51,7 +51,15 @@ class SingleProduct extends Component {
       productId: currentProduct.id
     }
     if (!Object.keys(currentUser).length) {
-      return null;
+      if (!window.sessionStorage.getItem("lineItems")) {
+        window.sessionStorage.setItem("lineItems", currentProduct.id);
+      }
+      else {
+        let arrNew = window.sessionStorage.getItem("lineItems").split(',');
+        arrNew.push(currentProduct.id);
+        window.sessionStorage.setItem("lineItems", arrNew);
+        console.log(window.sessionStorage.getItem("lineItems"));
+      }
     }
 
     else if (!Object.keys(currentOrder).length) {
