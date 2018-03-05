@@ -1,5 +1,6 @@
 import axios from 'axios';
-import history from '../history'
+import history from '../history';
+import { resetCurrentOrder } from './currentOrder';
 
 // action types
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
@@ -13,9 +14,9 @@ const removeUser = userId => ({type: REMOVE_USER, userId});
 export default (currentUser = {}, action) => {
   switch (action.type) {
     case GET_CURRENT_USER:
-      return action.user
+      return action.user;
     case REMOVE_USER:
-      return {}
+      return {};
     default:
       return currentUser;
   }
@@ -49,7 +50,8 @@ export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
       .then(_ => {
-        dispatch(removeUser())
+        dispatch(removeUser());
+        dispatch(resetCurrentOrder());
         history.push('/login')
       })
 .catch(err => console.log(err))

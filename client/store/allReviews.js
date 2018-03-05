@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {fetchCurrentProduct} from './currentProduct';
+
 
 // action types
 const GET_ALL_REVIEWS = 'GET_ALL_REVIEWS';
@@ -37,13 +39,19 @@ export const fetchReviews = () => dispatch => {
 
 export const deleteReview = review => dispatch => {
   axios.delete(`/api/reviews/${review.id}`)
-  .then(() => dispatch(removeReview(review.id)))
+  .then(() => {
+    dispatch(removeReview(review.id))
+    dispatch(fetchCurrentProduct(review.productId))
+  })
   .catch(err => console.error(`error deleting review id: ${review.id})`, err))
 }
 
 export const postReview = review => dispatch => {
     axios.post('/api/reviews', review)
-    .then(newReview => dispatch(addReview(newReview.data)))
+    .then(newReview => {
+      dispatch(addReview(newReview.data))
+      dispatch(fetchCurrentProduct(newReview.data.productId))
+    })
     .catch(err => console.error('error creating a new review', err))
 }
 

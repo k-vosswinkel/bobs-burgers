@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {oneOrderThunkCreator} from '../store/order';
-//import {fetchCurrentOrder} from '../store/currentOrder.js'; <-- after merge
+import {fetchCurrentOrder} from '../store/currentOrder.js'
+import { Link } from 'react-router-dom';
+import {editLineItem, deleteLineItem} from '../store/allLineItems';
 
 class CartDisplay extends Component {
   constructor(props) {
@@ -10,76 +11,73 @@ class CartDisplay extends Component {
   }
 
   handleClick = () => {
-    this.setState({visible: true})
+    !this.state.visible ? this.setState({visible: true}) : this.setState({visible: false});
   }
 
-  handleAdd = (product) => {
+  addLineItem = (lineItem) => {
+    const {currentOrder} = this.props;
+    let newLineItem = {
+      quantity: lineItem.quantity + 1,
+      id: lineItem.id
+    }
 
+    this.props.editLineItem(currentOrder.id, newLineItem);
   }
 
-  handleRemove = (product) => {
-
-  }
-
-  componentDidMount() {
-    this.props.oneOrderThunkCreator(27);
+  reduceLineItem = (lineItem) => {
+    const {currentOrder} = this.props;
+    if (lineItem.quantity <= 1) {
+      this.props.deleteLineItem(currentOrder.id, lineItem.id)
+    }
+    else {
+      let newLineItem = {
+        quantity: lineItem.quantity - 1,
+        id: lineItem.id
+      }
+      console.log(newLineItem);
+      this.props.editLineItem(currentOrder.id, newLineItem);
+    }
   }
 
   render() {
-    const {order} = this.props;
-    if (!order) { return null }
-    else {
+    const {currentOrder} = this.props;
       return (
         <div>
           <button id="cart-btn" onClick={this.handleClick}>Cart</button>
-          { this.state.visible ? <Cart products={order.lineItems} handleAdd={this.addLineItem} handleReduce={this.removeLineItem} /> : null }
+          {this.state.visible ? <Cart hideCart={this.handleClick} products={currentOrder.lineItems} handleAdd={this.addLineItem} handleReduce={this.reduceLineItem} /> : null}
         </div>
       )
     }
-  }
 }
 
-const Cart = ({products, handleAdd, handleReduce, handleCheckout}) => {
+const Cart = ({products, handleAdd, handleReduce, hideCart}) => {
   if (!products) { return <p>Cart is empty</p> }
-
   return (
     <div id="cart-display">
       <ul>
-      { products.map(product =>
-          <li key={product.id}><SingleItem product={product} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
-      )}
+      { products.map(product => {
+          return <li key={product.id}><SingleItem lineItem={product} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
+      })
+      }
       </ul>
-      <button onClick={() => handleCheckout}>Checkout</button>
+      <button onClick={hideCart}><Link to="/checkout">Checkout</Link></button>
     </div>
   )
 }
-    //else {
-    //   return (order.lineItems ?
-    //   <CartContainer products={order.lineItems} handleAdd={this.addLineItem} handleReduce={this.removeLineItem} />
-    //   : null
-    // )}
 
-// const CartContainer = ({products, handleAdd, handleReduce, handleCheckout}) => (
-//   <div id="cart-display">
-//     <ul>
-//     { products.map(product =>
-//         <li key={product.id}><SingleItem product={product} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
-//     )}
-//     </ul>
-//     <button onClick={() => handleCheckout}>Checkout</button>
-//   </div>
-// )
+const mapState = ({currentOrder}) => ({currentOrder});
 
-const mapState = ({order}) => ({order});
-
-const mapDispatch = {/*fetchCurrentOrder */ oneOrderThunkCreator};
+const mapDispatch = {fetchCurrentOrder, editLineItem, deleteLineItem};
 
 export default connect(mapState, mapDispatch)(CartDisplay);
 
-const SingleItem = ({name, imgUrl}) =>
-  (
+const SingleItem = ({lineItem}) => {
+ return  (
     <div>
-      <p>{name}</p>
-      <img src={imgUrl} />
+      <p>{lineItem.product.name}</p>
+      <img src={lineItem.product.imgUrl} />
+      <p>{lineItem.quantity}</p>
+      <p>{lineItem.quantity * lineItem.product.price}</p>
     </div>
   )
+}

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../history';
+import {getCurrentCategory} from './currentCategory'
 //using history to push redirects after delete/update/add
 
 // action types
@@ -33,7 +34,6 @@ export default (categories = [], action) => {
       return categories;
   }
 }
-//updated tabbing in compromise - some tabbing, some spacing
 
 //Thunks
 export const fetchCategories = () => {
@@ -55,29 +55,30 @@ export const deleteCategory = id => {
       .catch(err => console.error(`error deleting category id ${id}`, err))
   }
 }
-//added redirect
+
 
 export const postCategory = category => {
   return dispatch => {
     return axios.post('/api/categories', category)
       .then(newCategory => {
-        dispatch(addCategory(newCategory));
+        dispatch(addCategory(newCategory.data));
+        dispatch(getCurrentCategory(newCategory.data))
         history.push(`/categories/${newCategory.id}`);
       })
       .catch(err => console.error('error creating a new category', err))
   }
 }
-//added redirect
+
 
 export const editCategory = category => {
   return dispatch => {
     return axios.put(`/api/categories/${category.id}`, category)
-    //res.data?
+    .then(res => res.data)
     .then(editedCategory => {
       dispatch(updateCategory(editedCategory));
+      dispatch(getCurrentCategory(editedCategory))
       history.push(`/categories/${editedCategory.id}`);
     })
     .catch(err => console.error(`error editing category id: ${category.id}`, err))
   }
 }
-//added redirect
