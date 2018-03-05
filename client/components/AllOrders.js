@@ -7,10 +7,6 @@ import { fetchOrders } from '../store/allOrders'
 class AllOrders extends Component {
   constructor(props){
     super(props);
-
-    this.state = {
-      currentOrder: ''
-    }
   }
 
   componentDidMount(){
@@ -24,17 +20,17 @@ class AllOrders extends Component {
       )
     } else {
       const { allOrders } = this.props;
-      console.log(allOrders);
       return (
         <div>
           {allOrders.map(order => {
             return (
               <Link key={order.id} to={`/orders/${order.id}`}>
-              <div>{order.id}</div>
-                <div>{order.email}</div>
-                <div>{order.shippingAddress}</div>
-                <div>{order.status}</div>
-                <div>{order.date}</div>
+              <div className="orderContainer col-xs-2">
+                <div><p>Account email: {order.email}</p></div>
+                <div><p>Shipping address: {order.shippingAddress}</p></div>
+                <div><p>Order status: {order.status}</p></div>
+                <div><p>Date placed: {order.date}</p></div>
+              </div>
               </Link>
             )
           })}
@@ -50,7 +46,3 @@ const mapDispatch = { fetchOrders }
 
 export default connect(mapState, mapDispatch)(AllOrders);
 
-// Prop Types
-// AllOrders.propTypes = {
-//   allOrders: PropTypes.array
-// }

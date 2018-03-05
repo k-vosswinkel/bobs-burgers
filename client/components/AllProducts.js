@@ -45,7 +45,7 @@ class AllProducts extends Component {
                       </div>}
                     <p>Price: {product.price}</p>
                     {product.reviews && product.reviews.length
-                    ? <p>Average Rating: {product.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / product.reviews.length}</p>
+                    ? <p>Average Rating: {Math.round((product.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / product.reviews.length) * 10) / 10}</p>
                     : <p> No ratings </p>
                   }
                   </div>
