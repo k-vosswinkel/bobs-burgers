@@ -30,7 +30,7 @@ class AllUsers extends Component {
             return (
               <Link key={user.id} to={`/users/${user.id}`}>
                 <div>{user.email}</div>
-                <div>{user.admin}</div>
+                <div>{user.isAdmin}</div>
               </Link>
             )
           })}

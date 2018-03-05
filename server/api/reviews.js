@@ -35,7 +35,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 //when you're logged in, can you see all of your reviews and update them?
 //Just to keep it simple for now, I am only letting admins edit reviews.
-router.put('/:id', isAdmin, (req, res, next) => {
+router.put('/:id', isLoggedIn, isAdmin, (req, res, next) => {
   req.review.update(req.body)
   .then(() => req.review.reload({ include: [{ all: true }] }))
   .then(review => res.json(review))
