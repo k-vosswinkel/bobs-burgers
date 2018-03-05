@@ -25,13 +25,13 @@ router.put('/:categoryId', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/', /* isAdmin,*/ (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
   Category.create(req.body)
     .then(category => res.json(category))
     .catch(next)
 })
 
-router.delete('/:categoryId', /* isAdmin, */ (req, res, next) => {
+router.delete('/:categoryId', isAdmin, (req, res, next) => {
   Category.destroy({
     where: {
       id: req.params.categoryId

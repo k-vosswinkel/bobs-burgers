@@ -83,7 +83,7 @@ class SingleProduct extends Component {
             <h2>{currentProduct.name}</h2>
             {/* only admins can see inventory, edit, or delete: */}
             {/* {currentUser.isAdmin && <div className="page-body">} */}
-              { this.props.currentUser.admin ? <p> Current Inventory: {currentProduct.inventory} </p> : null }
+              { this.props.currentUser.isAdmin ? <p> Current Inventory: {currentProduct.inventory} </p> : null }
               <button onClick={this.handleEdit} className="btn btn-warning new">Edit Product </button>
               <button onClick={this.handleDelete} className="btn btn-danger new">Delete Product</button>
           </div>

@@ -15,17 +15,14 @@ router.get('/:productId', (req, res, next) => {
   .catch(next)
 })
 
-router.put('/:productId', /* isLoggedIn, isAdmin,*/ (req, res, next) => {
+router.put('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
   Product.findById(req.params.productId)
   .then(product => product.update(req.body))
   .then(product => res.json(product))
   .catch(next)
 })
 
-router.post('/',
-// isLoggedIn,
-// isAdmin,
-(req, res, next) => {
+router.post('/', isLoggedIn, isAdmin, (req, res, next) => {
   const {name, url, description, price, inventory, categories} = req.body
   Product.create({name, url, description, price, inventory
   })
@@ -37,7 +34,7 @@ router.post('/',
   .catch(next)
 })
 
-router.delete('/:productId', /* isLoggedIn, isAdmin, */ (req, res, next) => {
+router.delete('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
   Product.destroy({
     where: {
       id: req.params.productId
