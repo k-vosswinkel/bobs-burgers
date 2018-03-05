@@ -4849,7 +4849,7 @@ exports.default = function () {
 
   switch (action.type) {
     case GET_ALL_ORDERS:
-      return [action.orders];
+      return action.orders;
 
     case REMOVE_ORDER:
       return orders.filter(function (order) {
@@ -11461,7 +11461,8 @@ Navbar.propTypes = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UserHome = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
@@ -11473,41 +11474,120 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRedux = __webpack_require__(5);
 
+var _allOrders = __webpack_require__(48);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * COMPONENT
- */
-var UserHome = exports.UserHome = function UserHome(props) {
-  var email = props.email;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//Component
+var UserHome = function (_Component) {
+  _inherits(UserHome, _Component);
+
+  function UserHome(props) {
+    _classCallCheck(this, UserHome);
+
+    var _this = _possibleConstructorReturn(this, (UserHome.__proto__ || Object.getPrototypeOf(UserHome)).call(this, props));
+
+    _this.state = {
+      email: props.email,
+      orders: props.orders
+    };
+    return _this;
+  }
+
+  _createClass(UserHome, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchOrders();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Welcome, ',
+          this.state.email
+        ),
+        _react2.default.createElement(
+          'h2',
+          null,
+          'Your Orders:'
+        ),
+        this.state.orders.map(function (order) {
+          if (_this2.state.orders.length) {
+            return _react2.default.createElement(
+              'div',
+              { key: order.id },
+              _react2.default.createElement(
+                'div',
+                null,
+                order.id
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                order.email
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                order.shippingAddress
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                order.status
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                order.date
+              )
+            );
+          } else {
+            return _react2.default.createElement(
+              'h2',
+              null,
+              'No orders'
+            );
+          }
+        })
+      );
+    }
+  }]);
+
+  return UserHome;
+}(_react.Component);
+
+//Container
 
 
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'h3',
-      null,
-      'Welcome, ',
-      email
-    )
-  );
-};
-
-/**
- * CONTAINER
- */
 var mapState = function mapState(state) {
+  console.log(state.allOrders);
   return {
-    email: state.currentUser.email
+    email: state.currentUser.email,
+    orders: state.allOrders.filter(function (order) {
+      return order.userId === state.currentUser.id;
+    })
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapState)(UserHome);
+var mapDispatch = { fetchOrders: _allOrders.fetchOrders };
 
-/**
- * PROP TYPES
- */
+exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(UserHome);
+
+//Prop Types
 
 UserHome.propTypes = {
   email: _propTypes2.default.string

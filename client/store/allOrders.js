@@ -17,7 +17,7 @@ const updateOrder = order => ({ type: UPDATE_ORDER, order })
 export default (orders = [], action) => {
   switch (action.type) {
     case GET_ALL_ORDERS:
-      return [action.orders]
+      return action.orders
 
     case REMOVE_ORDER:
       return orders.filter(order => order.id !== action.orderId)
