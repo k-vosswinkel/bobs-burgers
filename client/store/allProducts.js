@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-//using history to push redirects after delete/update/add
+import {getCurrentProduct} from './currentProduct'
 
 //Action Types
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
@@ -13,7 +13,7 @@ const getAllProducts = products => ({ type: GET_ALL_PRODUCTS, products });
 const removeProduct = id => ({ type: REMOVE_PRODUCT, id });
 const addProduct = product => ({ type: ADD_PRODUCT, product })
 const updateProduct = product => ({ type: UPDATE_PRODUCT, product })
-//condensed these to one line each for clarity
+
 
 //Reducer
 export default (products = [], action) => {
@@ -34,13 +34,12 @@ export default (products = [], action) => {
       return products
   }
 }
-//updated tabbing in compromise - some tabbing, some spacing
 
 //Thunks
 export const fetchProducts = () => {
   return dispatch => {
     return axios.get('/api/products')
-      .then(res => res.data) //do we need res.data line? In GET but not PUT
+      .then(res => res.data)
       .then(products => dispatch(getAllProducts(products)))
       .catch(err => console.error('error fetching products', err))
   }
@@ -50,35 +49,35 @@ export const deleteProduct = id => {
   return dispatch => {
     return axios.delete(`/api/products/${id}`)
       .then(() => {
-        dispatch(removeProduct(id))
-        history.push(`/products`);
+        dispatch(removeProduct(id));
+        history.push(`/products/`);
       })
       .catch(err => console.error(`error deleting product id: ${id})`, err))
   }
 }
-//added redirect
 
 export const postProduct = product => {
   return dispatch => {
     return axios.post('/api/products', product)
+      .then(res => res.data)
       .then(newProduct => {
         dispatch(addProduct(newProduct));
+        dispatch(getCurrentProduct(newProduct))
         history.push(`/products/${newProduct.id}`);
       })
       .catch(err => console.error('error creating a new product', err))
   }
 }
-//added redirect
 
 export const editProduct = product => {
   return dispatch => {
     return axios.put(`/api/products/${product.id}`, product)
-    //res.data line here?
-    .then(editedProduct => {
-      dispatch(updateProduct(editedProduct));
-      history.push(`/products/${editedProduct.id}`);
+    .then(res => res.data)
+    .then(updatedProduct => {
+      dispatch(updateProduct(updatedProduct));
+      dispatch(getCurrentProduct(updatedProduct))
+      history.push(`/products/${updatedProduct.id}`);
     })
       .catch(err => console.error(`error editing product id: ${product.id}`, err))
   }
 }
-//added redirect

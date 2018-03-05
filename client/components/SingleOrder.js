@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrentOrder } from '../store/currentOrder'
 
@@ -18,7 +17,8 @@ class SingleOrder extends Component {
   }
 
   render() {
-    let currentOrder = this.props.currentOrder;
+    const { currentOrder } = this.props;
+
     console.log('display line items up top: ', currentOrder.lineItems);
     if (!currentOrder) {
       return <div>No Order Selected</div>
@@ -35,9 +35,9 @@ class SingleOrder extends Component {
             {lineItems.map(lineItem => {
                 return (
                   <div key={lineItem.id}>
-                    <div>Line item name will go here</div>
+                    <div>name: {lineItem.product.name}</div>
                     <div>quantity: {lineItem.quantity}</div>
-                    <div>price: {lineItem.currentPrice}</div>
+                    <div>price: {lineItem.product.price}</div>
                   </div>
                 )
               })
@@ -59,3 +59,4 @@ export default connect(mapState, mapDispatch)(SingleOrder);
 // AllOrders.propTypes = {
 //   allOrders: PropTypes.array
 // }
+

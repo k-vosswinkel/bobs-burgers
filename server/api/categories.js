@@ -18,20 +18,20 @@ router.get('/:categoryId', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/:categoryId', isAdmin, (req, res, next) => {
+router.put('/:categoryId', (req, res, next) => {
   Category.findById(req.params.categoryId)
     .then(category => category.update(req.body))
     .then(category => res.json(category))
     .catch(next)
 })
 
-router.post('/', isAdmin, (req, res, next) => {
+router.post('/', /* isAdmin,*/ (req, res, next) => {
   Category.create(req.body)
     .then(category => res.json(category))
     .catch(next)
 })
 
-router.delete('/:categoryId', isAdmin, (req, res, next) => {
+router.delete('/:categoryId', /* isAdmin, */ (req, res, next) => {
   Category.destroy({
     where: {
       id: req.params.categoryId

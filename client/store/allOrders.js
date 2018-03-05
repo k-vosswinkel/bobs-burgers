@@ -1,5 +1,7 @@
 import axios from 'axios';
 import history from '../history';
+import { postLineItem } from './allLineItems';
+import { fetchCurrentOrder } from './currentOrder';
 
 //Action Types
 const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
@@ -17,7 +19,7 @@ const updateOrder = order => ({ type: UPDATE_ORDER, order })
 export default (orders = [], action) => {
   switch (action.type) {
     case GET_ALL_ORDERS:
-      return [action.orders]
+      return action.orders
 
     case REMOVE_ORDER:
       return orders.filter(order => order.id !== action.orderId)
@@ -52,19 +54,21 @@ export const deleteOrder = id => {
         dispatch(removeOrder(id));
         history.push(`/orders`);
       })
-      .catch(err => console.error(`error deleting product id: ${id})`, err))
+      .catch(err => console.error(`error deleting order id: ${id})`, err))
   }
 }
 
-export const postOrder = order => {
-  return dispatch => {
-    return axios.post('/api/orders', order)
-      .then(newOrder => {
-        dispatch(addOrder(newOrder));
-        history.push(`/orders/${newOrder.id}`);
-      })
-      .catch(err => console.error('Creating order unsuccessful', err));
-  }
+export const postOrder = (order, lineItems) => dispatch => {
+    axios.post('/api/orders', order)
+    .then(newOrder => {
+      // console.log('new order data received', newOrder.data);
+      // console.log('lineItems in postOrder',lineItems)
+      dispatch(fetchCurrentOrder(newOrder.data.id));
+      // history.push(`/orders/${newOrder.id}`);
+      lineItems.forEach(lineItem => lineItem.orderId = newOrder.data.id)
+      dispatch(postLineItem(newOrder.data.id, lineItems))
+    })
+    .catch(err => console.error('Creating order unsuccessful', err));
 }
 
 export const editOrder = order => {
@@ -72,7 +76,7 @@ export const editOrder = order => {
     return axios.put(`/api/orders/${order.id}`, order)
       .then(res => res.data)
       .then(updatedOrder => {
-        dispatch(updateOrder(order))
+        dispatch(updateOrder(updatedOrder))
         history.push(`/orders/${updatedOrder.id}`)
       })
       .catch(err => console.error(`error editing product id: ${order.id}`, err))

@@ -1,94 +1,88 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {fetchProducts} from '../store/allProducts'
+import {fetchProducts} from '../store/allProducts';
+import {fetchCategories} from '../store/allCategories';
+import {fetchCurrentCategory} from '../store/currentCategory';
 import { Link } from 'react-router-dom';
 
 // Component
 class AllProducts extends Component {
-
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentCategory: ''
-    }
-    this.handleChange = this.handleChange.bind(this.handleChange)
   }
-
 
   componentDidMount() {
-    this.props.fetchProducts();
-  }
-
-  handleChange(event) {
-    this.setState({currentCategory: event.target.value});
+    this.props.fetchData()
   }
 
   render() {
-    const allProducts = this.state.currentCategory
-    ? this.props.allProducts.filter(product => product.categoryId === this.state.currentCategory.id)
+    const displayProducts = this.props.categoryProducts
+    ? this.props.categoryProducts
     : this.props.allProducts
-    const {allCategories, currentUser} = this.props;
-
 
     return (
-    <div>
-      <div className="page-header">
-        <h2>All Products </h2>
-        {currentUser.isAdmin && <div>
-        <Link className="btn btn-primary new" to="/new-product"> <span className="glyphicon glyphicon-plus"></span>New Product</Link>
-        <Link className="btn btn-primary new" to="/categories"> <span className="glyphicon glyphicon-plus"></span>All Categories</Link>
-        </div>}
-      </div>
+      <div id="products-list">
+        <div className="section-header">
+          {this.props.categoryProducts
+          ? <h4>Products in this Category ({displayProducts.length} products)</h4>
+          : <h2> All Products ({displayProducts.length} products)</h2>
+          }
+        </div>
 
-      <div>
-        <select>
-          <h3>Select a Category</h3>
-          {allCategories.map(category => {
+        <div>
+        {(displayProducts && displayProducts.length === 0)
+        ? <h5>There are no products at this time. </h5>
+        : <div className="container">
+          {displayProducts && displayProducts.map(product => {
             return (
-              <option key={category.id} value={category.id}>{category.name}</option>
-            )
-          })}
-          </select>
-      </div>
-
-      <div className="container">
-        {allProducts.map(product => {
-          return (
-              <Link to={`/products/${product.id}`} key={product.id}>
-              <div>
-                <img className="thumbnail" src={ product.imgUrl } />
-                <div>
-                  <h4>{product.name}</h4>
-                  {currentUser.isAdmin && <div className="page-body">
-                      <p> Current Inventory: {product.inventory} </p>
-                    </div>}
-                  <h3>Price: {product.price}</h3>
-                  {product.ratings.length
-                  ? <h3>Average Rating: {product.ratings.reduce((acc, currVal) => acc + currVal.rating, 0) / product.ratings.length}</h3>
-                  : <h3> No ratings </h3>
+                <Link to={`/products/${product.id}`} key={product.id}>
+                <div className="list-group-item-products">
+                  <img className="thumbnail" src={ product.imgUrl } />
+                  <div>
+                    <h4>{product.name}</h4>
+                    {this.props.currentUser.isAdmin && <div className="page-body">
+                        <p> Current Inventory: {product.inventory} </p>
+                      </div>}
+                    <p>Price: {product.price}</p>
+                    {product.reviews && product.reviews.length
+                    ? <p>Average Rating: {product.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / product.reviews.length}</p>
+                    : <p> No ratings </p>
                   }
+                  </div>
                 </div>
-              </div>
-              </Link>
-            )
-          })
+                </Link>
+              )
+            })
+          }
+        </div>
         }
-      </div>
+     </div>
     </div>
-      )
-    }
+  )
+  }
 }
 
 
 // Container
-const mapState  = ({allProducts, currentUser, currentCategory}) => ({allProducts, currentUser, currentCategory})
-const mapDispatch = {fetchProducts, fetchCategories}
-
-export default connect(mapState)(mapDispatch)(AllProducts)
-
-// Prop Types
-AllProducts.propTypes = {
-  allProducts: PropTypes.array
+const mapState  = ({allProducts, currentUser, allCategories}, ownProps) => {
+  return {
+    categoryProducts: ownProps.products,
+    allProducts,
+    currentUser,
+    allCategories
+  }
 }
+
+const mapDispatch = dispatch => {
+  return {
+  fetchData: () => {
+    dispatch(fetchProducts());
+    dispatch(fetchCategories());
+    },
+  fetchCurrentCategory: (id) => {
+    dispatch(fetchCurrentCategory(id))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(AllProducts)

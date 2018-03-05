@@ -1,5 +1,7 @@
 import axios from 'axios';
 import history from '../history';
+import { fetchCurrentOrder } from './currentOrder';
+// import {postOrder} from './allOrders'
 
 // action types
 const GET_ALL_LINE_ITEMS = 'GET_ALL_LINE_ITEMS';
@@ -8,7 +10,7 @@ const ADD_LINE_ITEM = 'ADD_LINE_ITEM';
 const UPDATE_LINE_ITEM = 'UPDATE_LINE_ITEM';
 
 // action creators
-const getAllLineItems = lineItems => ({ type: GET_ALL_LINE_ITEMS, lineItems });
+const getCurrentLineItems = lineItems => ({ type: GET_ALL_LINE_ITEMS, lineItems });
 const removeLineItem = id => ({ type: REMOVE_LINE_ITEM, id });
 const addLineItem = lineItem => ({ type: ADD_LINE_ITEM, lineItem });
 const updateLineItem = lineItem => ({ type: UPDATE_LINE_ITEM, lineItem });
@@ -34,43 +36,45 @@ export default (lineItems = [], action) => {
 }
 
 //Thunks
-export const fetchLineItems = () => {
-  return dispatch => {
-    return axios.get('/api/lineItems')
-      .then(res => res.data)
-      .then(lineItems => dispatch(getAllLineItems(lineItems)))
-      .catch(err => console.error('error fetching categories', err))
-  }
+// export const fetchLineItems = () => {
+//   return dispatch => {
+//     return axios.get('/api/lineItems')
+//     .then(res => res.data)
+//     .then(lineItems => dispatch(getAllLineItems(lineItems)))
+//     .catch(err => console.error('error fetching categories', err))
+//   }
+// }
+
+export const fetchLineItems = () => dispatch => {
+
 }
 
-export const deleteLineItem = id => {
-  return dispatch => {
-    return axios.delete(`/api/lineItems/${id}`)
-      .then(() => {
-        dispatch(removeLineItem(id));
-        history.push(`/lineItems`);
-      })
-      .catch(err => console.error(`error deleting line item id ${id}`, err))
-  }
+export const deleteLineItem = (orderId, lineItemId) => dispatch => {
+  console.log('lineItem in deleteLineITem', lineItemId);
+    axios.delete(`/api/${orderId}/lineItems/${lineItemId}`)
+    .then(() => {
+      // dispatch(removeLineItem(lineItem.data.id));
+      dispatch(fetchCurrentOrder(orderId));
+    })
+    .catch(err => console.error(`error deleting line item id ${lineItemId}`, err))
 }
 
-export const postLineItem = lineItem => {
-  return dispatch => {
-    return axios.post('/api/lineItems', lineItem)
-      .then(newLineItem => {
-        dispatch(addLineItem(newLineItem));
-        history.push(`/lineItems/${newLineItem.id}`);
-      })
-      .catch(err => console.error('error creating a new line item', err))
-  }
+export const postLineItem = (orderId, lineItem) => dispatch => {
+  axios.post(`/api/orders/${orderId}/lineItems`, lineItem)
+  .then(newLineItem => {
+    dispatch(addLineItem(newLineItem.data));
+    dispatch(fetchCurrentOrder(orderId))
+  })
+  .catch(err => console.error('error creating a new line item', err))
 }
 
-export const editLineItem = lineItem => {
+export const editLineItem = (orderId, lineItem) => {
   return dispatch => {
-    return axios.put(`/api/lineItems/${lineItem.id}`, lineItem)
+    return axios.put(`/api/orders/${orderId}/lineItems/${lineItem.id}`, lineItem)
       .then(editedLineItem => {
-        dispatch(updateLineItem(editedLineItem));
-        history.push(`/lineItems/${editedLineItem.id}`);
+        // dispatch(updateLineItem(editedLineItem.data));
+        dispatch(fetchCurrentOrder(orderId))
+        // history.push(`/lineItems/${editedLineItem.data.id}`);
       })
       .catch(err => console.error(`error editing line item id: ${lineItem.id}`, err))
   }

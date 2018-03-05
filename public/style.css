@@ -1,4 +1,4 @@
-body {
+ body {
   font-family: sans-serif;
 }
 
@@ -14,13 +14,140 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-
-form div {
+nav {
+  display: inline-block;
+}
+/* form div {
   margin: 1em;
   display: inline-block;
+} */
+
+form > div > div {
+  display: flex;
+  flex-direction: column;
 }
 
 #cart-display {
   width: 500px;
-  height: 500px;
+  justify-content: flex-end;
+}
+
+app {
+  padding-left: 20px;
+  font-family: "Arivo"
+}
+
+img {
+  max-width: 300px;
+  max-height: 300px;
+  height: auto;
+  width:auto;
+  border:none;
+}
+
+.thumbnail {
+  width: 150px;
+  height: 100px;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+}
+
+main {
+  padding-left: 20px;
+}
+
+.navibar {
+  background-color: lightgrey;
+  color: white;
+  vertical-align: auto;
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  align-items: center;
+}
+
+.navbar-element {
+  margin-left: 10px;
+  margin-right: 10px;
+  color:black;
+  font-size: 1.4em;
+  text-decoration: underline;
+}
+
+.section-column {
+  /* justify-content: space-between; */
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom: 2px dotted grey;
+  padding: 0px 10px 0px 10px;
+  flex-direction: column;
+  width: 20vw;
+}
+
+.section-header {
+  display: flex;
+  /* justify-content: space-between; */
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  padding: 5px;
+}
+
+.list-group-item-products {
+  color: black;
+  height: 10kilem;
+  width: 25em;
+  display: flex;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  color: white;
+  align-items: center;
+}
+
+/* wasn't sure if this was being used so leaving it here - AS*/
+/* .page-body {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 2em;
+} */
+
+/* styling the categories & products */
+.page-body {
+  display: flex;
+}
+
+.section-body {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  padding: 10px;
+}
+.section-body button {
+  width: min-content;
+
+}
+
+#reviews-section {
+  padding: 10px;
+}
+
+#categories {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#products-list {
+
 }
