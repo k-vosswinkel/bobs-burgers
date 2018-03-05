@@ -18,6 +18,7 @@ class SingleOrder extends Component {
 
   render() {
     const { currentOrder } = this.props;
+
     console.log('display line items up top: ', currentOrder.lineItems);
     if (!currentOrder) {
       return <div>No Order Selected</div>
@@ -53,3 +54,9 @@ const mapState = ({ allOrders, currentOrder }) => ({ allOrders, currentOrder })
 const mapDispatch = { fetchCurrentOrder }
 
 export default connect(mapState, mapDispatch)(SingleOrder);
+
+// Prop Types
+// AllOrders.propTypes = {
+//   allOrders: PropTypes.array
+// }
+

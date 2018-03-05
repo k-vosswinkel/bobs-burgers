@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {deleteProduct} from '../store/allProducts'
 import {fetchCurrentProduct} from '../store/currentProduct'
 import NewProduct from './NewProduct';
-// import Reviews from './Reviews';
+
 import {connect} from 'react-redux';
 import {postOrder} from '../store/allOrders';
 import {postLineItem} from '../store/allLineItems';

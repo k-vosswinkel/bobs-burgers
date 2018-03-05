@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {fetchCurrentOrder} from '../store/currentOrder.js'
 import { Link } from 'react-router-dom';
 import {editLineItem, deleteLineItem} from '../store/allLineItems';
+import SingleProduct from './SingleProduct';
+
 
 class CartDisplay extends Component {
   constructor(props) {

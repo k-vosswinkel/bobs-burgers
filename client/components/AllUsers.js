@@ -45,4 +45,3 @@ const mapState = ({ allUsers, currentUser }) => ({ allUsers, currentUser })
 const mapDispatch = { fetchUsers }
 
 export default connect(mapState, mapDispatch)(AllUsers);
-
