@@ -102,4 +102,3 @@ const mapState = ({currentProduct, currentUser}) => {
 const mapDispatch = {fetchCurrentProduct, deleteProduct}
 
 export default connect(mapState, mapDispatch)(SingleProduct)
-

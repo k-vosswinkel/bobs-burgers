@@ -4,7 +4,9 @@ const {isLoggedIn, isAdmin, makeError} = require('../../utils.js')
 module.exports = router
 
 // get all orders & get, update, and post a single order
-router.get('/', isLoggedIn, (req, res, next) => {
+router.get('/',
+// isLoggedIn,
+(req, res, next) => {
   let query = req.user.isAdmin ? {} : {where: {userId: req.user.id}}
   Order.findAll(query, {include: [{ all: true }]})
     .then(orders => res.json(orders))
@@ -18,19 +20,26 @@ router.get('/', isLoggedIn, (req, res, next) => {
 //   .catch(next)
 // });
 
-router.get('/:orderId', isLoggedIn, (req, res, next) => {
+router.get('/:orderId',
+// isLoggedIn,
+(req, res, next) => {
   Order.findById(req.params.orderId, {include: [{ all: true }]})
     .then(order => {
       if (!order) {
         return next(makeError('404', 'Not Found'))
       } else {
-        if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
-        res.json(order);
+        // if (order.userId !== req.userId) return next(makeError('403', 'Forbidden'));
+        console.log(order, "order on line 32")
+        // return order.totalPrice()
+        return order
       }
+    })
+    .then(order => {
+      console.log(order, 'order on line 37')
+      res.json(order)
     })
     .catch(next)
 });
-
 
 router.post('/', (req, res, next) => {
   Order.create(req.body)
@@ -38,7 +47,9 @@ router.post('/', (req, res, next) => {
       .catch(next)
 })
 
-router.put('/:orderId', isLoggedIn, isAdmin, (req, res, next) => {
+router.put('/:orderId',
+//isLoggedIn, isAdmin,
+(req, res, next) => {
   Order.update(req.body, {
     where: {id: req.params.orderId},
     returning: true
