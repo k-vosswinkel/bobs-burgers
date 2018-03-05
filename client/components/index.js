@@ -8,3 +8,6 @@ export {default as UserHome} from './user-home';
 export {Login, Signup} from './auth-form';
 export {default as Reviews} from './Reviews';
 export {default as Cart} from './Cart';
+export {default as AllOrders} from './AllOrders';
+export {default as SingleOrder} from './SingleOrder';
+export {default as AllUsers} from './AllUsers';
