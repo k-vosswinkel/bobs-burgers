@@ -54,12 +54,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
  */
 const mapState = state => {
   return {
+    //Use '!!' with currentUser to coerce id into a truthy/falsey value; since Admin is already a boolean
+    //we don't need the double bang! :D
     isLoggedIn: !!state.currentUser.id,
-<<<<<<< HEAD
     isAdmin: state.currentUser.admin
-=======
-    isAdmin: !!state.currentUser.admin
->>>>>>> master
   }
 }
 

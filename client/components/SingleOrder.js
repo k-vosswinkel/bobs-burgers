@@ -16,13 +16,9 @@ class SingleOrder extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    let currentOrder = this.props.currentOrder;
-=======
     const { currentOrder } = this.props;
 
     console.log('display line items up top: ', currentOrder.lineItems);
->>>>>>> master
     if (!currentOrder) {
       return <div>No Order Selected</div>
     } else {
@@ -42,12 +38,8 @@ class SingleOrder extends Component {
                   <div key={lineItem.id}>
                     <div>name: {lineItem.product.name}</div>
                     <div>quantity: {lineItem.quantity}</div>
-<<<<<<< HEAD
                     <div>price: {lineItem.currentPrice}</div>
                     <div>Item total: {lineItem.totalPrice}</div>
-=======
-                    <div>price: {lineItem.product.price}</div>
->>>>>>> master
                   </div>
                 )
               })
