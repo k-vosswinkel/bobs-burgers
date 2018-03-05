@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {deleteProduct} from '../store/allProducts'
 import {fetchCurrentProduct} from '../store/currentProduct'
 import NewProduct from './NewProduct';
-
 import {connect} from 'react-redux';
 import {postOrder} from '../store/allOrders';
 import {postLineItem} from '../store/allLineItems';
 import Reviews from './Reviews';
+import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class SingleProduct extends Component {
   }
 
   render() {
-    const currentUser = this.state.currentUser;
+    const currentUser = this.props.currentUser;
     const currentProduct = this.state.currentProduct;
     const reviews = currentProduct.reviews || [];
     if (!currentProduct) return <div />; // the product id is invalid or the data isnt loaded yet
@@ -81,11 +81,14 @@ class SingleProduct extends Component {
         <div>
           <div className="page-header">
             <h2>{currentProduct.name}</h2>
-            {/* only admins can see inventory, edit, or delete: */}
-            {/* {currentUser.isAdmin && <div className="page-body">} */}
-              { this.props.currentUser.isAdmin ? <p> Current Inventory: {currentProduct.inventory} </p> : null }
+            {/* only admins can see inventory, edit, or delete:  */}
+            {currentUser.isAdmin && <div className="page-body">
+              { this.props.currentUser.isAdmin
+                ? <p> Current Inventory: {currentProduct.inventory} </p>
+                : <p> No inventory at the moment </p> }
               <button onClick={this.handleEdit} className="btn btn-warning new">Edit Product </button>
               <button onClick={this.handleDelete} className="btn btn-danger new">Delete Product</button>
+              </div>}
           </div>
         </div>
 
@@ -95,7 +98,9 @@ class SingleProduct extends Component {
               <p>Description: {currentProduct.description} </p>
               <ul>Categories: {currentProduct.categories && currentProduct.categories.map(category => {
                   return (
-                    <li key={category.id}>{category.name}</li>
+                    <Link to={`/categories/${category.id}`} key={category.id}>
+                    <li >{category.name}</li>
+                    </Link>
                     )
                   })
                  }
@@ -104,13 +109,7 @@ class SingleProduct extends Component {
           </div>
 
           <div>
-              {/* <h5>Average Rating</h5>
-              {currentProduct.reviews && currentProduct.reviews.length
-               ? <p>Average Rating: {currentProduct.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / currentProduct.reviews.length}</p>
-               : <p> No ratings </p>
-              }
-               <h5>All Ratings </h5> */}
-               <Reviews />
+               <Reviews reviews={reviews} />
           </div>
       </div>
 
