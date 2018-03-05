@@ -9,8 +9,7 @@ class UserHome extends Component {
     super(props);
 
     this.state = {
-      email: props.email,
-      orders: props.orders
+      email: props.email
     }
   }
 
@@ -20,7 +19,7 @@ class UserHome extends Component {
 
   render(){
     let userOrders = this.props.orders.filter(order => {
-      return order.userId === this.props.userId
+      return order.userId === this.props.userId && order.status !== 'Pending'
     })
     if (!userOrders.length){
       return (
@@ -37,12 +36,11 @@ class UserHome extends Component {
          {
            userOrders.map(order => {
             return (
-              <div key={order.id}>
-                <div>{order.id}</div>
-                <div>{order.email}</div>
-                <div>{order.shippingAddress}</div>
-                <div>{order.status}</div>
-                <div>{order.date}</div>
+              <div key={order.id} className="orderContainer col-xs-2">
+                <div><p>Account email: {order.email}</p></div>
+                <div><p>Shipping address: {order.shippingAddress}</p></div>
+                <div><p>Order status: {order.status}</p></div>
+                <div><p>Date placed: {order.date}</p></div>
               </div>
             )
           })
