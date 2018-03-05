@@ -4,7 +4,7 @@ import axios from 'axios';
 const GET_CURRENT_CATEGORY = 'GET_CURRENT_CATEGORY'
 
 // action creator
-const getCurrentCategory = category => ({ type: GET_CURRENT_CATEGORY, category });
+export const getCurrentCategory = category => ({ type: GET_CURRENT_CATEGORY, category });
 
 // reducer
 export default (currentCategory = {}, action) => {
@@ -20,7 +20,8 @@ export default (currentCategory = {}, action) => {
 // thunks
 export const fetchCurrentCategory = id => {
   return dispatch => {
-    return axios.get(`/products/${id}`)
+    return axios.get(`/api/categories/${id}`)
+      .then(res => res.data)
       .then(foundCategory => dispatch(getCurrentCategory(foundCategory)))
       .catch(err => console.error(`error fetching category id: ${id}`, err))
   }

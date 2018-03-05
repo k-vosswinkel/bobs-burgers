@@ -9,6 +9,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
     <h2>Bob's Burgers Emporium</h2>
     <nav>
+      <div>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -18,20 +19,31 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
           </a>
           {isAdmin ? (
             <div>
-              <Link to="/orders">All Orders</Link>
-              <Link to="/users">All Users</Link>
+
             </div>
           ) : ''
           }
+          <Link to="/categories">Product Catalog</Link>
+          <Cart />
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/categories">Product Catalog</Link>
+          <Cart />
         </div>
-      )}
-      <Cart />
+        ) }
+      </div>
+      <div>
+      {isAdmin ? (
+        <div>
+          <Link to="/orders">All Orders</Link>
+          <Link to="/users">All Users</Link>
+        </div>
+       ) : null }
+      </div>
     </nav>
     <hr />
   </div>
@@ -43,7 +55,11 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.currentUser.id,
+<<<<<<< HEAD
     isAdmin: state.currentUser.admin
+=======
+    isAdmin: !!state.currentUser.admin
+>>>>>>> master
   }
 }
 

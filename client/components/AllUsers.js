@@ -45,8 +45,3 @@ const mapState = ({ allUsers, currentUser }) => ({ allUsers, currentUser })
 const mapDispatch = { fetchUsers }
 
 export default connect(mapState, mapDispatch)(AllUsers);
-
-// Prop Types
-// AllOrders.propTypes = {
-//   allOrders: PropTypes.array
-// }

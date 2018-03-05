@@ -1,19 +1,168 @@
 const db = require('../server/db')
-const { User, Category, LineItem, Product, Review, Order } = require('../server/db/models')
+const { Product, Category, User, Order, Review, LineItem } = require('../server/db/models')
+const Chance = require('chance');
+const Promise = require('bluebird'); //Promise.map is not available in default promises
+const chance = new Chance();
 
-async function seed () {
-  await db.sync({force: true})
+//Set the amount of instances for each table
+const numCategories = 10;
+const numUsers = 50;
+const numOrders = 50;
+const numReviews = 100;
+const numLineItems = 200;
+
+//Helper function to generate an array of Create promises with random info
+function doTimes(num, fn) {
+  const results = [];
+  while (num--) {
+    results.push(fn());
+  }
+  return results;
+}
+
+//Random info for each table
+const randCat = () => {
+  return Category.create({
+    name: chance.word()
+  })
+}
+
+const randUser = () => {
+  return User.create({
+    email: chance.email(),
+    password: chance.string({ length: 3 }),
+    admin: chance.bool({ likelihood: 10 })
+  })
+}
+
+const randOrder = () => {
+  return Order.create({
+    email: chance.email(),
+    shippingAddress: chance.address(),
+    userId: chance.integer({ min: 1, max: 50 }),
+    productId: chance.integer({ min: 1, max: 10 })
+  })
+}
+
+const randReview = () => {
+  return Review.create({
+    text: chance.string({ length: 25 }),
+    rating: chance.integer({ min: 1, max: 5 }),
+    productId: chance.integer({ min: 1, max: 10 }),
+    userId: chance.integer({ min: 1, max: 50 })
+  })
+}
+
+const randLineItem = () => {
+  return LineItem.create({
+    quantity: chance.integer({ min: 1, max: 10 }),
+    productId: chance.integer({ min: 1, max: 10 }),
+    orderId: chance.integer({ min: 1, max: 50 })
+  })
+}
+
+//Promise generators return an array of Create promises for each table
+const generateCategories = () => {
+  return doTimes(numCategories, () => randCat());
+}
+
+const generateUsers = () => {
+  return doTimes(numUsers, () => randUser());
+}
+
+const generateOrder = () => {
+  return doTimes(numOrders, () => randOrder());
+}
+
+const generateReviews = () => {
+  return doTimes(numReviews, () => randReview());
+}
+
+const generateLineItems = () => {
+  return doTimes(numLineItems, () => randLineItem());
+}
+
+async function seed() {
+  await db.sync({ force: true })
   console.log('db synced!')
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
+  const categories = await Promise.all(generateCategories())
 
-  await Promise.all([generateCategories(),generateUsers(),generateProducts(),generateOrderUser(),generateOrderGuest(),generateReviews(),generateLineItem()])
+  const users = await Promise.all(generateUsers())
 
-  //currently working:
-  // await Promise.all([generateCategories(),generateUsers(), generateProducts(), generateOrderUser(), generateOrderGuest() ])
+  const products = await Promise.all([
+    Product.create({
+      name: 'Sit and Spinach Burger',
+      description: 'This spinach stuffed patty is the best way to eat your greens',
+      price: 6.99,
+      inventory: 5
+    }),
+    Product.create({
+      name: 'Baby You Can Drive My Car! Burger',
+      description: 'A feta stuffed burger on a chive-tastic bun. Topped with a million diced chives and a creamy sour cream & mustard spread',
+      price: 7.99,
+      inventory: 6
+    }),
+    Product.create({
+      name: 'Pickle My Funny Bone Burger',
+      description: 'Fried pickles take this burger to another level',
+      price: 6.75,
+      inventory: 10
+    }),
+    Product.create({
+      name: 'Do the Brussel Burger',
+      description: 'This is the only way you\'ll want to eat Brussel sprouts.',
+      price: 8.49,
+      inventory: 8
+    }),
+    Product.create({
+      name: 'Cheeses is Born Burger',
+      description: 'Swiss and Jarlsberg make this cheeseburger extra melty.',
+      price: 6.99,
+      inventory: 1
+    }),
+    Product.create({
+      name: 'I\'ve Created A Muenster Burger',
+      description: 'Who can say no to melty cheese and mushrooms?',
+      price: 9.99,
+      inventory: 20
+    }),
+    Product.create({
+      name: 'It\'s Fun to Eat At The Rye-MCA Burger',
+      description: 'All-beef patties on rye bread topped with cheddar cheese, brown mustard, caramelized onions, and horseradish.',
+      price: 1.99,
+      inventory: 2
+    }),
+    Product.create({
+      name: 'The Hard to Find Burger',
+      description: 'One of a kind for a reason.',
+      price: 8.99,
+      inventory: 0
+    }),
+    Product.create({
+      name: 'Bet It All On Black Garlic Burger',
+      description: 'Winner winnder burger dinner! This all-beef patty is topped with fresh mozarella, spinach, homemade black garlic mayo and a dash of Sriracha hot sauce.',
+      price: 12.99,
+      inventory: 9
+    }),
+    Product.create({
+      name: 'Don\'t You Four Cheddar \'Bout Me Burger',
+      description: 'Lettuce, cheeseburger, bacon slices, onions. A gratuitous number of cheddars? No. Five would be crazy. But what are you going to do, three? No. Four\'s your number.',
+      price: 4.00,
+      inventory: 4
+    })
+  ])
 
-   /***** not working yet : generateOrderUser(), generateReviews()generateLineItem()  ******/
+  const orders = await Promise.all(generateOrder())
 
+  const reviews = await Promise.all(generateReviews())
+
+  const lineItems = await Promise.all(generateLineItems())
+
+  // Wowzers! We can even `await` on the right-hand side of the assignment operator
+  // and store the result that the promise resolves to in a variable! This is nice!
+  console.log(`seeded ${products.length} users, ${categories.length} categories, ${users.length} users, ${orders.length} orders, ${reviews.length} reviews, and ${lineItems.length} line items`)
   console.log(`seeded successfully`)
 }
 
@@ -38,225 +187,3 @@ seed()
  * of the async function
  */
 console.log('seeding...')
-
-const Chance = require('chance');
-const Promise = require('bluebird'); //Promise.map is not available in default promises
-const chance = new Chance();
-
-let numOrders = 25;
-let numUsers = 50;
-let numReviews = 100;
-let numCats = 5;
-let numLineItems = 200;
-
-function doTimes(n, fn) {
-  const results = [];
-  while (n--) {
-    results.push(fn());
-  }
-  return results;
-}
-
-const randUser = () => {
-  return User.create({
-    email: chance.email(),
-    password: chance.string({ length: 3 }),
-    admin: chance.bool({ likelihood: 10 })
-  })
-}
-
-const randReview = () => {
-  return Review.create({
-    text: chance.string({ length: 25 }),
-    rating: chance.integer({ min: 1, max: 5 }),
-    productId: chance.integer({ min: 1, max: 10 }),
-    userId: chance.integer({ min: 1, max: 50 })
-  })
-}
-
-const randCat = () => {
-  return Category.create({
-    name: chance.word()
-  })
-}
-
-const randOrderUser = () => {
-  return Order.create({
-    userId: chance.integer({ min: 1, max: 50 }),
-    productId: chance.integer({ min: 1, max: 10 })
-  })
-}
-
-const randOrderGuest = () => {
-  return Order.create({
-    productId: chance.integer({ min: 1, max: 10 }),
-    status: 'Created'
-  })
-}
-
-const randLineItem = () => {
-  return LineItem.create({
-    quantity: chance.integer({ min: 1, max: 10 }),
-    productId: chance.integer({ min: 1, max: 10 }),
-    orderId: chance.integer({ min: 1, max: 50 })
-  })
-}
-
-//Hard coded products will go here
-const generateProducts = () => {
-  let products = [];
-  products.push(Product.create({
-    name: 'Sit and Spinach Burger',
-    description: 'This spinach stuffed patty is the best way to eat your greens',
-    price: 6.99,
-    inventory: 5
-  }));
-  products.push(Product.create({
-    name: 'Baby You Can Drive My Car! Burger',
-    description: 'A feta stuffed burger on a chive-tastic bun. Topped with a million diced chives and a creamy sour cream & mustard spread',
-    price: 7.99,
-    inventory: 6
-  }));
-  products.push(Product.create({
-    name: 'Pickle My Funny Bone Burger',
-    description: 'Fried pickles take this burger to another level',
-    price: 6.75,
-    inventory: 10
-  }));
-  products.push(Product.create({
-    name: 'Do the Brussel Burger',
-    description: 'This is the only way you\'ll want to eat Brussel sprouts.',
-    price: 8.49,
-    inventory: 8
-  }));
-  products.push(Product.create({
-    name: 'Cheeses is Born Burger',
-    description: 'Swiss and Jarlsberg make this cheeseburger extra melty.',
-    price: 6.99,
-    inventory: 1
-  }));
-  products.push(Product.create({
-    name: 'I\'ve Created A Muenster Burger',
-    description: 'Who can say no to melty cheese and mushrooms?',
-    price: 9.99,
-    inventory: 20
-  }));
-  products.push(Product.create({
-    name: 'It\'s Fun to Eat At The Rye-MCA Burger',
-    description: 'All-beef patties on rye bread topped with cheddar cheese, brown mustard, caramelized onions, and horseradish.',
-    price: 1.99,
-    inventory: 2
-  }));
-  products.push(Product.create({
-    name: 'The Hard to Find Burger',
-    description: 'One of a kind for a reason.',
-    price: 8.99,
-    inventory: 0
-  }));
-  products.push(Product.create({
-    name: 'Bet It All On Black Garlic Burger',
-    description: 'Winner winnder burger dinner! This all-beef patty is topped with fresh mozarella, spinach, homemade black garlic mayo and a dash of Sriracha hot sauce.',
-    price: 12.99,
-    inventory: 9
-  }));
-  products.push(Product.create({
-    name: 'Don\'t You Four Cheddar \'Bout Me Burger',
-    description: 'Lettuce, cheeseburger, bacon slices, onions. A gratuitous number of cheddars? No. Five would be crazy. But what are you going to do, three? No. Four\'s your number.',
-    price: 4.00,
-    inventory: 4
-  }));
-}
-
-//remaining 'generate' functions go here
-const generateUsers = () => {
-  User.create({
-    email: 'notBob@bob.com',
-    password: 'badtestpassword',
-    admin: true
-  })
-  return doTimes(numUsers, () => randUser());
-}
-
-const generateReviews = () => {
-  return doTimes(numReviews, () => randReview());
-}
-
-const generateCategories = () => {
-  return doTimes(numCats, () => randCat());
-}
-
-const generateOrderUser = () => {
-  Order.build({
-    userId: 1,
-    productId: chance.integer({ min: 1, max: 10 })
-  })
-  return doTimes(numOrders, () => randOrderUser());
-}
-
-const generateOrderGuest = () => {
-  return doTimes(numOrders, () => randOrderGuest());
-}
-
-const generateLineItem = () => {
-  return doTimes(numLineItems, () => randLineItem());
-}
-
-//BEGIN OLD SEED FILE CODE...
-
-// function createUsers() {
-//   return Promise.map(generateUsers(), user => user.save());
-// }
-
-// function createReviews() {
-//   return Promise.map(generateReviews(), review => review.save());
-// }
-
-// function createCategories() {
-//   return Promise.map(generateCategories(), category => category.save());
-// }
-
-// function createOrdersUsers() {
-//   return Promise.map(generateOrderUser(), orderUser => orderUser.save());
-// }
-
-// function createOrdersGuests() {
-//   return Promise.map(generateOrderGuest(), orderGuest => orderGuest.save());
-// }
-
-// function createLineItems() {
-//   return Promise.map(generateLineItem(), lineItem => lineItem.save());
-// }
-
-// function createProducts() {
-//   return Promise.map(generateProducts(), product => product.save());
-// }
-
-// function seed() {
-//   return createCategories()
-//     .then(createUsers())
-//     .then(createProducts())
-//     .then(createOrdersUsers())
-//     .then(createOrdersGuests())
-//     .then(createReviews())
-//     .then(createLineItems());
-// }
-
-// console.log('Syncing database');
-
-// db.sync({ force: true })
-//   .then(() => {
-//     console.log('Seeding database');
-//     return seed();
-//   })
-//   .then(() => console.log('Seeding successful'))
-//   .catch(err => {
-//     console.error('Error while seeding');
-//     console.error(err.stack);
-//   })
-//   .finally(() => {
-//     db.close();
-//     return null;
-//   });
-
-
-//END OLD SEED FILE
