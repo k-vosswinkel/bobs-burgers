@@ -2,9 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
+<<<<<<< HEAD
+import {Login, Signup, UserHome, AllProducts, SingleProduct, NewProduct, AllCategories, NewCategory, Reviews, AllOrders, SingleOrder, AllUsers, EditUser } from './components'
+=======
 
 import {Login, Signup, UserHome, AllProducts, SingleProduct, NewProduct, AllCategories, NewCategory, Reviews, SingleCategory, AllOrders, SingleOrder, AllUsers, Checkout} from './components'
 
+>>>>>>> master
 import {me} from './store'
 import {fetchInitialOrder} from './store/'
 
@@ -40,9 +44,14 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
               <Route exact path="/orders" component={AllOrders} />
               <Route path="/orders/:orderId" component={SingleOrder} />
+<<<<<<< HEAD
+              <Route exact path="/users" component={AllUsers} />
+              <Route path="/users/:userId" component={EditUser} />
+=======
               <Route path="/users" component={AllUsers} />
               <Route path="/users/:userId" component={UserHome} />
 
+>>>>>>> master
             </Switch>
         }
         {isAdmin &&

@@ -19,3 +19,4 @@ export {default as SingleCategory} from './SingleCategory'
 export {default as AllOrders} from './AllOrders';
 export {default as SingleOrder} from './SingleOrder';
 export {default as AllUsers} from './AllUsers';
+export {default as EditUser} from './user-edit';

@@ -12,6 +12,7 @@ import currentOrder from './currentOrder';
 import currentProduct from './currentProduct';
 import currentReview from './currentReview';
 import currentUser from './currentUser';
+import userToEdit from './editUser';
 import allLineItems from './allLineItems';
 
 const reducer = combineReducers({
@@ -25,7 +26,8 @@ const reducer = combineReducers({
   currentOrder,
   currentProduct,
   currentReview,
-  currentUser
+  currentUser,
+  userToEdit
 })
 
 const middleware = composeWithDevTools(applyMiddleware(
@@ -45,3 +47,4 @@ export * from './currentOrder'
 export * from './currentProduct'
 export * from './currentReview'
 export * from './currentUser'
+export * from './editUser'
