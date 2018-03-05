@@ -20,10 +20,10 @@ class AllCategories extends Component {
         <div className="page-body">
           <div className="section-column">
             <h2>All Categories </h2>
-            {/* {currentUser.isAdmin && <div> */}
+            {this.props.currentUser.isAdmin && <div>
             <Link to="/new-category"> <span className="glyphicon glyphicon-plus">New Category </span></Link>
             <Link to="/new-product"> <span className="glyphicon glyphicon-plus">New Product</span></Link>
-            {/* </div>} */}
+            </div>}
 
 
           {/* <div id="categories"> */}
@@ -46,7 +46,7 @@ class AllCategories extends Component {
 }
 
 
-const mapState = ({allCategories}) => ({allCategories})
+const mapState = ({allCategories, currentUser}) => ({allCategories, currentUser})
 
 
 const mapDispatch = dispatch => {
