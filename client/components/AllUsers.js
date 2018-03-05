@@ -6,11 +6,7 @@ import { fetchUsers } from '../store/allUsers'
 
 class AllUsers extends Component {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      currentOrder: ''
-    }
+    super(props)
   }
 
   componentDidMount() {
@@ -29,8 +25,10 @@ class AllUsers extends Component {
           {allUsers.map(user => {
             return (
               <Link key={user.id} to={`/users/${user.id}`}>
-                <div>{user.email}</div>
-                <div>{user.isAdmin}</div>
+                <div className="singleOrderContainer">
+                  <div>{user.email}</div>
+                  <div>{user.isAdmin}</div>
+                </div>
               </Link>
             )
           })}

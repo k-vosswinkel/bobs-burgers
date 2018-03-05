@@ -14,24 +14,29 @@ class SingleOrder extends Component {
   render() {
     const { currentOrder } = this.props;
 
-    console.log('display line items up top: ', currentOrder.lineItems);
     if (!currentOrder) {
-      return <div>No Order Selected</div>
+      return <div>Order loading...</div>
     } else {
       let lineItems = this.props.currentOrder.lineItems;
       if (!lineItems){
-        return <div>There are no line items to display</div>
+        return (
+        <div key={currentOrder.id} className="singleOrderContainer">
+          <div>email address: {currentOrder.email}</div>
+          <div>order status: {currentOrder.status}</div>
+          <div>Line items loading...</div>
+        </div>
+        )
       } else {
+        console.log(currentOrder)
         let orderTotal = 0;
         return (
-          <div key={currentOrder.id} className="lineItem">
-            <div>order id: {currentOrder.id}</div>
-            <div>order status: {currentOrder.status}</div>
+          <div key={currentOrder.id} className="singleOrderContainer">
             <div>email address: {currentOrder.email}</div>
+            <div>order status: {currentOrder.status}</div>
             {lineItems.map(lineItem => {
                 orderTotal = orderTotal + lineItem.totalPrice;
                 return (
-                  <div key={lineItem.id}>
+                  <div key={lineItem.id} className="lineItem">
                     <div>name: {lineItem.product.name}</div>
                     <div>quantity: {lineItem.quantity}</div>
                     <div>price: {lineItem.currentPrice}</div>
