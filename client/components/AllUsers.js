@@ -25,9 +25,10 @@ class AllUsers extends Component {
           {allUsers.map(user => {
             return (
               <Link key={user.id} to={`/users/${user.id}`}>
-                <div className="singleOrderContainer">
+                <div className="user product">
                   <div>{user.email}</div>
                   <div>{user.isAdmin}</div>
+                  <button className="btn btn-success">Edit User</button>
                 </div>
               </Link>
             )

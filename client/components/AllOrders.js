@@ -26,12 +26,12 @@ class AllOrders extends Component {
           {allOrders.map(order => {
             return (
               <Link key={order.id} to={`/orders/${order.id}`}>
-              <div className="orderContainer col-xs-2">
+              <div className="order-item product col-xs-2">
                 <div><p>Account email: {order.email}</p></div>
                 <div><p>Shipping address: {order.shippingAddress}</p></div>
                 <div><p>Order status: {order.status}</p></div>
                 <div><p>Date placed: {order.orderDate.slice(0, 10)}</p></div>
-                <button>Edit Order</button>
+                <button className="btn btn-success">Edit Order</button>
               </div>
               </Link>
             )
