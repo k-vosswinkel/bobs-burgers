@@ -27,10 +27,24 @@ class NewProduct extends Component {
   }
 
   handleCheckboxChange(event) {
-    this.setState({
-      categories: [...this.state.categories, event.target.id]
-      })
+
+    let newSelection = event.target.id;
+    let newSelectionArray;
+
+    if(this.state.categories.indexOf(newSelection) > -1) {
+      newSelectionArray = this.state.categories.filter(s => s !== newSelection)
+    } else {
+      newSelectionArray = [...this.state.categories, newSelection];
+    }
+
+      this.setState({ cateogries: newSelectionArray });
+      console.log(this.state)
   }
+
+    // this.setState({
+    //   categories: [...this.state.categories, event.target.id]
+    //   })
+  // }
 
   handleSubmit(event) {
     event.preventDefault();

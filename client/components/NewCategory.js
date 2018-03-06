@@ -7,8 +7,8 @@ class NewCategory extends Component {
     super(props);
 
     this.state = {
-      id: this.props.category.id || '',
-      name: this.props.category.name || ''
+      id: this.props.category ? this.props.category.id : '',
+      name: this.props.category ? this.props.category.name : ''
     }
 
     this.handleChange = this.handleChange.bind(this);
