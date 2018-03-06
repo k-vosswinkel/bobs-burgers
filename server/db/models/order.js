@@ -22,7 +22,7 @@ const Order = db.define('order', {
 },
 {
   hooks: {
-    afterUpdate: function(order) {
+    beforeUpdate: function(order) {
       if (order.status === 'Created') {
         return order.getLineItems()
           .then(lineItems => {
@@ -30,8 +30,6 @@ const Order = db.define('order', {
               return lineItem.getProduct()
                 .then(product => {
                   product.decrement(lineItem.quantity)
-                  console.log("product", product)
-                  product.save()
                 })
             })
           })

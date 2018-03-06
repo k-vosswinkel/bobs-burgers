@@ -77,14 +77,18 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:orderId', (req, res, next) => {
-  Order.update(req.body, {
-    where: {id: req.params.orderId},
-    returning: true
-  })
-  .spread((updatedRowCount, updatedRows) => {
-    res.json(updatedRows[0])
-  })
-  .catch(next)
+  Order.findById(req.params.orderId)
+    .then(foundOrder => foundOrder.update(req.body))
+    .then(updatedOrder => res.json(updatedOrder))
+    .catch(next)
+  // Order.update(req.body, {
+  //   where: {id: req.params.orderId},
+  //   returning: true
+  // })
+  // .spread((updatedRowCount, updatedRows) => {
+  //   res.json(updatedRows[0])
+  // })
+  // .catch(next)
 });
 
 router.delete('/:orderId', isLoggedIn, isAdmin, (req, res, next) => {
