@@ -7,27 +7,25 @@ import {GuestCart, UserCart} from './index'
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
-    <h2>Bob's Burgers Emporium</h2>
     <nav>
       <div>
+        <Link to="/">
+        <div className="nav-logo">
+          <img src="https://image.ibb.co/gK2T07/bobs_burgers_banner2.png" />
+          </div>
+        </Link>
       {isLoggedIn ? (
-        <div>
+        <div className="nav-items">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          {isAdmin ? (
-            <div>
-
-            </div>
-          ) : ''
-          }
           <Link to="/categories">Product Catalog</Link>
           <UserCart />
         </div>
       ) : (
-        <div>
+        <div className="nav-items">
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
@@ -36,14 +34,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
         </div>
         ) }
       </div>
-      <div>
       {isAdmin ? (
         <div>
           <Link to="/orders">All Orders</Link>
           <Link to="/users">All Users</Link>
         </div>
        ) : null }
-      </div>
     </nav>
     <hr />
   </div>

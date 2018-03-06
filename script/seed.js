@@ -107,7 +107,7 @@ async function seed() {
     })
     .then(product => product.setCategories([1, 2])),
     Product.create({
-      name: 'Baby You Can Drive My Car! Burger',
+      name: 'Baby You Can Chive My Car! Burger',
       description: 'A feta stuffed burger on a chive-tastic bun. Topped with a million diced chives and a creamy sour cream & mustard spread',
       price: 7.99,
       inventory: 6

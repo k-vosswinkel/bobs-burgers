@@ -6,7 +6,7 @@ const REMOVE_CURRENT_ORDER = 'REMOVE_CURRENT_ORDER';
 
 //Action Creators
 const getCurrentOrder = order => ({ type: GET_CURRENT_ORDER, order })
-const removeCurrentOrder = (order) => ({type: REMOVE_CURRENT_ORDER, order})
+const removeCurrentOrder = () => ({ type: REMOVE_CURRENT_ORDER })
 
 //Reducer
 export default (currentOrder = {}, action) => {
@@ -14,7 +14,7 @@ export default (currentOrder = {}, action) => {
     case GET_CURRENT_ORDER :
       return action.order
     case REMOVE_CURRENT_ORDER :
-      return action.order
+      return {}
     default:
       return currentOrder
   }
@@ -23,16 +23,13 @@ export default (currentOrder = {}, action) => {
 //Thunks
 export const fetchCurrentOrder = id => dispatch => {
     axios.get(`/api/orders/${id}`)
-    .then(order => {
-      dispatch(getCurrentOrder(order.data))
-    })
+    .then(order => dispatch(getCurrentOrder(order.data)))
     .catch(err => console.error(`error fetching product id: ${id}`, err))
 }
 
 export const fetchInitialOrder = () => dispatch => {
   axios.get('api/orders')
   .then(orders => {
-    // console.log('orders', orders.data);
     if (orders.data.length && Array.isArray(orders.data)) {
       const pendingOrder = orders.data.find(order => order.status === 'Pending');
       if (pendingOrder) {
@@ -44,6 +41,5 @@ export const fetchInitialOrder = () => dispatch => {
 }
 
 export const resetCurrentOrder = () => dispatch => {
-  console.log('hit reset order');
-  dispatch(removeCurrentOrder({}));
+  dispatch(removeCurrentOrder());
 }

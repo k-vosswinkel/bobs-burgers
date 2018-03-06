@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
-import {deleteProduct} from '../store/allProducts'
-import {fetchCurrentProduct} from '../store/currentProduct'
 import NewProduct from './NewProduct';
-
 import {connect} from 'react-redux';
-import {postOrder} from '../store/allOrders';
-import {postLineItem} from '../store/allLineItems';
+import {fetchCurrentProduct, deleteProduct, postOrder, postLineItem, addCartItem, fetchCartItems} from '../store';
 import Reviews from './Reviews';
 
 class SingleProduct extends Component {
@@ -51,30 +47,28 @@ class SingleProduct extends Component {
       productId: currentProduct.id
     }
     if (!Object.keys(currentUser).length) {
-      if (!window.sessionStorage.getItem("lineItems")) {
-        window.sessionStorage.setItem("lineItems", currentProduct.id);
+      if (!window.sessionStorage.getItem('cartItems')) {
+        window.sessionStorage.setItem('cartItems', currentProduct.id);
       }
       else {
-        let arrNew = window.sessionStorage.getItem("lineItems").split(',');
+        let arrNew = window.sessionStorage.getItem('cartItems').split(',');
         arrNew.push(currentProduct.id);
-        window.sessionStorage.setItem("lineItems", arrNew);
-        console.log(window.sessionStorage.getItem("lineItems"));
+        window.sessionStorage.setItem('cartItems', arrNew);
       }
+      this.props.fetchCartItems();
     }
 
     else if (!Object.keys(currentOrder).length) {
       this.props.postOrder({status: 'Pending', userId: currentUser.id}, [newLineItem]);
     }
     else {
-      newLineItem['orderId'] = currentOrder.id;
+      newLineItem.orderId = currentOrder.id;
       this.props.postLineItem(currentOrder.id, [newLineItem]);
     }
   }
 
   render() {
-    const currentUser = this.state.currentUser;
     const currentProduct = this.state.currentProduct;
-    const reviews = currentProduct.reviews || [];
     if (!currentProduct) return <div />; // the product id is invalid or the data isnt loaded yet
 
     if (this.state.isEditing) {
@@ -89,52 +83,34 @@ class SingleProduct extends Component {
         <div>
           <div className="page-header">
             <h2>{currentProduct.name}</h2>
-            {/* only admins can see inventory, edit, or delete: */}
-            {/* {currentUser.isAdmin && <div className="page-body">} */}
               { this.props.currentUser.isAdmin ? <p> Current Inventory: {currentProduct.inventory} </p> : null }
               <button onClick={this.handleEdit} className="btn btn-warning new">Edit Product </button>
               <button onClick={this.handleDelete} className="btn btn-danger new">Delete Product</button>
           </div>
         </div>
 
-          <div className="page-body">
-              <button className="btn btn-success new" onClick={this.handleAdd}>Add To Cart</button>
-              <p>Price: {currentProduct.price} </p>
-              <p>Description: {currentProduct.description} </p>
-              <ul>Categories: {currentProduct.categories && currentProduct.categories.map(category => {
-                  return (
-                    <li key={category.id}>{category.name}</li>
-                    )
-                  })
-                 }
-                </ul>
-              <img src={currentProduct.imageUrl} />
-          </div>
-
-          <div>
-              {/* <h5>Average Rating</h5>
-              {currentProduct.reviews && currentProduct.reviews.length
-               ? <p>Average Rating: {currentProduct.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / currentProduct.reviews.length}</p>
-               : <p> No ratings </p>
+        <div className="page-body">
+          <button className="btn btn-success new" onClick={this.handleAdd}>Add To Cart</button>
+          <p>Price: {currentProduct.price} </p>
+          <p>Description: {currentProduct.description} </p>
+          <ul>Categories: {currentProduct.categories && currentProduct.categories.map(category => {
+              return (
+                <li key={category.id}>{category.name}</li>
+                )
+              })
               }
-               <h5>All Ratings </h5> */}
-               <Reviews />
-          </div>
-      </div>
-
-      )
+            </ul>
+          <img src={currentProduct.imageUrl} />
+        </div>
+      <Reviews />
+    </div>
+    )
     }
   }
 }
 
-const mapState = ({currentProduct, currentUser, currentOrder}) => ({currentProduct, currentUser, currentOrder})
+const mapState = ({ currentProduct, currentUser, currentOrder }) => ({ currentProduct, currentUser, currentOrder })
 
-//commented out temporarily - AS
-// const mapStateToProps = ({currentProduct, currentUser}) => {
-//   const productReviews = currentProduct.reviews.filter(review => review.productId === currentProduct.id)
-//   return {currentProduct, currentUser, productReviews}
-// }
-
-const mapDispatch = {fetchCurrentProduct, deleteProduct, postLineItem, postOrder}
+const mapDispatch = { fetchCurrentProduct, deleteProduct, postLineItem, postOrder, fetchCartItems, addCartItem }
 
 export default connect(mapState, mapDispatch)(SingleProduct)

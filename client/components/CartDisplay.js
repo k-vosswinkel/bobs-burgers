@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CartDisplay = ({products, handleAdd, handleReduce, hideCart}) => {
-  console.log(products);
   if (!products) { return <p>Cart is empty</p> }
   return (
     <div id="cart-display">
+      <h3>Cart</h3>
       <ul>
       { products.map(product => {
-          return <li key={product.id}><SingleItem lineItem={product} name={product.product.name} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
+          return <li key={product.product.id}><SingleItem lineItem={product} name={product.product.name} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
       })
       }
       </ul>
@@ -19,11 +19,11 @@ const CartDisplay = ({products, handleAdd, handleReduce, hideCart}) => {
 
 const SingleItem = ({lineItem}) => {
  return  (
-    <div>
+    <div className="cart-item">
       <p>{lineItem.product.name}</p>
       <img src={lineItem.product.imgUrl} />
-      <p>{lineItem.quantity}</p>
-      <p>{lineItem.quantity * lineItem.product.price}</p>
+      <p>Quantity: {lineItem.quantity}</p>
+      <p>Price: {lineItem.quantity * lineItem.product.price}</p>
     </div>
   )
 }

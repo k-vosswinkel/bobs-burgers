@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchCurrentOrder} from '../store/currentOrder.js'
-import {editLineItem, deleteLineItem} from '../store/allLineItems';
+import { fetchCurrentOrder, editLineItem, deleteLineItem } from '../store';
 import CartDisplay from './CartDisplay';
 
 class UserCart extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = { visible: false }
   }
 
@@ -50,8 +49,8 @@ class UserCart extends Component {
     }
 }
 
-const mapState = ({currentOrder}) => ({currentOrder});
+const mapState = ({ currentOrder }) => ({ currentOrder });
 
-const mapDispatch = {fetchCurrentOrder, editLineItem, deleteLineItem};
+const mapDispatch = { fetchCurrentOrder, editLineItem, deleteLineItem };
 
 export default connect(mapState, mapDispatch)(UserCart);

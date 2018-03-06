@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import {getCurrentProduct} from './currentProduct'
+import { getCurrentProduct } from './currentProduct'
 
 //Action Types
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';

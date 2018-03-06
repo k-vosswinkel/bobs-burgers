@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import { resetCurrentOrder } from './currentOrder';
+import { resetCurrentOrder, emptyCart } from '../store';
 
 // action types
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
@@ -33,7 +33,12 @@ export const fetchCurrentUser = id => dispatch => {
 
 export const me = () => dispatch => {
   axios.get('/auth/me')
-  .then(res => dispatch(getCurrentUser(res.data || {})))
+  .then(res => {
+    dispatch(getCurrentUser(res.data || {}));
+    if (res.data) {
+      dispatch(emptyCart());
+    }
+  })
   .catch(err => console.log(err))
 }
 
