@@ -6,24 +6,40 @@ import { fetchUserToEdit } from '../store'
 class EditUser extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentUser: {}
-    }
   }
 
   componentDidMount() {
     this.props.fetchUserToEdit(this.props.match.params.userId);
   }
 
+  // handleChange(event) {
+
+  // }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+  }
+
+  //FORM UNDER CONSTRUCTION
   render() {
     let currentUser = this.props.currentUser;
+
     if (!currentUser) {
       return <div>No User Selected</div>
     } else {
       return (
-        <div key={currentUser.id}>
-          <div>email: {currentUser.email}</div>
+        <div>
+          <form className="section-body" onSubmit={this.handleSubmit}>
+            <label>Email:
+            <input
+                name="email"
+                // onChange={this.handleChange}
+                value={this.props.currentUser.email}
+              />
+            </label>
+            <button className="btn btn-success" type="submit">Update</button>
+          </form>
         </div>
       )
     }
@@ -35,8 +51,3 @@ const mapState = ({ allUsers, currentUser }) => ({ allUsers, currentUser })
 const mapDispatch = { fetchUserToEdit }
 
 export default connect(mapState, mapDispatch)(EditUser);
-
-// Prop Types
-// AllOrders.propTypes = {
-//   allOrders: PropTypes.array
-// }

@@ -39,7 +39,7 @@ const randOrder = () => {
   return Order.create({
     email: chance.email(),
     shippingAddress: chance.address(),
-    userId: chance.integer({ min: 1, max: 50 }),
+    userId: chance.integer({ min: 1, max: 51 }),
     productId: chance.integer({ min: 1, max: 10 })
   })
 }
@@ -49,7 +49,7 @@ const randReview = () => {
     text: chance.string({ length: 25 }),
     rating: chance.integer({ min: 1, max: 5 }),
     productId: chance.integer({ min: 1, max: 10 }),
-    userId: chance.integer({ min: 1, max: 50 })
+    userId: chance.integer({ min: 1, max: 51 })
   })
 }
 
@@ -107,7 +107,7 @@ async function seed() {
     })
     .then(product => product.setCategories([1, 2])),
     Product.create({
-      name: 'Baby You Can Drive My Car! Burger',
+      name: 'Baby You Can Chive My Car! Burger',
       description: 'A feta stuffed burger on a chive-tastic bun. Topped with a million diced chives and a creamy sour cream & mustard spread',
       price: 7.99,
       inventory: 6
