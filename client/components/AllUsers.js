@@ -26,8 +26,8 @@ class AllUsers extends Component {
             return (
               <Link key={user.id} to={`/users/${user.id}`}>
                 <div className="singleOrderContainer">
-                  <div><p>{user.email}</p></div>
-                  <button>Edit User</button>
+                  <div>{user.email}</div>
+                  <div>{user.isAdmin}</div>
                 </div>
               </Link>
             )

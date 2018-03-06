@@ -15,9 +15,11 @@ class EditUser extends Component {
     console.log('working')
     event.preventDefault();
     let email = event.target.email.value;
+    let isAdmin = event.target.admin.value;
     let user = {
       id: this.props.userToEdit.id,
-      email: email
+      email: email,
+      isAdmin: isAdmin
     }
     this.props.updateUserToEdit(user);
   }
@@ -34,6 +36,13 @@ class EditUser extends Component {
             <input
                 name="email"
                 defaultValue={userToEdit.email}
+              />
+            </label>
+            <label>Admin:
+            <input
+                type="checkbox"
+                name="admin"
+                value={userToEdit.isAdmin}
               />
             </label>
             <button className="btn btn-success" type="submit">Update</button>

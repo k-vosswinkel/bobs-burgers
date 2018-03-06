@@ -17,7 +17,7 @@ class Routes extends Component {
   render () {
     const {isLoggedIn} = this.props;
     const {isAdmin} = this.props;
-
+    console.log(isLoggedIn, isAdmin);
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -27,7 +27,6 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
-        {/* <Route path="/reviews" component={Reviews} /> */}
         <Route path="/new-product" component={NewProduct} />
         <Route path="/new-category" component={NewCategory} />
         <Route path="/checkout" component={Checkout} />
@@ -41,12 +40,6 @@ class Routes extends Component {
               <Route exact path="/users" component={AllUsers} />
               <Route path="/users/:userId" component={EditUser} />
             </Switch>
-        }
-        {isAdmin &&
-            <Switch>
-            {/* Routes placed here are only available as an admin*/}
-
-          </Switch>
         }
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
@@ -62,7 +55,6 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-
     isLoggedIn: !!state.currentUser.id,
     isAdmin: !!state.currentUser.id && state.currentUser.isAdmin
   }
