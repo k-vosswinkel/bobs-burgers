@@ -58,6 +58,8 @@ export const fetchCartItems = () => dispatch => {
 }
 
 export const emptyCart = () => dispatch => {
+  console.log('you hit empty cart');
+  window.sessionStorage.clear();
   dispatch(resetCartItems());
 }
 

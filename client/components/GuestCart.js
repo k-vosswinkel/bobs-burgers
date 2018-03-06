@@ -25,7 +25,7 @@ class GuestCart extends Component {
   render() {
     const {allCartItems} = this.props;
       return (
-        <div>
+        <div className="cart-button">
           <button className="btn btn-danger white" onClick={this.handleClick}>Cart</button>
           {this.state.visible ? <CartDisplay hideCart={this.handleClick} products={allCartItems} handleAdd={this.addCartItem} handleReduce={this.reduceCartItem} /> : null}
         </div>
