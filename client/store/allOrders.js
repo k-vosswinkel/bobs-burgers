@@ -69,14 +69,16 @@ export const postOrder = (order, lineItems) => dispatch => {
   .catch(err => console.error('Creating order unsuccessful', err));
 }
 
-export const editOrder = order => dispatch => {
-  axios.put(`/api/orders/${order.id}`, order)
-  .then(res => res.data)
-  .then(updatedOrder => {
-    dispatch(updateOrder(updatedOrder))
-    history.push(`/orders/${updatedOrder.id}`)
-  })
-  .catch(err => console.error(`error editing product id: ${order.id}`, err))
+export const editOrder = order => {
+  return dispatch => {
+    return axios.put(`/api/orders/${order.id}`, order)
+      .then(res => res.data)
+      .then(updatedOrder => {
+        dispatch(updateOrder(updatedOrder))
+        history.push(`/orders`)
+      })
+      .catch(err => console.error(`error editing product id: ${order.id}`, err))
+  }
 }
 
 export const deleteOrder = id => dispatch => {

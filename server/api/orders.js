@@ -15,9 +15,8 @@ router.param('orderId', (req, res, next, id) => {
 
 // get all orders & get, update, and post a single order
 router.get('/', (req, res, next) => {
-  // let query = req.user.isAdmin ? {} : {where: {userId: req.user.id}}
   if (!req.user) { return 'not logged in' }
-  if (req.user.admin) {
+  if (req.user.isAdmin) {
     Order.findAll({include: [{ all: true, include: [{all: true}] }]})
     .then(orders => {
       res.json(orders)
