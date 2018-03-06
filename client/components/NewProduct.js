@@ -27,18 +27,17 @@ class NewProduct extends Component {
   }
 
   handleCheckboxChange(event) {
-
     let newSelection = event.target.id;
     let newSelectionArray;
 
-    if(this.state.categories.indexOf(newSelection) > -1) {
-      newSelectionArray = this.state.categories.filter(s => s !== newSelection)
+    if (this.state.categories.indexOf(newSelection) >= 0) {
+      newSelectionArray = this.state.categories.filter(id => id !== newSelection)
     } else {
       newSelectionArray = [...this.state.categories, newSelection];
+      console.log(newSelectionArray, 'newSelectionArray')
     }
 
-      this.setState({ cateogries: newSelectionArray });
-      console.log(this.state)
+      this.setState({ categories: newSelectionArray });
   }
 
     // this.setState({
@@ -61,6 +60,7 @@ class NewProduct extends Component {
   }
 
   render() {
+    console.log(this.state, "this.state")
     let completed = this.state.name && this.state.description && this.state.price;
     let disabled = !completed
 
@@ -89,8 +89,10 @@ class NewProduct extends Component {
             />
           </label>
           <label>Description:
-            <input
+            <textarea
               name="description"
+              rows="5"
+              cols="40"
               onChange={this.handleChange}
               value={this.state.description}
             />
@@ -120,7 +122,7 @@ class NewProduct extends Component {
                 return (
                   <div key={category.id}>
                   {/* event handler is grabbing whatever is on input. check the state in handle click to see if has a name property, if it does toggle the boolean, otherwise add it to*/}
-                    <input onClick={this.handleCheckboxChange} type="checkbox" name={category.name} id={category.id} />
+                    <input onClick={this.handleCheckboxChange} type="checkbox" id={category.id} />
                     <label value={category.id}>{category.name}</label>
                   </div>
                 )

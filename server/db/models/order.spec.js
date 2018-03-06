@@ -37,8 +37,7 @@ describe('Order model', () => {
               quantity: 2, currentPrice: 3.00, totalPrice: 6.00, orderId: order.id, productId: 1
           })
           .then(() => {
-            testOrder.update({status: 'Created'})
-            testOrder.save()
+            return testOrder.update({status: 'Created'})
           })
         })
       })
