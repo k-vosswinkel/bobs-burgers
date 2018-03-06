@@ -76,7 +76,7 @@ router.post('/', (req, res, next) => {
   .catch(next)
 })
 
-router.put('/:orderId', isLoggedIn, isAdmin, (req, res, next) => {
+router.put('/:orderId', (req, res, next) => {
   Order.update(req.body, {
     where: {id: req.params.orderId},
     returning: true

@@ -1,45 +1,59 @@
 
 /* global describe beforeEach it */
 
-// const {expect} = require('chai')
-// const db = require('../index')
-// const Order = db.model('order')
-// const LineItem = db.model('lineItem')
+const {expect} = require('chai')
+const db = require('../index')
+const Order = db.model('order')
+const LineItem = db.model('lineItem')
+const Product = db.model('product')
 
-// describe('Order model', () => {
-//   beforeEach(() => {
-//     return db.sync({force: true})
-//   })
+describe('Order model', () => {
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
 
-//   describe('getterMethods: ', () => {
-//       let testOrder
+  describe('hooks: ', () => {
+      let testOrder
+      let testProduct
 
-//       beforeEach(() => {
-//         return Order.create({
-//           status: 'Created',
-//           email: 'ginny@hogwarts.edu',
-//           shippingAddress: 'Hogwarts Castle, Cardiff, Wales 02139'
-//         })
-//         .then(order => {
-//           testOrder = order;
-//           return LineItem.bulkCreate([
-//             {quantity: 2, currentPrice: 3.00, totalPrice: 6.00, orderId: order.id},
-//             {quantity: 1, currentPrice: 5.00, totalPrice: 5.00, orderId: order.id}
-//           ])
-//         })
-//       })
+      beforeEach(() => {
 
-//       describe('priceTotal', () => {
-//         it('correctly sums the prices across child line items', () => {
-//           expect(testOrder.priceTotal).to.equal(11.00)
-//         })
-//       })
+        return Product.create({
+          name: 'Beet Burger',
+          description: 'beets, brown rice, black beans',
+          price: 5.00,
+          inventory: 5
+        })
+        .then(product => {
+          testProduct = product;
+          return Order.create({
+            status: 'Pending',
+            email: 'ginny@hogwarts.edu',
+            shippingAddress: 'Hogwarts Castle, Cardiff, Wales 02139'
+          })
+          .then(order => {
+            testOrder = order;
+            return LineItem.create({
+              quantity: 2, currentPrice: 3.00, totalPrice: 6.00, orderId: order.id, productId: 1
+          })
+          .then(() => {
+            testOrder.update({status: 'Created'})
+            testOrder.save()
+          })
+        })
+      })
+    })
 
-//       describe('quantityTotal', () => {
-//         it('correctly sums the quantities across child line items', () => {
-//           expect(testOrder.quantityTotal).to.equal(3)
-//         })
-//       })
-//     })
-//   })
+      // describe('priceTotal', () => {
+      //   it('correctly sums the prices across child line items', () => {
+      //     expect(testOrder.priceTotal).to.equal(11.00)
+      //   })
+      // })
 
+      describe('the afterUpdate order hook', () => {
+        it('correctly updates product', () => {
+          expect(testProduct.inventory).to.equal(3)
+        })
+      })
+    })
+  })

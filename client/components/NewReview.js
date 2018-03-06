@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
 export default class NewReview extends Component {
-  constructor(props) {
-    super();
-
-  }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -21,16 +17,25 @@ export default class NewReview extends Component {
   render() {
     return (
       <div>
+        <label>Have an opinion? Share it below! </label>
         <form onSubmit={this.handleSubmit}>
-          <select name="rating" >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            </select>
-          <input type="text" name="text" />
-          <input type="submit" />
+        <label>Rating:
+          <select name="rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+          </select>
+        </label>
+          <label>Comments:
+            <textarea
+            name="text"
+            rows="5"
+            cols="40"
+            />
+          </label>
+          <button className="btn btn-success" type="submit">Submit</button>
         </form>
       </div>
     )

@@ -7,10 +7,10 @@ class NewCategory extends Component {
     super(props);
 
     this.state = {
-      id: this.props.category ? this.props.category.id : '',
-      name: this.props.category ?
-      this.props.category.name : '',
+      id: this.props.category.id || '',
+      name: this.props.category.name || ''
     }
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,7 +21,6 @@ class NewCategory extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('submitted')
 
     const {id, name} = this.state;
     const submittedCategory = {id, name}
@@ -32,11 +31,6 @@ class NewCategory extends Component {
     } else {
       this.props.postCategory(submittedCategory)
     }
-
-    this.setState({
-      id: '',
-      name: ''
-    })
   }
 
   render() {

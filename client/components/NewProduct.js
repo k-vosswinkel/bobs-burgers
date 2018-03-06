@@ -9,31 +9,27 @@ class NewProduct extends Component {
 
     this.state = {
       id: this.props.product ? this.props.product.id : '',
-      name: this.props.product ?
-      this.props.product.name : '',
+      name: this.props.product ? this.props.product.name : '',
       url: this.props.product ? this.props.product.url : '',
       description: this.props.product ? this.props.product.description : '',
       price: this.props.product ? this.props.product.price : '',
       inventory: this.props.product ? this.props.product.inventory : '',
-      categories: this.props.product ? this.props.product.categoryIds : ''
+      categories: this.props.product ? this.props.product.categoryIds : []
     }
+
     this.handleChange = this.handleChange.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [ event.target.name]: event.target.value})
-    console.log(this.state, 'this.state')
   }
 
-  handleSelectChange(event) {
-    console.log(this.state, 'this.state')
+  handleCheckboxChange(event) {
     this.setState({
-      categories: [].slice.call(event.target.selectedOptions).map(o => {
-          return o.value;
+      categories: [...this.state.categories, event.target.id]
       })
-    })
   }
 
   handleSubmit(event) {
@@ -41,22 +37,13 @@ class NewProduct extends Component {
 
     const {id, name, url, description, price, inventory, categories} = this.state;
     const submittedProduct = {id, name, url, description, price, inventory, categories}
-
+    console.log('submittedProduct', submittedProduct)
     if (this.state.id) {
       this.props.editProduct(submittedProduct)
       this.props.handleEdit()
     } else {
       this.props.postProduct(submittedProduct)
     }
-
-    this.setState({
-      id: '',
-      name: '',
-      url: '',
-      description: '',
-      price: '',
-      categories: []
-    })
   }
 
   render() {
@@ -113,18 +100,18 @@ class NewProduct extends Component {
               value={this.state.inventory}
             />
           </label>
-          <label>Categories:
-            <select
-            multiple={true}
-            onChange={this.handleSelectChange}> <option disabled selected value> -- select one or more option(s) -- </option>
+          <fieldset>
+          <legend>Categories:</legend>
             {this.props.allCategories.map(category => {
-              return (
-                <option key={category.id} value={category.id}>
-                {category.name}</option>
-              )
-            })}
-            </select>
-          </label>
+                return (
+                  <div key={category.id}>
+                  {/* event handler is grabbing whatever is on input. check the state in handle click to see if has a name property, if it does toggle the boolean, otherwise add it to*/}
+                    <input onClick={this.handleCheckboxChange} type="checkbox" name={category.name} id={category.id} />
+                    <label value={category.id}>{category.name}</label>
+                  </div>
+                )
+              })}
+          </fieldset>
           <button className="btn btn-success" disabled={disabled}type="submit">Submit</button>
         </form>
       </div>
