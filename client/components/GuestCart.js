@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { addItemToCart, deleteItemFromCart } from '../store';
+import { addItemToCart, deleteItemFromCart, fetchCartItems } from '../store';
 import CartDisplay from './CartDisplay';
 
 class GuestCart extends Component {
@@ -13,26 +13,13 @@ class GuestCart extends Component {
     !this.state.visible ? this.setState({visible: true}) : this.setState({visible: false});
   }
 
-  addLineItem = (lineItem) => {
-    // let newLineItem = {
-    //   quantity: lineItem.quantity + 1,
-    //   id: lineItem.id
-    // }
+  addCartItem = (lineItem) => {
+    this.props.addItemToCart(lineItem.product);
   }
 
-  reduceLineItem = (lineItem) => {
-    // const {currentOrder} = this.props;
-    // if (lineItem.quantity <= 1) {
-    //   this.props.deleteLineItem(currentOrder.id, lineItem.id)
-    // }
-    // else {
-    //   let newLineItem = {
-    //     quantity: lineItem.quantity - 1,
-    //     id: lineItem.id
-    //   }
-    //   console.log(newLineItem);
-    //   this.props.editLineItem(currentOrder.id, newLineItem);
-    // }
+  reduceCartItem = (lineItem) => {
+    console.log('item in reduceCartItem', lineItem);
+    this.props.deleteItemFromCart(lineItem.product);
   }
 
   render() {
@@ -40,7 +27,7 @@ class GuestCart extends Component {
       return (
         <div>
           <button className="btn btn-danger white" onClick={this.handleClick}>Cart</button>
-          {this.state.visible ? <CartDisplay hideCart={this.handleClick} products={allCartItems} handleAdd={this.addLineItem} handleReduce={this.reduceLineItem} /> : null}
+          {this.state.visible ? <CartDisplay hideCart={this.handleClick} products={allCartItems} handleAdd={this.addCartItem} handleReduce={this.reduceCartItem} /> : null}
         </div>
       )
     }
@@ -48,6 +35,6 @@ class GuestCart extends Component {
 
 const mapState = ({ allCartItems }) => ({ allCartItems });
 
-const mapDispatch = { addItemToCart, deleteItemFromCart };
+const mapDispatch = { addItemToCart, deleteItemFromCart, fetchCartItems };
 
 export default connect(mapState, mapDispatch)(GuestCart);

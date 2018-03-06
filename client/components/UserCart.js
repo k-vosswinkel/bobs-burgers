@@ -25,7 +25,7 @@ class UserCart extends Component {
 
   reduceLineItem = (lineItem) => {
     const {currentOrder} = this.props;
-    if (lineItem.quantity <= 1) {
+    if (lineItem.quantity === 1) {
       this.props.deleteLineItem(currentOrder.id, lineItem.id)
     }
     else {
