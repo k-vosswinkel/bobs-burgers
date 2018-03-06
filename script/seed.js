@@ -39,7 +39,7 @@ const randOrder = () => {
   return Order.create({
     email: chance.email(),
     shippingAddress: chance.address(),
-    userId: chance.integer({ min: 1, max: 50 }),
+    userId: chance.integer({ min: 1, max: 51 }),
     productId: chance.integer({ min: 1, max: 10 })
   })
 }
@@ -49,7 +49,7 @@ const randReview = () => {
     text: chance.string({ length: 25 }),
     rating: chance.integer({ min: 1, max: 5 }),
     productId: chance.integer({ min: 1, max: 10 }),
-    userId: chance.integer({ min: 1, max: 50 })
+    userId: chance.integer({ min: 1, max: 51 })
   })
 }
 
@@ -95,7 +95,7 @@ async function seed() {
   await User.create({
     email: 'test@test.com',
     password: '1234',
-    admin: true
+    isAdmin: true
   })
 
   const products = await Promise.all([
@@ -107,16 +107,17 @@ async function seed() {
     })
     .then(product => product.setCategories([1, 2])),
     Product.create({
-      name: 'Baby You Can Drive My Car! Burger',
+      name: 'Baby You Can Chive My Car! Burger',
       description: 'A feta stuffed burger on a chive-tastic bun. Topped with a million diced chives and a creamy sour cream & mustard spread',
       price: 7.99,
-      inventory: 6
+      inventory: 6,
+      imgUrl: 'https://image.ibb.co/kFdwnn/baby_you_can_chive.png'
     }).then(product => product.setCategories([2, 3])),
     Product.create({
       name: 'Pickle My Funny Bone Burger',
       description: 'Fried pickles take this burger to another level',
       price: 6.75,
-      inventory: 10
+      inventory: 10,
     }).then(product => product.setCategories([3, 4])),
     Product.create({
       name: 'Do the Brussel Burger',
@@ -158,7 +159,8 @@ async function seed() {
       name: 'Don\'t You Four Cheddar \'Bout Me Burger',
       description: 'Lettuce, cheeseburger, bacon slices, onions. A gratuitous number of cheddars? No. Five would be crazy. But what are you going to do, three? No. Four\'s your number.',
       price: 4.00,
-      inventory: 4
+      inventory: 4,
+      imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
     }).then(product => product.setCategories([10, 1]))
   ])
 

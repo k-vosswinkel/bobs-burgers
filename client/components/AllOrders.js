@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchOrders } from '../store/allOrders'
+import { fetchOrders } from '../store'
 
 class AllOrders extends Component {
   constructor(props){
@@ -16,7 +16,7 @@ class AllOrders extends Component {
   render() {
     if (!this.props.allOrders.length) {
       return (
-        <div>No Orders to See Here!</div>
+        <div>Orders loading...</div>
       )
     } else {
       const { allOrders } = this.props;

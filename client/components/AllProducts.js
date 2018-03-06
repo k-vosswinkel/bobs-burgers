@@ -32,8 +32,8 @@ class AllProducts extends Component {
         : <div className="container">
           {displayProducts && displayProducts.map(product => {
             return (
-                <Link to={`/products/${product.id}`} key={product.id}>
-                <div className="list-group-item-products">
+                <div className="list-item" key={product.id}>
+                <Link to={`/products/${product.id}`}>
                   <img className="thumbnail" src={ product.imgUrl } />
                   <div>
                     <h4>{product.name}</h4>
@@ -46,8 +46,8 @@ class AllProducts extends Component {
                     : <p> No ratings </p>
                   }
                   </div>
+                  </Link>
                 </div>
-                </Link>
               )
             })
           }

@@ -60,7 +60,6 @@ class NewProduct extends Component {
   }
 
   render() {
-    console.log(this.state, "this.state")
     let completed = this.state.name && this.state.description && this.state.price;
     let disabled = !completed
 

@@ -13,7 +13,7 @@ import currentProduct from './currentProduct';
 import currentReview from './currentReview';
 import currentUser from './currentUser';
 import userToEdit from './editUser';
-import allLineItems from './allLineItems';
+import allCartItems from './allCartItems';
 
 const reducer = combineReducers({
   allCategories,
@@ -21,7 +21,7 @@ const reducer = combineReducers({
   allProducts,
   allReviews,
   allUsers,
-  allLineItems,
+  allCartItems,
   currentCategory,
   currentOrder,
   currentProduct,
@@ -37,6 +37,7 @@ const middleware = composeWithDevTools(applyMiddleware(
 const store = createStore(reducer, middleware)
 
 export default store
+export * from './allCartItems'
 export * from './allCategories'
 export * from './allOrders'
 export * from './allProducts'
