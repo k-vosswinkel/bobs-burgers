@@ -31,6 +31,7 @@ class AllOrders extends Component {
                 <div><p>Shipping address: {order.shippingAddress}</p></div>
                 <div><p>Order status: {order.status}</p></div>
                 <div><p>Date placed: {order.orderDate.slice(0, 10)}</p></div>
+                <button>Edit Order</button>
               </div>
               </Link>
             )
