@@ -24,11 +24,9 @@ class NewProduct extends Component {
 
   handleChange(event) {
     this.setState({ [ event.target.name]: event.target.value})
-    console.log(this.state, 'this.state')
   }
 
   handleSelectChange(event) {
-    console.log(this.state, 'this.state')
     this.setState({
       categories: [].slice.call(event.target.selectedOptions).map(o => {
           return o.value;

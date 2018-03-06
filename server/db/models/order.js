@@ -19,35 +19,6 @@ const Order = db.define('order', {
     type: Sequelize.DATE,
     defaultValue: new Date()
   }
-  // totalPrice: Sequelize.FLOAT,
-  // totalQuantity: Sequelize.INTEGER
-}
-
-//getterMethods: {
-//   priceTotal: function() {
-//     let total = 0
-//     this.getLineItems()
-//       .then(lineItems => {
-//         lineItems.forEach(lineItem => {
-//           total += lineItem.totalPrice
-//         })
-//         return total;
-//       }).then(() => {
-//         this.setDataValue('priceTotal', total)
-//       })
-//   },
-//   quantityTotal: function() {
-//     let total = 0;
-//     this.getLineItems()
-//       .then(lineItems => {
-//         lineItems.forEach(lineItem => {
-//           total += lineItem.quantity
-//         })
-//         console.log('test quantity total', total)
-//         return total;
-//       })
-//     }
-  // }
-)
+})
 
 module.exports = Order

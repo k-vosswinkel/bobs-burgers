@@ -3,6 +3,7 @@ import NewProduct from './NewProduct';
 import {connect} from 'react-redux';
 import {fetchCurrentProduct, deleteProduct, postOrder, postLineItem, addCartItem, fetchCartItems} from '../store';
 import Reviews from './Reviews';
+import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -68,6 +69,7 @@ class SingleProduct extends Component {
   }
 
   render() {
+    const currentUser = this.props.currentUser;
     const currentProduct = this.state.currentProduct;
     if (!currentProduct) return <div />; // the product id is invalid or the data isnt loaded yet
 
@@ -83,28 +85,37 @@ class SingleProduct extends Component {
         <div>
           <div className="page-header">
             <h2>{currentProduct.name}</h2>
-              { this.props.currentUser.isAdmin ? <p> Current Inventory: {currentProduct.inventory} </p> : null }
+            {/* only admins can see inventory, edit, or delete:  */}
+            {currentUser.isAdmin && <div className="page-body">
+              { this.props.currentUser.isAdmin
+                ? <p> Current Inventory: {currentProduct.inventory} </p>
+                : <p> No inventory at the moment </p> }
               <button onClick={this.handleEdit} className="btn btn-warning new">Edit Product </button>
               <button onClick={this.handleDelete} className="btn btn-danger new">Delete Product</button>
+              </div>}
           </div>
         </div>
+          <div className="page-body">
+              <button className="btn btn-success new" onClick={this.handleAdd}>Add To Cart</button>
+              <p>Price: {currentProduct.price} </p>
+              <p>Description: {currentProduct.description} </p>
+              <ul>Categories: {currentProduct.categories && currentProduct.categories.map(category => {
+                  return (
+                    <Link to={`/categories/${category.id}`} key={category.id}>
+                    <li >{category.name}</li>
+                    </Link>
+                    )
+                  })
+                 }
+                </ul>
+              <img src={currentProduct.imageUrl} />
+          </div>
 
-        <div className="page-body">
-          <button className="btn btn-success new" onClick={this.handleAdd}>Add To Cart</button>
-          <p>Price: {currentProduct.price} </p>
-          <p>Description: {currentProduct.description} </p>
-          <ul>Categories: {currentProduct.categories && currentProduct.categories.map(category => {
-              return (
-                <li key={category.id}>{category.name}</li>
-                )
-              })
-              }
-            </ul>
-          <img src={currentProduct.imageUrl} />
-        </div>
-      <Reviews />
-    </div>
-    )
+          <div>
+           <Reviews reviews={reviews} />
+          </div>
+      </div>
+      )
     }
   }
 }

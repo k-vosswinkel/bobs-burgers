@@ -22,7 +22,9 @@ class Reviews extends Component {
     else {
       return (
       <div id="reviews-section">
-        {currentUser ? <NewReview submitReview={this.submitReview} product={currentProduct} user={currentUser} /> : null}
+        {currentUser
+          ? <NewReview submitReview={this.submitReview} product={currentProduct} user={currentUser} />
+          : null}
         <h5>Average Rating</h5>
           {currentProduct.reviews && currentProduct.reviews.length
             ? <p>Average Rating: {Math.round((currentProduct.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / currentProduct.reviews.length) * 10) / 10}</p>

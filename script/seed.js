@@ -39,7 +39,7 @@ const randOrder = () => {
   return Order.create({
     email: chance.email(),
     shippingAddress: chance.address(),
-    userId: chance.integer({ min: 1, max: 50 }),
+    userId: chance.integer({ min: 1, max: 51 }),
     productId: chance.integer({ min: 1, max: 10 })
   })
 }
@@ -49,7 +49,7 @@ const randReview = () => {
     text: chance.string({ length: 25 }),
     rating: chance.integer({ min: 1, max: 5 }),
     productId: chance.integer({ min: 1, max: 10 }),
-    userId: chance.integer({ min: 1, max: 50 })
+    userId: chance.integer({ min: 1, max: 51 })
   })
 }
 
