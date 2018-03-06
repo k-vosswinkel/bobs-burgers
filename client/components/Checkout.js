@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editOrder, postOrder } from '../store'
+import { editOrder, postOrder, emptyCart } from '../store'
 import CheckoutForm from './CheckoutForm';
 
 class Checkout extends Component {
@@ -25,6 +25,7 @@ class Checkout extends Component {
     this.setState({
       isSubmitted: true
     })
+    this.props.emptyCart();
   }
 
   render() {
@@ -43,6 +44,6 @@ class Checkout extends Component {
 
 const mapState = ({ allCartItems, currentUser, currentOrder }) => ({ allCartItems, currentUser, currentOrder });
 
-const mapDispatch = { editOrder, postOrder }
+const mapDispatch = { editOrder, postOrder, emptyCart }
 
 export default connect(mapState, mapDispatch)(Checkout);

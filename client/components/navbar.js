@@ -8,38 +8,43 @@ import {GuestCart, UserCart} from './index'
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
     <nav>
-      <div>
         <Link to="/">
-        <div className="nav-logo">
-          <img src="https://image.ibb.co/gK2T07/bobs_burgers_banner2.png" />
+          <div className="nav-logo">
+            <img src="https://image.ibb.co/gK2T07/bobs_burgers_banner2.png" />
           </div>
         </Link>
-      {isLoggedIn ? (
+        <div className="all-nav">
         <div className="nav-items">
+        {isLoggedIn ? (
+          <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
           <Link to="/categories">Product Catalog</Link>
-          <UserCart />
+          {/* <UserCart /> */}
         </div>
       ) : (
-        <div className="nav-items">
+        <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/categories">Product Catalog</Link>
-          <GuestCart />
+          {/* <GuestCart /> */}
         </div>
         ) }
-      </div>
+
       {isAdmin ? (
         <div>
           <Link to="/orders">All Orders</Link>
           <Link to="/users">All Users</Link>
         </div>
        ) : null }
+       </div>
+       {isLoggedIn ? <UserCart /> : <GuestCart />
+       }
+       </div>
     </nav>
     <hr />
   </div>

@@ -46,7 +46,8 @@ class NewCategory extends Component {
           }
         </div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="section-body"onSubmit={this.handleSubmit}>
+        <div className="input-field">
           <label>Name:
             <input
               name="name"
@@ -54,6 +55,7 @@ class NewCategory extends Component {
               value={this.state.name}
             />
           </label>
+          </div>
           <button className="btn btn-success" disabled={disabled}type="submit">Submit</button>
         </form>
       </div>

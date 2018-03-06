@@ -41,7 +41,7 @@ class UserCart extends Component {
   render() {
     const {currentOrder} = this.props;
       return (
-        <div>
+        <div className="cart-button">
           <button className="btn btn-danger white" onClick={this.handleClick}>Cart</button>
           {this.state.visible ? <CartDisplay hideCart={this.handleClick} products={currentOrder.lineItems} handleAdd={this.addLineItem} handleReduce={this.reduceLineItem} /> : null}
         </div>

@@ -43,7 +43,8 @@ nav {
   text-decoration: none;
   color: #F92325;
   width: 100%;
-  position: flex;
+  height: 5em;
+  /* position: flex; */
 }
 
 nav a {
@@ -51,17 +52,20 @@ nav a {
   text-decoration: none;
   color: rgb(255, 174, 0);
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 1.3em;
   align-self: center;
 }
 
-.nav-items a {
-  margin: 1em;
+.all-nav {
+  display: flex;
+  justify-content: space-between;
+/* .nav-items a {
+  margin: 1em; */
 }
 
 .nav-logo {
   height: 70px;
-  padding: 12px 0px 12px 12px;
+  padding: .6em 0 .6em .6em;
   background-color: #FCDC25;
   width: 100vw;
 }
@@ -71,20 +75,16 @@ nav a {
   max-width: none;
 }
 
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
-
 .nav-items {
-  margin: 1em 0 0 1em;
   display: flex;
-  align-items: center;
   align-content: center;
   height: 3em;
 }
+
 .nav-items a {
   text-decoration: none;
+  padding: 1em 1.5em 0 .6em;
+  /* margin: 0em 1em 0 0; */
 }
 
 .nav-items a:visited {
@@ -124,6 +124,20 @@ form > div > div {
   color: white;
 }
 
+<<<<<<< HEAD
+.cart-button {
+  margin: 1em 1.5em 0 1em;
+  height: 3em;
+}
+
+.cart-button button {
+  font-size: 1.3em;
+  padding-right: .8em;
+  padding-left: .8em;
+}
+
+=======
+>>>>>>> master
 #cart-display {
   padding: 20px;
   position: absolute;
@@ -246,7 +260,10 @@ form > div > div {
 }
 
 /* styling the categories & products */
-
+.page-body {
+  display: flex;
+  padding: 5px;
+}
 
 .section-body {
   display: flex;
@@ -257,6 +274,11 @@ form > div > div {
 .section-body button {
   width: min-content;
 
+}
+
+.section-body > label {
+  padding-right: 10px;
+  margin-right: 10px;
 }
 
 #reviews-section {
@@ -314,7 +336,8 @@ form > div > div {
   padding: 5px;
   text-align: center;
 }
-
+/*
+.checkboxes-list {
 .sidebarHeader {
   border-bottom: 1px solid #efefef;
 }
@@ -323,6 +346,7 @@ form > div > div {
   color: #274109 !important;
 }
   /* anjali */
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -330,32 +354,47 @@ form > div > div {
   color: #DB6600;
 }
 
+.checkbox-item {
+  margin-left: 0px;
+  width: 200px;
+  display: flex;
+}
+.checkbox-item label {
+  padding-right: .1em;
+  padding-left: 10px;
+}
+
+.input-field {
+  font-size: 1.1em;
+}
+
+.input-field input {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  width: 250px;
+}
+
+.input-field text-area {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+text-area {
+  padding: 5px;
+}
+
+.form-page-header {
+  color: #4cae4c;
+  padding-left: 10px;
+}
+
 .page-header-sidebar {
+
+}
+
+.page-header {
   display: flex;
   justify-content: space-between;
-}
-
-.button-fix {
-  padding: 10px;
-  text-align: center;
-  height: 3em;
-  margin-right: 20px;
-}
-
-.page-body {
-  display: flex;
-  color: #0A0505;
-}
-
-.single-page-content {
   margin-left: 20px;
-}
-
-div li {
-  margin-left: 20px;
-}
-
-.button-flex {
-  display: flex;
-  justify-content: flex-start;
+  color: #DB6600
 }

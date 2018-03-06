@@ -65,7 +65,7 @@ class NewProduct extends Component {
 
     return (
       <div>
-
+        <h3 className="form-page-header">Add/Edit Product</h3>
         <div>
         {disabled &&
           <div className="alert alert-warning">You must enter a product name, description, and price.</div>
@@ -73,6 +73,7 @@ class NewProduct extends Component {
         </div>
 
         <form className="section-body" onSubmit={this.handleSubmit}>
+          <div className="input-field">
           <label>Name:
             <input
               name="name"
@@ -80,6 +81,8 @@ class NewProduct extends Component {
               value={this.state.name}
             />
           </label>
+          </div>
+          <div className="input-field">
           <label>URL:
             <input
               name="url"
@@ -87,7 +90,10 @@ class NewProduct extends Component {
               value={this.state.url}
             />
           </label>
+          </div>
+          <div className="input-field">
           <label>Description:
+            <br />
             <textarea
               name="description"
               rows="5"
@@ -96,6 +102,8 @@ class NewProduct extends Component {
               value={this.state.description}
             />
           </label>
+          </div>
+          <div className="input-field">
           <label>Price:
             <input
               name="price"
@@ -106,6 +114,8 @@ class NewProduct extends Component {
               min="0"
             />
           </label>
+          </div>
+          <div className="input-field">
           <label>Inventory:
             <input
               name="inventory"
@@ -115,17 +125,20 @@ class NewProduct extends Component {
               value={this.state.inventory}
             />
           </label>
+          </div>
           <fieldset>
           <legend>Categories:</legend>
+          <div className="checkboxes-list">
             {this.props.allCategories.map(category => {
                 return (
-                  <div key={category.id}>
+                  <div className="checkbox-item" key={category.id}>
                   {/* event handler is grabbing whatever is on input. check the state in handle click to see if has a name property, if it does toggle the boolean, otherwise add it to*/}
                     <input onClick={this.handleCheckboxChange} type="checkbox" id={category.id} />
                     <label value={category.id}>{category.name}</label>
                   </div>
                 )
               })}
+            </div>
           </fieldset>
           <button className="btn btn-success" disabled={disabled}type="submit">Submit</button>
         </form>
