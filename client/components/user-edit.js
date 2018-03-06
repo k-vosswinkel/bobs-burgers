@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchUserToEdit } from '../store'
+import { fetchUserToEdit, updateUserToEdit } from '../store'
 
 class EditUser extends Component {
   constructor(props) {
@@ -12,16 +11,20 @@ class EditUser extends Component {
     this.props.fetchUserToEdit(this.props.match.params.userId);
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
+    console.log('working')
     event.preventDefault();
-
+    let email = event.target.email.value;
+    let user = {
+      id: this.props.userToEdit.id,
+      email: email
+    }
+    this.props.updateUserToEdit(user);
   }
 
-  //FORM UNDER CONSTRUCTION
   render() {
-    let currentUser = this.props.currentUser;
-
-    if (!currentUser) {
+    let userToEdit = this.props.userToEdit;
+    if (!userToEdit.email) {
       return <div>No User Selected</div>
     } else {
       return (
@@ -30,7 +33,7 @@ class EditUser extends Component {
             <label>Email:
             <input
                 name="email"
-                defaultValue={this.props.currentUser.email}
+                defaultValue={userToEdit.email}
               />
             </label>
             <button className="btn btn-success" type="submit">Update</button>
@@ -42,7 +45,7 @@ class EditUser extends Component {
 }
 
 // Container
-const mapState = ({ allUsers, currentUser }) => ({ allUsers, currentUser })
-const mapDispatch = { fetchUserToEdit }
+const mapState = ({ allUsers, userToEdit }) => ({ allUsers, userToEdit })
+const mapDispatch = { fetchUserToEdit, updateUserToEdit }
 
 export default connect(mapState, mapDispatch)(EditUser);

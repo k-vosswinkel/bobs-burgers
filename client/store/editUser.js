@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 
 //Action Types
 const GET_USER_TO_EDIT = 'GET_USER_TO_EDIT';
@@ -30,12 +31,16 @@ export const fetchUserToEdit = id => {
   }
 }
 
-//WORKING
-// export const updateUser = id => {
-//   return dispatch => {
-//     return axios.put(`/api/users/${id}`)
-//       .then(res => res.data)
-//       .then(user => dispatch(getUserToEdit(user)))
-//       .catch(err => console.error(`error fetching user to edit with id: ${id}`, err))
-//   }
-// }
+export const updateUserToEdit = user => {
+  console.log('got here with: ', user)
+  return dispatch => {
+    return axios.put(`/api/users/${user.id}`, user)
+      .then(res => res.data)
+      .then(editedUser => {
+        console.log(editedUser);
+        dispatch(editUser(editedUser));
+        history.push(`/users`);
+      })
+      .catch(err => console.error(`error editing user id: ${user.id}`, err))
+  }
+}

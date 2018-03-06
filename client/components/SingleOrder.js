@@ -27,7 +27,6 @@ class SingleOrder extends Component {
         )
       } else {
         let orderTotal = 0;
-        console.log(currentOrder.orderDate)
         return (
           <div key={currentOrder.id} className="singleOrderContainer">
             <div>email address: {currentOrder.email}</div>
