@@ -234,10 +234,7 @@ form > div > div {
 }
 
 /* styling the categories & products */
-.page-body {
-  display: flex;
-  padding: 5px;
-}
+
 
 .section-body {
   display: flex;
@@ -279,6 +276,40 @@ form > div > div {
   margin: 5px;
 }
 
-/* #products-list {
+/* anjali */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  color: #DB6600
+}
 
-} */
+.page-header-sidebar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-fix {
+  padding: 10px;
+  text-align: center;
+  height: 3em;
+  margin-right: 20px;
+}
+
+.page-body {
+  display: flex;
+  color: #0A0505;
+}
+
+.single-page-content {
+  margin-left: 20px;
+}
+
+div li {
+  margin-left: 20px;
+}
+
+.button-flex {
+  display: flex;
+  justify-content: flex-start;
+}
