@@ -20,24 +20,34 @@ class AllProducts extends Component {
     return (
       <div id="products-list">
         <div className="section-header">
-          {this.props.categoryProducts
-          ? <h4>Products in this Category ({displayProducts.length} products)</h4>
-          : <h2> All Products ({displayProducts.length} products)</h2>
+          {
+            this.props.categoryProducts
+            ? (
+              <div>
+                <h2 className="header">Burgers in this Category</h2>
+                <h4 className="subHeader">{displayProducts.length} products</h4>
+              </div>
+              ) : (
+              <div className="header">
+                <h2> All Burgers</h2>
+                <h4 className="subHeader">{displayProducts.length} products</h4>
+              </div>
+            )
           }
         </div>
 
         <div>
         {(displayProducts && displayProducts.length === 0)
-        ? <h5>There are no products at this time. </h5>
+        ? <h5>There are no burgers at this time. </h5>
         : <div className="container">
           {displayProducts && displayProducts.map(product => {
             return (
-                <div className="list-item" key={product.id}>
+                <div className="list-item product" key={product.id}>
                 <Link to={`/products/${product.id}`}>
                   <img className="thumbnail" src={ product.imgUrl } />
                   <div>
-                    <h4>{product.name}</h4>
-                    {this.props.currentUser.isAdmin && <div className="page-body">
+                    <div className="productName">{product.name}</div>
+                    {this.props.currentUser.isAdmin && <div className="productInfo">
                         <p> Current Inventory: {product.inventory} </p>
                       </div>}
                     <p>Price: {product.price}</p>

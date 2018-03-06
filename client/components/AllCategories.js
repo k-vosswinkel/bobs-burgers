@@ -15,17 +15,19 @@ class AllCategories extends Component {
       return (
         <div className="page-body">
           <div className="section-column">
-            <h2>All Categories </h2>
-            {this.props.currentUser.isAdmin && <div>
-            <Link to="/new-category"> <button className="btn btn-info new">New Category </button></Link>
-            <Link to="/new-product"> <button className="btn btn-info new">New Product</button></Link>
-            </div>}
+            <div className="sidebarHeader">
+              <h2 className="header">Filter </h2>
+              {this.props.currentUser.isAdmin && <div>
+              <Link to="/new-category"> <button className="btn btn-info new">New Category </button></Link>
+              <Link to="/new-product"> <button className="btn btn-info new">New Product</button></Link>
+              </div>}
 
-            <h5>Select a category to view related products or view all products below.</h5>
+              <h4 className="subHeader">Explore burgers by category</h4>
+            </div>
             {this.props.allCategories.map(category => {
             return (
               <Link to={`/categories/${category.id}`} key={category.id}>
-                    <h4>{category.name}</h4>
+                    <h4 className="category">{category.name}</h4>
               </Link>
             )
           })
