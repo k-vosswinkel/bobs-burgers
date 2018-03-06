@@ -103,7 +103,6 @@ class SingleProduct extends Component {
                 </ul>
               <img src={currentProduct.imageUrl} />
           </div>
-
           <div>
            <Reviews />
           </div>

@@ -56,10 +56,10 @@ class SingleCategory extends Component {
         <div>
           <div className="page-header">
             <h2>{currentCategory.name}</h2>
-            {/* only admins can see inventory, edit, or delete: */}
-            {/* {currentUser.isAdmin && <div className="page-body">} */}
+            {this.props.currentUser.isAdmin && <div className="page-body">
               <button onClick={this.handleEdit} className="btn btn-warning new">Edit Category</button>
               <button onClick={this.handleDelete} className="btn btn-danger new">Delete Category</button>
+              </div>}
           </div>
         </div>
 

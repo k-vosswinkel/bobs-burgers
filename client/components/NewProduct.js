@@ -9,16 +9,16 @@ class NewProduct extends Component {
 
     this.state = {
       id: this.props.product ? this.props.product.id : '',
-      name: this.props.product ?
-      this.props.product.name : '',
+      name: this.props.product ? this.props.product.name : '',
       url: this.props.product ? this.props.product.url : '',
       description: this.props.product ? this.props.product.description : '',
       price: this.props.product ? this.props.product.price : '',
       inventory: this.props.product ? this.props.product.inventory : '',
-      categories: this.props.product ? this.props.product.categoryIds : ''
+      categories: this.props.product ? this.props.product.categoryIds : []
     }
+
     this.handleChange = this.handleChange.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -26,35 +26,37 @@ class NewProduct extends Component {
     this.setState({ [ event.target.name]: event.target.value})
   }
 
-  handleSelectChange(event) {
-    this.setState({
-      categories: [].slice.call(event.target.selectedOptions).map(o => {
-          return o.value;
-      })
-    })
+  handleCheckboxChange(event) {
+    let newSelection = event.target.id;
+    let newSelectionArray;
+
+    if (this.state.categories.indexOf(newSelection) >= 0) {
+      newSelectionArray = this.state.categories.filter(id => id !== newSelection)
+    } else {
+      newSelectionArray = [...this.state.categories, newSelection];
+      console.log(newSelectionArray, 'newSelectionArray')
+    }
+
+      this.setState({ categories: newSelectionArray });
   }
+
+    // this.setState({
+    //   categories: [...this.state.categories, event.target.id]
+    //   })
+  // }
 
   handleSubmit(event) {
     event.preventDefault();
 
     const {id, name, url, description, price, inventory, categories} = this.state;
     const submittedProduct = {id, name, url, description, price, inventory, categories}
-
+    console.log('submittedProduct', submittedProduct)
     if (this.state.id) {
       this.props.editProduct(submittedProduct)
       this.props.handleEdit()
     } else {
       this.props.postProduct(submittedProduct)
     }
-
-    this.setState({
-      id: '',
-      name: '',
-      url: '',
-      description: '',
-      price: '',
-      categories: []
-    })
   }
 
   render() {
@@ -86,8 +88,10 @@ class NewProduct extends Component {
             />
           </label>
           <label>Description:
-            <input
+            <textarea
               name="description"
+              rows="5"
+              cols="40"
               onChange={this.handleChange}
               value={this.state.description}
             />
@@ -111,18 +115,18 @@ class NewProduct extends Component {
               value={this.state.inventory}
             />
           </label>
-          <label>Categories:
-            <select
-            multiple={true}
-            onChange={this.handleSelectChange}> <option disabled selected value> -- select one or more option(s) -- </option>
+          <fieldset>
+          <legend>Categories:</legend>
             {this.props.allCategories.map(category => {
-              return (
-                <option key={category.id} value={category.id}>
-                {category.name}</option>
-              )
-            })}
-            </select>
-          </label>
+                return (
+                  <div key={category.id}>
+                  {/* event handler is grabbing whatever is on input. check the state in handle click to see if has a name property, if it does toggle the boolean, otherwise add it to*/}
+                    <input onClick={this.handleCheckboxChange} type="checkbox" id={category.id} />
+                    <label value={category.id}>{category.name}</label>
+                  </div>
+                )
+              })}
+          </fieldset>
           <button className="btn btn-success" disabled={disabled}type="submit">Submit</button>
         </form>
       </div>

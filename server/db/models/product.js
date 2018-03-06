@@ -34,3 +34,8 @@ const Product = db.define('product', {
 })
 
 module.exports = Product
+
+Product.prototype.decrement = function(quantity) {
+  this.inventory = this.inventory - quantity;
+  this.save();
+}
