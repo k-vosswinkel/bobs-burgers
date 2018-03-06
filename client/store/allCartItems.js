@@ -2,34 +2,33 @@ import axios from 'axios';
 
 // action types
 const GET_ALL_CART_ITEMS = 'GET_ALL_CART_ITEMS';
-const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
-const ADD_CART_ITEM = 'ADD_CART_ITEM';
-const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
+// const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
+// const ADD_CART_ITEM = 'ADD_CART_ITEM';
+// const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
 const RESET_CART_ITEMS = 'RESET_CART_ITEMS';
+
+//commented out actions/reducers temporarily not in use - AS
 
 // action creators
 const getCurrentCartItems = cartItems => ({ type: GET_ALL_CART_ITEMS, cartItems });
-const removeCartItem = cartItem => ({ type: REMOVE_CART_ITEM, cartItem });
-const addCartItem = cartItem => ({ type: ADD_CART_ITEM, cartItem });
-const updateCartItem = cartItem => ({ type: UPDATE_CART_ITEM, cartItem });
+// const removeCartItem = cartItem => ({ type: REMOVE_CART_ITEM, cartItem });
+// const addCartItem = cartItem => ({ type: ADD_CART_ITEM, cartItem });
+// const updateCartItem = cartItem => ({ type: UPDATE_CART_ITEM, cartItem });
 const resetCartItems = () => ({type: RESET_CART_ITEMS})
-
-// const getCartLineItems = lineItems => ({ type: GET_ALL_LINE_ITEMS, })
 
 // reducer
 export default (cartItems = [], action) => {
   switch (action.type) {
     case GET_ALL_CART_ITEMS:
       return action.cartItems;
+    // case REMOVE_CART_ITEM:
+    //   return cartItems.filter(cartItem => cartItem.id !== action.id);
 
-    case REMOVE_CART_ITEM:
-      return cartItems.filter(lineItem => lineItem.id !== action.id);
+    // case ADD_CART_ITEM:
+    //   return [...cartItems, action.cartItem]
 
-    case ADD_CART_ITEM:
-      return [...cartItems, action.lineItems]
-
-    case UPDATE_CART_ITEM:
-      return cartItems.map(lineItem => (lineItem.id === action.lineItem.id ? action.lineItem : lineItem))
+    // case UPDATE_CART_ITEM:
+    //   return cartItems.map(cartItem => (cartItem.product.id === action.cartItem.product.id ? action.cartItem : cartItem))
     case RESET_CART_ITEMS:
       return [];
     default:
@@ -62,17 +61,23 @@ export const emptyCart = () => dispatch => {
   dispatch(resetCartItems());
 }
 
-export const addItemToCart = (item) => dispatch => {
-  // let lineItems = window.sessionStorage.getItem('lineItems').split(',');
-  // if (lineItems.indexOf === -1)
-  // let lineItem = {
-  //   product: product,
-  //   quantity: 1
-  // }
-  // dispatch(addLineItem())
+export const addItemToCart = (product) => dispatch => {
+  if (!window.sessionStorage.getItem('cartItems')) {
+    window.sessionStorage.setItem('cartItems', product.id);
+  }
+  else {
+    let arrNew = window.sessionStorage.getItem('cartItems').split(',');
+    arrNew.push(product.id);
+    window.sessionStorage.setItem('cartItems', arrNew);
+  }
+  dispatch(fetchCartItems());
 }
 
-export const deleteItemFromCart = () => dispatch => {
-
+export const deleteItemFromCart = (cartItem) => dispatch => {
+  let cartItems = window.sessionStorage.getItem('cartItems').split(',');
+  let unwantedProduct = cartItems.indexOf(cartItem.id)
+  cartItems.splice(unwantedProduct, 1);
+  window.sessionStorage.setItem('cartItems', cartItems);
+  dispatch(fetchCartItems());
 }
 

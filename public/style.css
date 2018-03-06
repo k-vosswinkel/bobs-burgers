@@ -132,8 +132,34 @@ form > div > div {
 }
 
 .cart-item img {
-    width: 50%;
-    height: 50%;
+  width: 50%;
+  height: 50%;
+}
+
+#checkout-items {
+  display: flex;
+}
+
+#checkout-items ul {
+  list-style: none;
+  align-self: flex-end;
+  text-align: center;
+}
+
+#checkout-form {
+  padding: 0 0 0 40px;
+  align-self: flex-start;
+}
+
+#checkout-items ul li {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
+#checkout-items h4 {
+  margin-top: 0px;
+  margin-left: 10px;
 }
 
 .thumbnail {

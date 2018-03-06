@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import NewProduct from './NewProduct';
 import {connect} from 'react-redux';
-import {fetchCurrentProduct, deleteProduct, postOrder, postLineItem, addCartItem, fetchCartItems} from '../store';
+import {fetchCurrentProduct, deleteProduct, postOrder, postLineItem, addItemToCart, fetchCartItems} from '../store';
 import Reviews from './Reviews';
 import {Link} from 'react-router-dom'
 
@@ -48,20 +48,13 @@ class SingleProduct extends Component {
       productId: currentProduct.id
     }
     if (!Object.keys(currentUser).length) {
-      if (!window.sessionStorage.getItem('cartItems')) {
-        window.sessionStorage.setItem('cartItems', currentProduct.id);
-      }
-      else {
-        let arrNew = window.sessionStorage.getItem('cartItems').split(',');
-        arrNew.push(currentProduct.id);
-        window.sessionStorage.setItem('cartItems', arrNew);
-      }
-      this.props.fetchCartItems();
+      this.props.addItemToCart(currentProduct);
     }
 
     else if (!Object.keys(currentOrder).length) {
       this.props.postOrder({status: 'Pending', userId: currentUser.id}, [newLineItem]);
     }
+
     else {
       newLineItem.orderId = currentOrder.id;
       this.props.postLineItem(currentOrder.id, [newLineItem]);
@@ -112,7 +105,7 @@ class SingleProduct extends Component {
           </div>
 
           <div>
-           <Reviews reviews={reviews} />
+           <Reviews />
           </div>
       </div>
       )
@@ -122,6 +115,6 @@ class SingleProduct extends Component {
 
 const mapState = ({ currentProduct, currentUser, currentOrder }) => ({ currentProduct, currentUser, currentOrder })
 
-const mapDispatch = { fetchCurrentProduct, deleteProduct, postLineItem, postOrder, fetchCartItems, addCartItem }
+const mapDispatch = { fetchCurrentProduct, deleteProduct, postLineItem, postOrder, fetchCartItems, addItemToCart }
 
 export default connect(mapState, mapDispatch)(SingleProduct)

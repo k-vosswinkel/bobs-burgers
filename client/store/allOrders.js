@@ -39,7 +39,7 @@ export const fetchOrders = () => dispatch => {
 }
 
 export const deleteLineItem = (orderId, lineItemId) => dispatch => {
-  axios.delete(`/api/${orderId}/lineItems/${lineItemId}`)
+  axios.delete(`/api/orders/${orderId}/lineItems/${lineItemId}`)
   .then(() => dispatch(fetchCurrentOrder(orderId)))
   .catch(err => console.error(`error deleting line item id ${lineItemId}`, err))
 }
@@ -64,7 +64,7 @@ export const postOrder = (order, lineItems) => dispatch => {
     lineItems.forEach(lineItem => lineItem.orderId = newOrder.id)
     dispatch(postLineItem(newOrder.id, lineItems))
     dispatch(addOrder(newOrder));
-    history.push(`/orders/${newOrder.id}`);
+    // history.push(`/orders/${newOrder.id}`);
   })
   .catch(err => console.error('Creating order unsuccessful', err));
 }
