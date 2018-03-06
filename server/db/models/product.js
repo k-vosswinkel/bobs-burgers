@@ -12,7 +12,7 @@ const Product = db.define('product', {
   },
   imgUrl: {
     type: Sequelize.TEXT,
-    defaultValue: 'https://vignette.wikia.nocookie.net/ronaldmcdonald/images/0/0f/Imgres.jpeg/revision/latest?cb=20150625050506',
+    defaultValue: 'https://image.ibb.co/bwWAxn/peas_and_thank_you.png',
     validate: {
       isUrl: true
     }
@@ -34,3 +34,8 @@ const Product = db.define('product', {
 })
 
 module.exports = Product
+
+Product.prototype.decrement = function(quantity) {
+  this.inventory = this.inventory - quantity;
+  this.save();
+}

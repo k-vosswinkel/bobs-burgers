@@ -37,7 +37,7 @@ export default (users = [], action) => {
 export const fetchUsers = () => {
   return dispatch => {
     return axios.get('/api/users')
-      .then(res => res.data) //do we need res.data line? In GET but not PUT
+      .then(res => res.data)
       .then(users => dispatch(getAllUsers(users)))
       .catch(err => console.error('error fetching users', err))
   }

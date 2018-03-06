@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import {getCurrentCategory} from './currentCategory'
+import { getCurrentCategory } from './currentCategory'
 //using history to push redirects after delete/update/add
 
 // action types

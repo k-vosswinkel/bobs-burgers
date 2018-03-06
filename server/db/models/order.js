@@ -19,6 +19,24 @@ const Order = db.define('order', {
     type: Sequelize.DATE,
     defaultValue: new Date()
   }
-})
+},
+{
+  hooks: {
+    beforeUpdate: function(order) {
+      if (order.status === 'Created') {
+        return order.getLineItems()
+          .then(lineItems => {
+            lineItems.forEach(lineItem => {
+              return lineItem.getProduct()
+                .then(product => {
+                  product.decrement(lineItem.quantity)
+                })
+            })
+          })
+      }
+    }
+  }
+}
+)
 
 module.exports = Order

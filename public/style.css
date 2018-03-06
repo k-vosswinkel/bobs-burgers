@@ -1,35 +1,20 @@
- body {
-  font-family: sans-serif;
+body {
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+}
+
+main {
+  padding-left: 20px;
 }
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 label {
   display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-nav {
-  display: inline-block;
-}
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
-
-form > div > div {
-  display: flex;
-  flex-direction: column;
-}
-
-#cart-display {
-  width: 500px;
-  justify-content: flex-end;
 }
 
 app {
@@ -43,21 +28,144 @@ img {
   height: auto;
   width:auto;
   border:none;
+  margin: auto;
+}
+
+nav {
+  display: inline-block;
+  text-decoration: none;
+  color: #F92325;
+  /* border: #ccc 1px solid; */
+  /* box-shadow: 0 0 0 8px #eee, 0 0 0 9px #ccc; */
+  /* box-shadow: 0 0 0 10px hsl(0, 100%, 50%),
+  0 0 0 15px hsl(0, 0%, 0%); */
+  width: 100%;
+  /* height: 20vh; */
+  position: fiex
+}
+
+nav a {
+  display: inline-block;
+  margin: 0em 1em 0 0;
+  text-decoration: none;
+  color: rgb(255, 174, 0);
+  font-weight: bold;
+  font-size: 1.4em;
+  align-self: center;
+}
+
+.nav-logo {
+  height: 70px;
+  padding: 12px 0px 12px 12px;
+  background-color: #FCDC25;
+  width: 100vw;
+}
+
+.nav-logo img {
+  height: 100%;
+  max-width: none;
+}
+
+/* form div {
+  margin: 1em;
+  display: inline-block;
+} */
+
+.nav-items {
+  margin: 1em 0 0 1em;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  height: 3em;
+}
+.nav-items a {
+  text-decoration: none;
+}
+
+.nav-items a:visited {
+  text-decoration: none;
+  color: rgb(255, 174, 0);
+}
+
+.nav-items a:hover {
+  text-decoration: none;
+  color: rgb(255, 89, 0);
+}
+
+.nav-items > div > button {
+  align-self: center;
+  color: white;
+}
+
+form > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-login {
+  padding: 20px;
+}
+
+.white {
+  color: white;
+}
+#cart-display {
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: .5;
+  margin-top: 5px;
+  background-color: white;
+  /* height: 100%; */
+  z-index: 1;
+  border: 1px solid gray;
+  color: black;
+}
+
+#cart-display h3 {
+  text-align: center;
+  color: rgb(250, 109, 0);
+}
+
+#cart-display ul {
+  list-style: none;
+}
+
+.cart-item img {
+  width: 50%;
+  height: 50%;
+}
+
+#checkout-items {
+  display: flex;
+}
+
+#checkout-items ul {
+  list-style: none;
+  align-self: flex-end;
+  text-align: center;
+}
+
+#checkout-form {
+  padding: 0 0 0 40px;
+  align-self: flex-start;
+}
+
+#checkout-items ul li {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
+#checkout-items h4 {
+  margin-top: 0px;
+  margin-left: 10px;
 }
 
 .thumbnail {
   width: 150px;
-  height: 100px;
-}
-
-body {
-  height: 100vh;
-  width: 100vw;
-  max-width: 100%;
-}
-
-main {
-  padding-left: 20px;
+  height: 150px;
+  text-align: center;
 }
 
 .navibar {
@@ -79,7 +187,6 @@ main {
 }
 
 .section-column {
-  /* justify-content: space-between; */
   margin-bottom: 0px;
   padding-bottom: 0px;
   border-bottom: 2px dotted grey;
@@ -89,21 +196,32 @@ main {
 }
 
 .section-header {
-  display: flex;
-  /* justify-content: space-between; */
   margin-bottom: 0px;
-  padding-bottom: 0px;
-  padding: 5px;
+  padding: 5px 0px 5px 50px;
+  color: rgb(250, 109, 0);
 }
 
-.list-group-item-products {
-  color: black;
-  height: 10kilem;
-  width: 25em;
-  display: flex;
+.list-item {
+  height: 25em;
+  width: 250px;
+  display: block;
+  flex-direction: column;
   padding: 10px;
   margin-left: 10px;
   margin-right: 10px;
+  text-align: center;
+  justify-content: center;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+
+.list-item a {
+  text-decoration: none;
+}
+
+.list-group.less {
+  border: none;
 }
 
 .container {
@@ -115,16 +233,10 @@ main {
   align-items: center;
 }
 
-/* wasn't sure if this was being used so leaving it here - AS*/
-/* .page-body {
-  display: flex;
-  justify-content: flex-start;
-  margin-left: 2em;
-} */
-
 /* styling the categories & products */
 .page-body {
   display: flex;
+  padding: 5px;
 }
 
 .section-body {

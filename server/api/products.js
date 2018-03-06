@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Product } = require('../db/models')
+const {Product} = require('../db/models')
 const {isLoggedIn, isAdmin} = require('../../utils.js')
 module.exports = router
 
@@ -23,14 +23,16 @@ router.put('/:productId', isLoggedIn, isAdmin, (req, res, next) => {
 })
 
 router.post('/', isLoggedIn, isAdmin, (req, res, next) => {
-  const {name, url, description, price, inventory, categories} = req.body
-  Product.create({name, url, description, price, inventory
+  const {name, url, description, price, inventory, categories} = req.body;
+  const numberCategories = categories.map(category => +category);
+  Product.create({name, url, description, price, inventory})
+  .then(draftProduct => {
+      draftProduct.categories = numberCategories;
+      draftProduct.setCategories(numberCategories)
+        .then(() => {
+          res.json(draftProduct)
+        })
   })
-  // .then(draftProduct => {
-  //   const mappedCategories = categories.map(categoryString => Number(categoryString))
-  //   return draftProduct.setCategories(mappedCategories)
-  // })
-  .then(finishedProduct => res.json(finishedProduct))
   .catch(next)
 })
 
