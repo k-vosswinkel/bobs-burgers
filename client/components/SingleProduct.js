@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
-import {deleteProduct} from '../store/allProducts'
-import {fetchCurrentProduct} from '../store/currentProduct'
 import NewProduct from './NewProduct';
 import {connect} from 'react-redux';
-import {postOrder} from '../store/allOrders';
-import {postLineItem} from '../store/allLineItems';
+import {fetchCurrentProduct, deleteProduct, postOrder, postLineItem, addCartItem, fetchCartItems} from '../store';
 import Reviews from './Reviews';
 import {Link} from 'react-router-dom'
 
@@ -51,14 +48,22 @@ class SingleProduct extends Component {
       productId: currentProduct.id
     }
     if (!Object.keys(currentUser).length) {
-      return null;
+      if (!window.sessionStorage.getItem('cartItems')) {
+        window.sessionStorage.setItem('cartItems', currentProduct.id);
+      }
+      else {
+        let arrNew = window.sessionStorage.getItem('cartItems').split(',');
+        arrNew.push(currentProduct.id);
+        window.sessionStorage.setItem('cartItems', arrNew);
+      }
+      this.props.fetchCartItems();
     }
 
     else if (!Object.keys(currentOrder).length) {
       this.props.postOrder({status: 'Pending', userId: currentUser.id}, [newLineItem]);
     }
     else {
-      newLineItem['orderId'] = currentOrder.id;
+      newLineItem.orderId = currentOrder.id;
       this.props.postLineItem(currentOrder.id, [newLineItem]);
     }
   }
@@ -66,7 +71,6 @@ class SingleProduct extends Component {
   render() {
     const currentUser = this.props.currentUser;
     const currentProduct = this.state.currentProduct;
-    const reviews = currentProduct.reviews || [];
     if (!currentProduct) return <div />; // the product id is invalid or the data isnt loaded yet
 
     if (this.state.isEditing) {
@@ -91,7 +95,6 @@ class SingleProduct extends Component {
               </div>}
           </div>
         </div>
-
           <div className="page-body">
               <button className="btn btn-success new" onClick={this.handleAdd}>Add To Cart</button>
               <p>Price: {currentProduct.price} </p>
@@ -109,23 +112,16 @@ class SingleProduct extends Component {
           </div>
 
           <div>
-               <Reviews reviews={reviews} />
+           <Reviews reviews={reviews} />
           </div>
       </div>
-
       )
     }
   }
 }
 
-const mapState = ({currentProduct, currentUser, currentOrder}) => ({currentProduct, currentUser, currentOrder})
+const mapState = ({ currentProduct, currentUser, currentOrder }) => ({ currentProduct, currentUser, currentOrder })
 
-//commented out temporarily - AS
-// const mapStateToProps = ({currentProduct, currentUser}) => {
-//   const productReviews = currentProduct.reviews.filter(review => review.productId === currentProduct.id)
-//   return {currentProduct, currentUser, productReviews}
-// }
-
-const mapDispatch = {fetchCurrentProduct, deleteProduct, postLineItem, postOrder}
+const mapDispatch = { fetchCurrentProduct, deleteProduct, postLineItem, postOrder, fetchCartItems, addCartItem }
 
 export default connect(mapState, mapDispatch)(SingleProduct)
