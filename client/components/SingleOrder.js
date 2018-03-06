@@ -13,7 +13,6 @@ class SingleOrder extends Component {
 
   render() {
     const { currentOrder } = this.props;
-
     if (!currentOrder) {
       return <div>Order loading...</div>
     } else {
@@ -27,12 +26,13 @@ class SingleOrder extends Component {
         </div>
         )
       } else {
-        console.log(currentOrder)
         let orderTotal = 0;
+        console.log(currentOrder.orderDate)
         return (
           <div key={currentOrder.id} className="singleOrderContainer">
             <div>email address: {currentOrder.email}</div>
             <div>order status: {currentOrder.status}</div>
+            <div><p>Date placed: {currentOrder.orderDate.slice(0, 10)}</p></div>
             {lineItems.map(lineItem => {
                 orderTotal = orderTotal + lineItem.totalPrice;
                 return (

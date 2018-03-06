@@ -12,10 +12,6 @@ class EditUser extends Component {
     this.props.fetchUserToEdit(this.props.match.params.userId);
   }
 
-  // handleChange(event) {
-
-  // }
-
   handleSubmit(event) {
     event.preventDefault();
 
@@ -34,8 +30,7 @@ class EditUser extends Component {
             <label>Email:
             <input
                 name="email"
-                // onChange={this.handleChange}
-                value={this.props.currentUser.email}
+                defaultValue={this.props.currentUser.email}
               />
             </label>
             <button className="btn btn-success" type="submit">Update</button>
