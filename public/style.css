@@ -1,4 +1,6 @@
+/* kh */
 body {
+  background-color: #fffdf4;
   height: 100vh;
   width: 100vw;
   max-width: 100%;
@@ -6,11 +8,16 @@ body {
 
 main {
   padding-left: 20px;
+  background-color: #fffdf4;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #db6702;
+}
+
+a:hover {
+  color: #af5303;
 }
 
 label {
@@ -37,6 +44,7 @@ nav {
   color: #F92325;
   width: 100%;
   height: 5em;
+  /* position: flex; */
 }
 
 nav a {
@@ -51,6 +59,8 @@ nav a {
 .all-nav {
   display: flex;
   justify-content: space-between;
+/* .nav-items a {
+  margin: 1em; */
 }
 
 .nav-logo {
@@ -92,6 +102,15 @@ nav a {
   color: white;
 }
 
+.header {
+  font-weight: 500 !important;
+  color: rgb(250, 109, 0);
+}
+
+.subHeader {
+  color: rgb(255, 174, 0);
+}
+
 form > div > div {
   display: flex;
   flex-direction: column;
@@ -105,6 +124,7 @@ form > div > div {
   color: white;
 }
 
+<<<<<<< HEAD
 .cart-button {
   margin: 1em 1.5em 0 1em;
   height: 3em;
@@ -116,6 +136,8 @@ form > div > div {
   padding-left: .8em;
 }
 
+=======
+>>>>>>> master
 #cart-display {
   padding: 20px;
   position: absolute;
@@ -123,7 +145,6 @@ form > div > div {
   top: .5;
   margin-top: 5px;
   background-color: white;
-  /* height: 100%; */
   z-index: 1;
   border: 1px solid gray;
   color: black;
@@ -170,8 +191,9 @@ form > div > div {
 }
 
 .thumbnail {
-  width: 150px;
-  height: 150px;
+  padding: 0px;
+  width: 100%;
+  border-radius: 0px;
   text-align: center;
 }
 
@@ -196,7 +218,6 @@ form > div > div {
 .section-column {
   margin-bottom: 0px;
   padding-bottom: 0px;
-  border-bottom: 2px dotted grey;
   padding: 0px 10px 0px 10px;
   flex-direction: column;
   width: 20vw;
@@ -209,13 +230,11 @@ form > div > div {
 }
 
 .list-item {
-  height: 25em;
+  height: 32em;
   width: 250px;
   display: block;
   flex-direction: column;
-  padding: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px;
   text-align: center;
   justify-content: center;
   border: none;
@@ -272,26 +291,67 @@ form > div > div {
   flex-direction: column;
 }
 
-.orderContainer {
-  background: lightgray;
-  padding: 5px;
-  margin: 5px;
-  height: 200px;
-}
-
-.singleOrderContainer {
-  background: lightgray;
-  padding: 10px;
-  margin: 10px;
-}
-
 .lineItem {
   background: white;
   padding: 5px;
   margin: 5px;
 }
 
+.order-item {
+  height: 15em;
+  width: 250px;
+  display: block;
+  flex-direction: column;
+  margin: 10px;
+  text-align: center;
+  justify-content: center;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+
+.user {
+  height: 7em;
+  width: 250px;
+  float: left;
+  margin: 10px;
+  text-align: center;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+
+.product {
+  background-color: #fffdf4;
+  padding: 10px;
+  border: solid 1px #d67d2f;
+}
+
+.productName {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.productInfo {
+  padding: 5px;
+  text-align: center;
+}
+/*
 .checkboxes-list {
+.sidebarHeader {
+  border-bottom: 1px solid #efefef;
+}
+
+.category {
+  color: #274109 !important;
+}
+  /* anjali */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  color: #DB6600;
 }
 
 .checkbox-item {
