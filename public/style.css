@@ -250,7 +250,7 @@ form > div > div {
   display: flex;
   flex-direction: column;
   width: 50vw;
-  padding: 15px;
+  padding: 10px;
 }
 .section-body button {
   width: min-content;
@@ -326,4 +326,15 @@ text-area {
 .form-page-header {
   color: #4cae4c;
   padding-left: 10px;
+}
+
+.page-header-sidebar {
+
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  color: #DB6600
 }

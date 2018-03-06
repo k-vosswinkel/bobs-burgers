@@ -79,33 +79,40 @@ class SingleProduct extends Component {
           <div className="page-header">
             <h2>{currentProduct.name}</h2>
             {/* only admins can see inventory, edit, or delete:  */}
-            {currentUser.isAdmin && <div className="page-body">
-              { this.props.currentUser.isAdmin
-                ? <p> Current Inventory: {currentProduct.inventory} </p>
-                : <p> No inventory at the moment </p> }
-              <button onClick={this.handleEdit} className="btn btn-warning new">Edit Product </button>
-              <button onClick={this.handleDelete} className="btn btn-danger new">Delete Product</button>
+            {currentUser.isAdmin
+            ? <div className="page-header-sidebar">
+              <button onClick={this.handleEdit} className="btn btn-warning button-fix">Edit Burger</button>
+              <button onClick={this.handleDelete} className="btn btn-danger button-fix">Delete Burger</button>
+              </div>
+            : <div className="page-header-sidebar">
+              <button className="btn btn-success button-fix" onClick={this.handleAdd}>Add To Cart</button>
               </div>}
-          </div>
+            </div>
         </div>
-          <div className="page-body">
-              <button className="btn btn-success new" onClick={this.handleAdd}>Add To Cart</button>
-              <p>Price: {currentProduct.price} </p>
-              <p>Description: {currentProduct.description} </p>
-              <ul>Categories: {currentProduct.categories && currentProduct.categories.map(category => {
-                  return (
-                    <Link to={`/categories/${category.id}`} key={category.id}>
-                    <li >{category.name}</li>
-                    </Link>
-                    )
-                  })
-                 }
-                </ul>
-              <img src={currentProduct.imageUrl} />
+
+        <div className="page-body">
+          <div className="single-page-content">
+            <h4> Burger Details </h4>
+              <div><b>Description:</b> {currentProduct.description}</div>
+              <div><b>Price:</b> {currentProduct.price}</div>
+              { currentProduct.inventory
+                  ? <div><b>Number of Burgers Remaining:</b> {currentProduct.inventory}</div>
+                  : <div> No burgers at the moment. Check back soon!</div> }
+                <div><b>Categories:</b> {currentProduct.categories && currentProduct.categories.map(category => {
+                    return (
+                      <Link to={`/categories/${category.id}`} key={category.id}>
+                      <li>{category.name}</li>
+                      </Link>
+                      )
+                    })
+                  }
+                  </div>
           </div>
-          <div>
-           <Reviews />
-          </div>
+          <img src={ currentProduct.imgUrl } />
+        </div>
+        <div>
+          <Reviews />
+        </div>
       </div>
       )
     }
