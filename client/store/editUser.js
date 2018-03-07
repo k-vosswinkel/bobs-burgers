@@ -32,12 +32,10 @@ export const fetchUserToEdit = id => {
 }
 
 export const updateUserToEdit = user => {
-  console.log('got here with: ', user)
   return dispatch => {
     return axios.put(`/api/users/${user.id}`, user)
       .then(res => res.data)
       .then(editedUser => {
-        console.log(editedUser);
         dispatch(editUser(editedUser));
         history.push(`/users`);
       })

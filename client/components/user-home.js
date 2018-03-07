@@ -37,7 +37,8 @@ class UserHome extends Component {
            userOrders.map(order => {
             return (
               <div key={order.id} className="order-item product col-xs-2">
-                <div><p>Account email: {order.user.email}</p></div>
+                <div><p>Account email: {order.email}</p></div>
+//                 <div><p>Account email: {order.user.email}</p></div>
                 <div><p>Shipping address: {order.shippingAddress}</p></div>
                 <div><p>Order status: {order.status}</p></div>
                 <div><p>Date placed: {order.orderDate.slice(0, 10)}</p></div>

@@ -14,7 +14,6 @@ class AllOrders extends Component {
   }
 
   render() {
-    console.log('heyyyy')
     if (!this.props.allOrders.length) {
       return (
         <div>Orders loading...</div>

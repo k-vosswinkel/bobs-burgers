@@ -33,7 +33,6 @@ class UserCart extends Component {
         quantity: lineItem.quantity - 1,
         id: lineItem.id
       }
-      console.log(newLineItem);
       this.props.editLineItem(currentOrder.id, newLineItem);
     }
   }

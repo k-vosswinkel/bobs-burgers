@@ -1,3 +1,4 @@
+
 /* kh */
 
 html {
@@ -61,7 +62,6 @@ nav {
   color: #F92325;
   width: 100%;
   height: 5em;
-  /* position: flex; */
 }
 
 nav a {
@@ -347,9 +347,9 @@ form > div > div {
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.797);
 }
+
 .section-body button {
   width: min-content;
-
 }
 
 .section-body > label {
@@ -420,8 +420,18 @@ form > div > div {
   text-align: center;
 }
 
-  /* anjali */
+/*
+.checkboxes-list {
+.sidebarHeader {
+  border-bottom: 1px solid #efefef;
+}
+*/
 
+.category {
+  color: #274109 !important;
+}
+
+  /* anjali */
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -453,14 +463,14 @@ form > div > div {
   width: 250px;
 }
 
-.input-field text-area {
+/* .input-field text-area {
   margin-top: 10px;
   padding: 10px;
-}
+} */
 
-text-area {
+/* text-area {
   padding: 5px;
-}
+} */
 
 .form-page-header {
   color: #4cae4c;
