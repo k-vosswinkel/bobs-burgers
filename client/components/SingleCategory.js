@@ -63,7 +63,7 @@ class SingleCategory extends Component {
           </div>
         </div>
 
-          <div className="page-body">
+          <div className="page-body wide-list">
             <AllProducts products={products} />
           </div>
       </div>

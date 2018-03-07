@@ -75,7 +75,7 @@ export const editOrder = order => {
       .then(res => res.data)
       .then(updatedOrder => {
         dispatch(updateOrder(updatedOrder))
-        history.push(`/orders`)
+        // history.push(`/orders`)
       })
       .catch(err => console.error(`error editing product id: ${order.id}`, err))
   }

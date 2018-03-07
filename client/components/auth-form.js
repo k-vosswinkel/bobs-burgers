@@ -20,11 +20,13 @@ const AuthForm = (props) => {
           <label htmlFor="password"><small>Password</small></label>
           <input name="password" type="password" />
         </div>
+        <br />
         <div>
-          <button type="submit">{displayName}</button>
+          <button type="submit" className="btn btn-warning">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
+      <br />
       <a href="/auth/google">{displayName} with Google</a>
     </div>
   )

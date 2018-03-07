@@ -23,24 +23,24 @@ class UserHome extends Component {
     })
     if (!userOrders.length){
       return (
-        <div>
-          <h3 className="header">Welcome {this.state.email}</h3>
+        <div className="form-login">
+          <h3 className="header">Welcome {this.state.email}!</h3>
           <div className="subHeader">You Have No Orders</div>
         </div>
       )
     } else {
      return (
-      <div>
+      <div className="orders-list">
          <h3 className="header">Welcome, {this.state.email}</h3>
          <h2 className="subHeader">Your Orders:</h2>
          {
            userOrders.map(order => {
             return (
-              <div key={order.id} className="list-item product col-xs-2">
-                <div><p>Account email: {order.email}</p></div>
+              <div key={order.id} className="order-item product col-xs-2">
+                <div><p>Account email: {order.user.email}</p></div>
                 <div><p>Shipping address: {order.shippingAddress}</p></div>
                 <div><p>Order status: {order.status}</p></div>
-                <div><p>Date placed: {order.date}</p></div>
+                <div><p>Date placed: {order.orderDate.slice(0, 10)}</p></div>
               </div>
             )
           })
