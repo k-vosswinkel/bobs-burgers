@@ -338,6 +338,7 @@ form > div > div {
   text-align: center;
   margin: auto;
   width: 40em;
+  line-height: 200%;
 }
 
 .section-body {
@@ -427,10 +428,11 @@ form > div > div {
   justify-content: space-between;
   margin-left: 20px;
   color: #DB6600;
+  text-align: center;
 }
 
-.page-header {
-  text-align: center;
+.page-header-sidebar {
+  margin: auto;
 }
 
 .checkbox-item {
@@ -453,6 +455,12 @@ form > div > div {
   width: 250px;
 }
 
+.add-to-cart {
+  font-size: 1em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
 /* .input-field text-area {
   margin-top: 10px;
   padding: 10px;
@@ -472,9 +480,9 @@ form > div > div {
   padding-right: 1em;
 }
 
-.page-header-sidebar button {
+/* .page-header-sidebar button {
   margin: 0px 20px 0px 0px;
-}
+} */
 
 .page-header {
   display: flex;
@@ -482,9 +490,9 @@ form > div > div {
   margin-left: 20px;
   color: #DB6600
 }
-.page-header h2 {
+/* .page-header h2 {
   padding-left: 3.5em;
-}
+} */
 .all-products {
   justify-content: center;
   width: 80%;
