@@ -77,17 +77,9 @@ class SingleProduct extends Component {
       <div>
         <div>
           <div className="page-header">
-          <div className="page-header-sidebar"></div>
+          <div className="page-header-sidebar">
             <h2>{currentProduct.name}</h2>
-            {/* only admins can see inventory, edit, or delete:  */}
-            {currentUser.isAdmin
-            ? <div className="page-header-sidebar">
-              <button onClick={this.handleEdit} className="btn btn-warning button-fix">Edit Burger</button>
-              <button onClick={this.handleDelete} className="btn btn-danger button-fix">Delete Burger</button>
-              </div>
-            : <div className="page-header-sidebar">
-              <button className="btn btn-success button-fix" onClick={this.handleAdd}>Add To Cart</button>
-              </div>}
+          </div>
             </div>
         </div>
 
@@ -95,12 +87,15 @@ class SingleProduct extends Component {
           <div className="single-page-content product-page">
           <img src={ currentProduct.imgUrl } />
             <h4> Burger Details </h4>
-
               <div><b>Description:</b> {currentProduct.description}</div>
               <div><b>Price:</b> {currentProduct.price}</div>
               { currentProduct.inventory
-                  ? <div><b>Number of Burgers Remaining:</b> {currentProduct.inventory}</div>
-                  : <div> No burgers at the moment. Check back soon!</div> }
+                ? <div><b>Number of Burgers Remaining:</b> {currentProduct.inventory}</div>
+                : <div> No burgers at the moment. Check back soon!</div> }
+              { currentUser.isAdmin ? <div className="page-header-sidebar">
+              <button onClick={this.handleEdit} className="btn btn-warning button-fix">Edit Burger</button>
+              <button onClick={this.handleDelete} className="btn btn-danger button-fix">Delete Burger</button>
+              </div> : <button className="btn btn-success button-fix add-to-cart" onClick={this.handleAdd}>Add To Cart</button> }
                 <div><b>Categories:</b> {currentProduct.categories && currentProduct.categories.map(category => {
                     return (
                       <Link to={`/categories/${category.id}`} key={category.id}>
