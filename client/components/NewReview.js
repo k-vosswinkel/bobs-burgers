@@ -29,6 +29,7 @@ export default class NewReview extends Component {
           </select>
         </label>
           <label>Comments:
+            <br />
             <textarea
             name="text"
             rows="5"
