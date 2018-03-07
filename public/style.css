@@ -57,6 +57,10 @@ nav a {
 .all-nav {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 4px 0px 4px 0px;
+/* .nav-items a {
+  margin: 1em; */
 }
 
 .nav-logo {
@@ -215,14 +219,14 @@ form > div > div {
 .section-column {
   margin-bottom: 0px;
   padding-bottom: 0px;
-  padding: 0px 10px 0px 10px;
+  padding: 12px 10px 0px 10px;
   flex-direction: column;
   width: 20vw;
 }
 
 .section-header {
   margin-bottom: 0px;
-  padding: 5px 0px 5px 50px;
+  padding: 5px 0px 5px 30px;
   color: rgb(250, 109, 0);
 }
 
@@ -260,6 +264,12 @@ form > div > div {
 .page-body {
   display: flex;
   padding: 5px;
+}
+
+.product-page {
+  padding: 1em;
+  list-style: none;
+  font-size: 1em;
 }
 
 .section-body {
@@ -387,13 +397,22 @@ form > div > div {
   padding-left: 10px;
 }
 
-/* .page-header-sidebar {
+.page-header-sidebar {
+  align-self: center;
+  padding-right: 1em;
+}
 
-} */
+.page-header-sidebar button {
+  margin: 0px 20px 0px 0px;
+}
 
 .page-header {
   display: flex;
   justify-content: space-between;
   margin-left: 20px;
   color: #DB6600
+}
+
+#products-list {
+  padding-top: 10px;
 }

@@ -12,7 +12,6 @@ class EditUser extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log('working')
     event.preventDefault();
     let email = event.target.email.value;
     let isAdmin = event.target.admin.value;

@@ -18,7 +18,6 @@ class GuestCart extends Component {
   }
 
   reduceCartItem = (lineItem) => {
-    console.log('item in reduceCartItem', lineItem);
     this.props.deleteItemFromCart(lineItem.product);
   }
 

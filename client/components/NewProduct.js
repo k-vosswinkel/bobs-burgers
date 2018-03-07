@@ -34,7 +34,6 @@ class NewProduct extends Component {
       newSelectionArray = this.state.categories.filter(id => id !== newSelection)
     } else {
       newSelectionArray = [...this.state.categories, newSelection];
-      console.log(newSelectionArray, 'newSelectionArray')
     }
 
       this.setState({ categories: newSelectionArray });
@@ -50,7 +49,6 @@ class NewProduct extends Component {
 
     const {id, name, url, description, price, inventory, categories} = this.state;
     const submittedProduct = {id, name, url, description, price, inventory, categories}
-    console.log('submittedProduct', submittedProduct)
     if (this.state.id) {
       this.props.editProduct(submittedProduct)
       this.props.handleEdit()
