@@ -6,12 +6,12 @@ html {
 }
 
 body {
-  /* background-color: #fffdf4; */
   min-height: 100%;
   min-width: 100%;
-  /* max-width: 100%; */
-  background: linear-gradient(rgba(255, 255, 255, 0.865), rgba(255, 255, 255, 0.865)), url("http://4.bp.blogspot.com/-lle3NylY1T4/UZfs2ewBDuI/AAAAAAAAC9Q/JhYDDjXzXyk/s1600/bobsburgersfern.jpg") no-repeat center center fixed;
-  background-size: cover;
+  /* background: linear-gradient(rgba(255, 255, 255, 0.865), rgba(255, 255, 255, 0.865)), url("http://4.bp.blogspot.com/-lle3NylY1T4/UZfs2ewBDuI/AAAAAAAAC9Q/JhYDDjXzXyk/s1600/bobsburgersfern.jpg") no-repeat center center fixed;
+  background-size: cover; */
+    /* background: linear-gradient(rgba(255, 255, 255, 0.865), rgba(255, 255, 255, 0.865)), url("https://image.ibb.co/kfR8k7/store_3061591_1280.png") no-repeat center center fixed;
+  background-size: cover; */
   margin: 0;
   padding: 0;
 }
@@ -39,7 +39,6 @@ app {
   font-family: "Arivo";
   height: 100%;
   width: 100%;
-  /* background-color: rgba(255, 255, 255, 0.865) */
 }
 
 #app {
@@ -80,8 +79,6 @@ nav a {
   border-bottom: 1px solid #eee;
   padding: 4px 0px 4px 0px;
   background-color: rgb(255, 255, 255);
-/* .nav-items a {
-  margin: 1em; */
 }
 
 .nav-logo {
@@ -105,14 +102,11 @@ nav a {
 .nav-items a {
   text-decoration: none;
   padding: 1em 1.5em 0 .6em;
-  /* color: rgb(232, 164, 16) */
-  /* margin: 0em 1em 0 0; */
   color: #e2534e;
 }
 
 .nav-items a:visited {
   text-decoration: none;
-  /* color: rgb(232, 164, 16); */
   color: #e2534e;
 }
 
@@ -339,7 +333,7 @@ form > div > div {
 .product-page {
   padding: 1em;
   list-style: none;
-  font-size: 1em;
+  font-size: 1.2em;
   background-color: rgba(255, 255, 255, 0.797);
   text-align: center;
   margin: auto;
@@ -364,9 +358,10 @@ form > div > div {
 }
 
 #reviews-section {
-  padding: 10px;
+  padding: 1.5em;
   margin-top: 30px;
   background-color: rgba(255, 255, 255, 0.797);
+  font-size: 1.1em;
 }
 
 #categories {
