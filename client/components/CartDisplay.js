@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CartDisplay = ({products, handleAdd, handleReduce, hideCart}) => {
-  if (!products.length) { return <div id="cart-display"><p>Cart is empty</p></div> }
+  if (!products || !products.length) { return <div id="cart-display"><p>Cart is empty</p></div> }
   return (
     <div id="cart-display">
       <h3>Cart</h3>
