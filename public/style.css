@@ -92,6 +92,10 @@ nav a {
   color: rgb(255, 174, 0);
 }
 
+.nav-items a:active {
+  color: rgb(255, 174, 0)
+}
+
 .nav-items a:hover {
   text-decoration: none;
   color: rgb(255, 89, 0);
@@ -124,7 +128,6 @@ form > div > div {
   color: white;
 }
 
-<<<<<<< HEAD
 .cart-button {
   margin: 1em 1.5em 0 1em;
   height: 3em;
@@ -136,8 +139,6 @@ form > div > div {
   padding-left: .8em;
 }
 
-=======
->>>>>>> master
 #cart-display {
   padding: 20px;
   position: absolute;
