@@ -12,7 +12,7 @@ const CartDisplay = ({products, handleAdd, handleReduce, hideCart}) => {
           })
         }
       </ul>
-      <button onClick={hideCart}><Link to="/checkout">Checkout</Link></button>
+      <Link to="/checkout"><button className="btn btn-success checkout-btn" onClick={hideCart}>Checkout</button></Link>
     </div>
   )
 }

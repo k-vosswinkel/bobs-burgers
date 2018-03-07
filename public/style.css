@@ -194,6 +194,7 @@ form > div > div {
   z-index: 1;
   border: 1px solid gray;
   color: black;
+  text-align: center;
 }
 
 #cart-display h3 {
@@ -203,6 +204,14 @@ form > div > div {
 
 #cart-display ul {
   list-style: none;
+}
+
+#cart-display li {
+  margin-top: 10px;
+}
+
+#cart-display button {
+  font-size: 1em;
 }
 
 .cart-item img {
