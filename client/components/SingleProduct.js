@@ -92,7 +92,9 @@ class SingleProduct extends Component {
 
         <div className="page-body">
           <div className="single-page-content">
+          <img src={ currentProduct.imgUrl } />
             <h4> Burger Details </h4>
+
               <div><b>Description:</b> {currentProduct.description}</div>
               <div><b>Price:</b> {currentProduct.price}</div>
               { currentProduct.inventory
@@ -107,8 +109,9 @@ class SingleProduct extends Component {
                     })
                   }
                   </div>
+
           </div>
-          <img src={ currentProduct.imgUrl } />
+
         </div>
         <div>
           <Reviews />
