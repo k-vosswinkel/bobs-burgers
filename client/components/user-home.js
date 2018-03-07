@@ -36,7 +36,7 @@ class UserHome extends Component {
          {
            userOrders.map(order => {
             return (
-              <div key={order.id} className="list-item product col-xs-2">
+              <div key={order.id} className="order-item product col-xs-2">
                 <div><p>Account email: {order.email}</p></div>
                 <div><p>Shipping address: {order.shippingAddress}</p></div>
                 <div><p>Order status: {order.status}</p></div>
