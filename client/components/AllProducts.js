@@ -28,7 +28,7 @@ class AllProducts extends Component {
                 <h4 className="subHeader">{displayProducts.length} products</h4>
               </div>
               ) : (
-              <div className="header">
+              <div className="title-box">
                 <h2> All Burgers</h2>
                 <h4 className="subHeader">{displayProducts.length} products</h4>
               </div>
@@ -39,7 +39,7 @@ class AllProducts extends Component {
         <div>
         {(displayProducts && displayProducts.length === 0)
         ? <h5>There are no burgers at this time. </h5>
-        : <div className="container">
+        : <div className="container all-products">
           {displayProducts && displayProducts.map(product => {
             return (
                 <div className="list-item product" key={product.id}>
@@ -49,13 +49,15 @@ class AllProducts extends Component {
                     <div className="productName">{product.name}</div>
                     {this.props.currentUser.isAdmin && <div className="productInfo">
                         <p> Current Inventory: {product.inventory} </p>
-                      </div>}
-                    <p>Price: {product.price}</p>
-                    {product.reviews && product.reviews.length
-                    ? <p>Average Rating: {Math.round((product.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / product.reviews.length) * 10) / 10}</p>
-                    : <p> No ratings </p>
+                    </div>}
+                    <div className="productInfo">
+                      <p>Price: {product.price}</p>
+                      {product.reviews && product.reviews.length
+                      ? <p>Average Rating: {Math.round((product.reviews.reduce((acc, currVal) => acc + currVal.rating, 0) / product.reviews.length) * 10) / 10}</p>
+                      : <p> No ratings </p>
                   }
-                  </div>
+                   </div>
+                   </div>
                   </Link>
                 </div>
               )

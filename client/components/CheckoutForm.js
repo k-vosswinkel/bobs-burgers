@@ -35,7 +35,7 @@ export default class CheckoutForm extends Component {
           }
           <label>Shipping Address: </label><input type="text" name="shippingAddress" />
           <br /><br />
-          <input type="submit" value="Place Order" />
+          <input type="submit" className="btn btn-success" value="Place Order" />
         </form>
         <ul>
           { products.map(product => {
