@@ -85,7 +85,7 @@ nav a {
   height: 70px;
   padding: .6em 0 .6em .6em;
   background-color: #FCDC25;
-  width: 100%;
+  width: 100vw;
 }
 
 .nav-logo img {
