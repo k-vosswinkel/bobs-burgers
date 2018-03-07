@@ -30,11 +30,11 @@ class Checkout extends Component {
 
   render() {
     const {currentUser, currentOrder, allCartItems} = this.props;
-    if (Object.keys(currentUser).length) {
-      return <CheckoutForm placeOrder={this.placeOrder} order={currentOrder} email={currentUser.email} products={currentOrder.lineItems} />
+    if (this.state.isSubmitted) {
+      return <div className="form-login"><h1>Thank you for your order!</h1></div>
     }
-    else if (this.state.isSubmitted) {
-      return <h1>Thank you for completing your order!</h1>
+    else if (Object.keys(currentUser).length) {
+      return <CheckoutForm placeOrder={this.placeOrder} order={currentOrder} email={currentUser.email} products={currentOrder.lineItems} />
     }
     else {
       return <CheckoutForm placeOrder={this.createOrder} products={allCartItems} />

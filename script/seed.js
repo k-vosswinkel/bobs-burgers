@@ -118,6 +118,7 @@ async function seed() {
       description: 'Fried pickles take this burger to another level',
       price: 6.75,
       inventory: 10,
+      imgUrl: 'https://image.ibb.co/kRnpQ7/gourdon_hamsey.png'
     }).then(product => product.setCategories([3, 4])),
     Product.create({
       name: 'Do the Brussel',
@@ -129,13 +130,15 @@ async function seed() {
       name: 'Cheeses is Born',
       description: 'Swiss and Jarlsberg make this cheeseburger extra melty.',
       price: 6.99,
-      inventory: 1
+      inventory: 1,
+      imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
     }).then(product => product.setCategories([5, 6])),
     Product.create({
       name: 'I\'ve Created A Muenster',
       description: 'Who can say no to melty cheese and mushrooms?',
       price: 9.99,
-      inventory: 20
+      inventory: 20,
+      imgUrl: 'https://image.ibb.co/njikyS/mission_acornplished.png'
     }).then(product => product.setCategories([6, 7])),
     Product.create({
       name: 'It\'s Fun to Eat At The Rye-MCA',
@@ -153,7 +156,8 @@ async function seed() {
       name: 'Bet It All On Black Garlic',
       description: 'Winner winnder burger dinner! This all-beef patty is topped with fresh mozarella, spinach, homemade black garlic mayo and a dash of Sriracha hot sauce.',
       price: 12.99,
-      inventory: 9
+      inventory: 9,
+      imgUrl: 'https://image.ibb.co/iEq9Q7/if_looks_could_kale.png'
     }).then(product => product.setCategories([9, 10])),
     Product.create({
       name: 'Don\'t You Four Cheddar \'Bout Me',

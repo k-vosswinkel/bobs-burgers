@@ -77,6 +77,7 @@ class SingleProduct extends Component {
       <div>
         <div>
           <div className="page-header">
+          <div className="page-header-sidebar"></div>
             <h2>{currentProduct.name}</h2>
             {/* only admins can see inventory, edit, or delete:  */}
             {currentUser.isAdmin

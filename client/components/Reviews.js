@@ -35,7 +35,7 @@ class Reviews extends Component {
           currentProduct.reviews.length
           ? currentProduct.reviews.map(review => {
           return (
-            <ul className="reviews-list-item" key={review.id}>
+            <ul className="order-item product" key={review.id}>
               <p><b>Rating:</b> {review.rating}</p>
               <p><b>Comments:</b> {review.text}</p>
             {currentUser.isAdmin && <button onClick={() => this.handleRemove(review)}>-</button>}
