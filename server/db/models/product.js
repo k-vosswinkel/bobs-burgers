@@ -23,7 +23,10 @@ const Product = db.define('product', {
   },
   inventory: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
   }
 }, {
   getterMethods: {

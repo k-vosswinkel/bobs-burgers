@@ -89,7 +89,7 @@ class SingleProduct extends Component {
             <h4> Burger Details </h4>
               <div><b>Description:</b> {currentProduct.description}</div>
               <div><b>Price:</b> {currentProduct.price}</div>
-              { currentProduct.inventory
+              { currentProduct.inventory > 0
                 ? <div><b>Number of Burgers Remaining:</b> {currentProduct.inventory}</div>
                 : <div> No burgers at the moment. Check back soon!</div> }
               { currentUser.isAdmin ? <div className="page-header-sidebar">
