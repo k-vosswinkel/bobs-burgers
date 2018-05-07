@@ -10,7 +10,7 @@ class AllUsers extends Component {
 
   render() {
     return (
-      <div>
+      <div className="user-display">
         <div>
         <h2> Admin Users </h2>
         {!this.props.adminUsers.length
