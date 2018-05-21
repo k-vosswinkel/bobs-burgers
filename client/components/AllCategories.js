@@ -18,8 +18,8 @@ class AllCategories extends Component {
             <div className="sidebarHeader">
               <h2 className="header">Filter </h2>
               {this.props.currentUser.isAdmin && <div>
-              <Link to="/new-category"> <button className="btn btn-info new">New Category </button></Link>
-              <Link to="/new-product"> <button className="btn btn-info new">New Product</button></Link>
+              <Link to="/new-category"> <button className="btn btn-success new">New Category </button></Link>
+              <Link to="/new-product"> <button className="btn btn-success new">New Product</button></Link>
               </div>}
 
               <h4 className="subHeader">Explore burgers by category</h4>
