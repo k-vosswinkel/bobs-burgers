@@ -1,6 +1,6 @@
-
-/* kh */
-
+/*
+MAIN
+*/
 html {
   height: 100%;
   width: 100%;
@@ -9,10 +9,6 @@ html {
 body {
   min-height: 100%;
   min-width: 100%;
-  /* background: linear-gradient(rgba(255, 255, 255, 0.865), rgba(255, 255, 255, 0.865)), url("http://4.bp.blogspot.com/-lle3NylY1T4/UZfs2ewBDuI/AAAAAAAAC9Q/JhYDDjXzXyk/s1600/bobsburgersfern.jpg") no-repeat center center fixed;
-  background-size: cover; */
-    /* background: linear-gradient(rgba(255, 255, 255, 0.865), rgba(255, 255, 255, 0.865)), url("https://image.ibb.co/kfR8k7/store_3061591_1280.png") no-repeat center center fixed;
-  background-size: cover; */
   margin: 0;
   padding: 0;
 }
@@ -56,6 +52,48 @@ img {
   margin: auto;
 }
 
+.title-box {
+  background-color: rgba(255, 255, 255, 0.797);
+  width: 20%;
+  text-align: center;
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+.title-box h2 {
+  color: rgb(250, 119, 0);
+}
+
+.wide-list {
+  width: 80%;
+}
+
+.form-page-header {
+  color: #4cae4c;
+  padding-left: 10px;
+}
+
+.page-header-sidebar {
+  align-self: center;
+  padding-right: 1em;
+  margin: auto;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  color: #DB6600;
+  text-align: center;
+}
+
+#google-button {
+  max-width: 200px;
+}
+
+/*
+NAVBAR
+*/
 nav {
   display: inline-block;
   text-decoration: none;
@@ -124,6 +162,27 @@ nav a {
   color: white;
 }
 
+.navibar {
+  background-color: lightgrey;
+  color: white;
+  vertical-align: auto;
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  align-items: center;
+}
+
+.navbar-element {
+  margin-left: 10px;
+  margin-right: 10px;
+  color:black;
+  font-size: 1.4em;
+  text-decoration: underline;
+}
+
+/*
+HEADER
+*/
 .header {
   font-weight: 500 !important;
   color: rgb(250, 109, 0);
@@ -133,6 +192,9 @@ nav a {
   color: rgb(255, 174, 0);
 }
 
+/*
+FORMS
+*/
 form > div > div {
   display: flex;
   flex-direction: column;
@@ -160,13 +222,24 @@ form > div > div {
 }
 
 .opacity {
-  /* background-color: rgba(255, 255, 255, 0.865); */
   height: 100%;
-  /* position: absolute; */
   width: 100%;
   z-index: -1;
 }
 
+.input-field {
+  font-size: 1.1em;
+}
+
+.input-field input {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  width: 250px;
+}
+
+/*
+CART & CHECKOUT
+*/
 .cart-button {
   margin: 1em 1.5em 0 1em;
   height: 3em;
@@ -213,6 +286,12 @@ form > div > div {
   height: 50%;
 }
 
+.add-to-cart {
+  font-size: 1em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
 #checkout-items {
   display: flex;
   padding: 4em 0em 2em .4em;
@@ -243,6 +322,16 @@ form > div > div {
   margin-left: 10px;
 }
 
+.checkbox-item {
+  margin-left: 0px;
+  width: 200px;
+  display: flex;
+}
+.checkbox-item label {
+  padding-right: .1em;
+  padding-left: 10px;
+}
+
 .thumbnail {
   padding: 0px;
   width: 100%;
@@ -250,24 +339,27 @@ form > div > div {
   text-align: center;
 }
 
-.navibar {
-  background-color: lightgrey;
-  color: white;
-  vertical-align: auto;
-  display: flex;
-  justify-content: space-between;
-  height: 10vh;
-  align-items: center;
+.order-item {
+  height: 15em;
+  width: 250px;
+  display: block;
+  flex-direction: column;
+  margin: 10px;
+  text-align: center;
+  justify-content: center;
+  border: none;
+  text-decoration: none;
+  color: black;
 }
 
-.navbar-element {
-  margin-left: 10px;
-  margin-right: 10px;
-  color:black;
-  font-size: 1.4em;
-  text-decoration: underline;
+.orders-list {
+  margin-top: 10px;
+  padding: 20px;
 }
 
+/*
+SECTIONS & CONTAINERS
+*/
 .section-column {
   margin-bottom: 0px;
   margin-left: 1em;
@@ -276,14 +368,12 @@ form > div > div {
   flex-direction: column;
   width: 14%;
   min-width: 14em;
-  /* width:  */
   background-color: rgba(255, 255, 255, 0.838);
   margin-top: 3em;
 }
 
 .section-header {
   margin-bottom: 0px;
-  /* padding: 5px 0px 5px 30px; */
   color: rgb(250, 109, 0);
   display: flex;
   justify-content: center;
@@ -293,6 +383,18 @@ form > div > div {
   color: #ec2121;
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  color: black;
+  align-items: center;
+}
+
+/*
+LISTS
+*/
 .list-item {
   height: 30em;
   width: 250px;
@@ -314,31 +416,18 @@ form > div > div {
   border: none;
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: space-between;
-  color: black;
-  align-items: center;
+.lineItem {
+  background: white;
+  padding: 5px;
+  margin: 5px 10px 5px 10px
 }
 
-/* styling the categories & products */
+/*
+PRODUCTS
+*/
 .page-body {
   display: flex;
   padding: 5px;
-  /* background-color: rgba(255, 255, 255, 0.865); */
-}
-
-.product-page {
-  padding: 1em;
-  list-style: none;
-  font-size: 1.2em;
-  background-color: rgba(255, 255, 255, 0.797);
-  text-align: center;
-  margin: auto;
-  width: 40em;
-  line-height: 200%;
 }
 
 .section-body {
@@ -358,51 +447,15 @@ form > div > div {
   margin-right: 10px;
 }
 
-#reviews-section {
-  padding: 1.5em;
-  margin-top: 30px;
+.product-page {
+  padding: 1em;
+  list-style: none;
+  font-size: 1.2em;
   background-color: rgba(255, 255, 255, 0.797);
-  font-size: 1.1em;
-}
-
-#categories {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.lineItem {
-  background: white;
-  padding: 5px;
-  margin: 5px 10px 5px 10px
-}
-
-.order-item {
-  height: 15em;
-  width: 250px;
-  display: block;
-  flex-direction: column;
-  margin: 10px;
   text-align: center;
-  justify-content: center;
-  border: none;
-  text-decoration: none;
-  color: black;
-}
-
-.user {
-  height: 7em;
-  width: 250px;
-  float: left;
-  margin: 10px;
-  text-align: center;
-  border: none;
-  text-decoration: none;
-  color: black;
-}
-
-.user button {
-  margin-top: 20px;
+  margin: auto;
+  width: 40em;
+  line-height: 200%;
 }
 
 .product {
@@ -425,84 +478,6 @@ form > div > div {
   text-align: center;
 }
 
-
-  /* anjali */
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 20px;
-  color: #DB6600;
-  text-align: center;
-}
-
-.page-header-sidebar {
-  margin: auto;
-}
-
-.checkbox-item {
-  margin-left: 0px;
-  width: 200px;
-  display: flex;
-}
-.checkbox-item label {
-  padding-right: .1em;
-  padding-left: 10px;
-}
-
-.input-field {
-  font-size: 1.1em;
-}
-
-.input-field input {
-  margin-left: 10px;
-  margin-bottom: 10px;
-  width: 250px;
-}
-
-.add-to-cart {
-  font-size: 1em;
-  margin-top: .5em;
-  margin-bottom: .5em;
-}
-
-.user-display {
-  display: flex;
-  flex-direction: column;
-  padding-left: 10px;
-}
-
-/* .input-field text-area {
-  margin-top: 10px;
-  padding: 10px;
-} */
-
-/* text-area {
-  padding: 5px;
-} */
-
-.form-page-header {
-  color: #4cae4c;
-  padding-left: 10px;
-}
-
-.page-header-sidebar {
-  align-self: center;
-  padding-right: 1em;
-}
-
-/* .page-header-sidebar button {
-  margin: 0px 20px 0px 0px;
-} */
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 20px;
-  color: #DB6600
-}
-/* .page-header h2 {
-  padding-left: 3.5em;
-} */
 .all-products {
   justify-content: center;
   width: 80%;
@@ -512,24 +487,42 @@ form > div > div {
   padding-top: 10px;
 }
 
-.title-box {
-  /* background-color: rgba(255, 255, 255, 0.838); */
+/*
+CATEGORIES & REVIEWS
+*/
+#reviews-section {
+  padding: 1.5em;
+  margin-top: 30px;
   background-color: rgba(255, 255, 255, 0.797);
-  width: 20%;
+  font-size: 1.1em;
+}
+
+#categories {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+USER PAGES
+*/
+.user {
+  height: 7em;
+  width: 250px;
+  float: left;
+  margin: 10px;
   text-align: center;
-  margin-top: 3em;
-  margin-bottom: 1em;
+  border: none;
+  text-decoration: none;
+  color: black;
 }
 
-.title-box h2 {
-  color: rgb(250, 119, 0);
+.user button {
+  margin-top: 20px;
 }
 
-.orders-list {
-  margin-top: 10px;
-  padding: 20px;
-}
-
-.wide-list {
-  width: 80%;
+.user-display {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
 }
