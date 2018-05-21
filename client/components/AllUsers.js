@@ -9,62 +9,44 @@ class AllUsers extends Component {
   }
 
   render() {
+    //Potentially filter with buttons here?
+    // const adminUsers = allUsers.filter(users => users.isAdmin === true)
+    // const nonAdminUsers = allUsers.filter(users => users.isAdmin === false)
     return (
       <div className="user-display">
-        <div>
-          <div className="section-header">
-            <div className="title-box"><h2>Admin</h2></div>
-          </div>
-          {!this.props.adminUsers.length
-            ? <div>No admin users to see here!</div>
-            : <div>
-              {this.props.adminUsers.map(user => {
+        <div className="section-header">
+          <div className="title-box"><h2>Users</h2></div>
+        </div>
+        <div className="user-list-header">
+          <div className="user-details col-xs-2"><h4>EMAIL</h4></div>
+          <div className="user-details col-xs-2"><h4>TITLE</h4></div>
+        </div>
+        {!this.props.allUsers.length
+          ? <div>No users to see here!</div>
+          : <div>
+              {this.props.allUsers.map(user => {
                 return (
                   <Link key={user.id} to={`/users/${user.id}`}>
                     <div className="user-list">
                       <div className="user-details col-xs-2">{user.email}</div>
+                      <div className="user-details col-xs-2">{user.isAdmin ? 'Admin' : 'User'}</div>
                       <button className="btn btn-success user-details">Edit User</button>
                     </div>
                   </Link>
                 )
               })}
-              </div>
-            }
-          </div>
-          <div>
-            <div className="section-header">
-              <div className="title-box"><h2>Users</h2></div>
             </div>
-            {!this.props.nonAdminUsers.length
-              ? <div>No non-admin users to see here!</div>
-              : <div>
-                  {this.props.nonAdminUsers.map(user => {
-                    return (
-                      <Link key={user.id} to={`/users/${user.id}`}>
-                        <div className="user-list">
-                          <div className="user-details col-xs-2">{user.email}</div>
-                          <button className="btn btn-success user-details">Edit User</button>
-                        </div>
-                      </Link>
-                    )
-                  })}
-                </div>
-              }
-          </div>
-        </div>
+          }
+      </div>
       )
     }
 }
 
 // Container
 const mapState = ({ allUsers, currentUser }) => {
-  const adminUsers = allUsers.filter(users => users.isAdmin === true)
-  const nonAdminUsers = allUsers.filter(users => users.isAdmin === false)
-
   return ({
     currentUser,
-    adminUsers,
-    nonAdminUsers
+    allUsers
   })
 }
 const mapDispatch = { fetchUsers }

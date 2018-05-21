@@ -263,6 +263,11 @@ CART & CHECKOUT
   font-size: 1em;
 }
 
+.cart-item {
+  padding: 10px;
+  border-top: solid 1px lightgray;
+}
+
 .cart-item img {
   width: 50%;
   height: 50%;
@@ -512,6 +517,15 @@ USER PAGES
   display: flex;
   flex-direction: column;
   padding-left: 10px;
+}
+
+.user-list-header {
+  display: block;
+  flex-direction: column;
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  clear: both;
 }
 
 .user-list {
