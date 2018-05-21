@@ -12,42 +12,46 @@ class AllUsers extends Component {
     return (
       <div className="user-display">
         <div>
-        <h2> Admin Users </h2>
-        {!this.props.adminUsers.length
-          ? <div>No admin users to see here!</div>
-          : <div>
-            {this.props.adminUsers.map(user => {
-              return (
-                <Link key={user.id} to={`/users/${user.id}`}>
-                  <div className="user product">
-                    <div>{user.email}</div>
-                    <button className="btn btn-success">Edit User</button>
-                  </div>
-                </Link>
-              )
-            })}
-            </div>
-          }
+          <div className="section-header">
+            <div className="title-box"><h2>Admin</h2></div>
+          </div>
+          {!this.props.adminUsers.length
+            ? <div>No admin users to see here!</div>
+            : <div>
+              {this.props.adminUsers.map(user => {
+                return (
+                  <Link key={user.id} to={`/users/${user.id}`}>
+                    <div className="user-list">
+                      <div className="user-details col-xs-2">{user.email}</div>
+                      <button className="btn btn-success user-details">Edit User</button>
+                    </div>
+                  </Link>
+                )
+              })}
+              </div>
+            }
           </div>
           <div>
-          <h2> Non-Admin Users </h2>
-          {!this.props.nonAdminUsers.length
+            <div className="section-header">
+              <div className="title-box"><h2>Users</h2></div>
+            </div>
+            {!this.props.nonAdminUsers.length
               ? <div>No non-admin users to see here!</div>
               : <div>
                   {this.props.nonAdminUsers.map(user => {
                     return (
                       <Link key={user.id} to={`/users/${user.id}`}>
-                        <div className="user product">
-                          <div>{user.email}</div>
-                          <button className="btn btn-success">Edit User</button>
+                        <div className="user-list">
+                          <div className="user-details col-xs-2">{user.email}</div>
+                          <button className="btn btn-success user-details">Edit User</button>
                         </div>
                       </Link>
                     )
                   })}
                 </div>
-                }
-            </div>
+              }
           </div>
+        </div>
       )
     }
 }

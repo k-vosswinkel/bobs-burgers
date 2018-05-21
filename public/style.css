@@ -513,3 +513,19 @@ USER PAGES
   flex-direction: column;
   padding-left: 10px;
 }
+
+.user-list {
+  display: block;
+  flex-direction: column;
+  margin: 10px;
+  border-bottom: solid 1px lightgray;
+  text-decoration: none;
+  color: black;
+  clear: both;
+}
+
+.user-details {
+  font-size: 18px;
+  float: left;
+  margin: 10px;
+}
