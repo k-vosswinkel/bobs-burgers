@@ -22,15 +22,24 @@ class AllOrders extends Component {
       const { allOrders } = this.props;
       return (
         <div>
+          <div className="section-header">
+            <div className="title-box"><h2>All Orders</h2></div>
+          </div>
+          <div className="order">
+            <div className="order-details col-xs-2"><h4>EMAIL</h4></div>
+            <div className="order-details col-xs-2"><h4>ADDRESS</h4></div>
+            <div className="order-details col-xs-2"><h4>STATUS</h4></div>
+            <div className="order-details col-xs-2"><h4>DATE CREATED</h4></div>
+          </div>
           {allOrders.map(order => {
             return (
               <Link key={order.id} to={`/orders/${order.id}`}>
-              <div className="order-item product col-xs-2">
-                <div><p>Account email: {order.email}</p></div>
-                <div><p>Shipping address: {order.shippingAddress}</p></div>
-                <div><p>Order status: {order.status}</p></div>
-                <div><p>Date placed: {order.orderDate.slice(0, 10)}</p></div>
-                <button className="btn btn-success">Edit Order</button>
+              <div className="order">
+                  <div className="order-details col-xs-2">{order.email}</div>
+                  <div className="order-details col-xs-2">{order.shippingAddress}</div>
+                  <div className="order-details col-xs-2">{order.status}</div>
+                  <div className="order-details col-xs-2">{order.orderDate.slice(0, 10)}</div>
+                <button className="btn btn-success order-details">Edit Order</button>
               </div>
               </Link>
             )

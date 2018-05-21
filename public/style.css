@@ -319,22 +319,27 @@ CART & CHECKOUT
   text-align: center;
 }
 
-.order-item {
-  height: 15em;
-  width: 250px;
+/*
+ORDERS
+*/
+.order {
   display: block;
   flex-direction: column;
   margin: 10px;
-  text-align: center;
-  justify-content: center;
-  border: none;
+  border-bottom: solid 1px lightgray;
   text-decoration: none;
   color: black;
+  clear: both;
 }
 
 .orders-list {
   margin-top: 10px;
   padding: 20px;
+}
+
+.order-details {
+  float: left;
+  margin: 10px;
 }
 
 /*
