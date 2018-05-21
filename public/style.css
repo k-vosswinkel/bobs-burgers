@@ -401,6 +401,10 @@ form > div > div {
   color: black;
 }
 
+.user button {
+  margin-top: 20px;
+}
+
 .product {
   background-color: #fffdf4;
   padding: 10px;
@@ -459,6 +463,12 @@ form > div > div {
   font-size: 1em;
   margin-top: .5em;
   margin-bottom: .5em;
+}
+
+.user-display {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
 }
 
 /* .input-field text-area {

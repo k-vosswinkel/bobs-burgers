@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Bob's Burgers Emporium
 
 Aimed at veg and non-veg burger lovers, Bob's Burgers Emporium is an e-commerce site that allows for the purchase of Bob's Burgers.
@@ -30,6 +29,3 @@ Administrative users can add, edit, delete and view users, orders, burgers, and 
 * [Kait Hoehne](https://github.com/k-vosswinkel)
 
 This project was built for the [Grace Hopper Program](https://www.gracehopper.com/) at Fullstack Academy.
-=======
-App on Heroku: https://burger-emporium.herokuapp.com/
->>>>>>> master
