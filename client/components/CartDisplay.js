@@ -8,7 +8,18 @@ const CartDisplay = ({products, handleAdd, handleReduce, hideCart}) => {
       <h3>Cart</h3>
       <ul>
         { products.map(product => {
-            return <li key={product.product.id}><SingleItem lineItem={product} name={product.product.name} /><button onClick= {() => handleAdd(product)}>+</button><button onClick={() => handleReduce(product)}>-</button></li>
+            return (
+              <li key={product.product.id}>
+                <div className="cart-item">
+                  <p>{product.product.name}</p>
+                  <img src={product.product.imgUrl} />
+                  <p>Quantity: {product.quantity}</p>
+                  <p>Price: {product.quantity * product.product.price}</p>
+                  <button onClick= {() => handleAdd(product)}>+</button>
+                  <button onClick={() => handleReduce(product)}>-</button>
+                </div>
+              </li>
+            )
           })
         }
       </ul>
@@ -17,15 +28,15 @@ const CartDisplay = ({products, handleAdd, handleReduce, hideCart}) => {
   )
 }
 
-const SingleItem = ({lineItem}) => {
- return  (
-    <div className="cart-item">
-      <p>{lineItem.product.name}</p>
-      <img src={lineItem.product.imgUrl} />
-      <p>Quantity: {lineItem.quantity}</p>
-      <p>Price: {lineItem.quantity * lineItem.product.price}</p>
-    </div>
-  )
-}
+// const SingleItem = ({lineItem}) => {
+//  return  (
+//     <div className="cart-item">
+//       <p>{lineItem.product.name}</p>
+//       <img src={lineItem.product.imgUrl} />
+//       <p>Quantity: {lineItem.quantity}</p>
+//       <p>Price: {lineItem.quantity * lineItem.product.price}</p>
+//     </div>
+//   )
+// }
 
 export default CartDisplay;

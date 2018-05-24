@@ -93,9 +93,10 @@ class SingleProduct extends Component {
                 ? <div><b>Number of Burgers Remaining:</b> {currentProduct.inventory}</div>
                 : <div> No burgers at the moment. Check back soon!</div> }
               { currentUser.isAdmin ? <div className="page-header-sidebar">
-              <button onClick={this.handleEdit} className="btn btn-warning button-fix">Edit Burger</button>
-              <button onClick={this.handleDelete} className="btn btn-danger button-fix">Delete Burger</button>
-              </div> : <button className="btn btn-success button-fix add-to-cart" onClick={this.handleAdd}>Add To Cart</button> }
+              <button className="btn btn-success button-fix button-margin" onClick={this.handleAdd}>Add To Cart</button>
+              <button onClick={this.handleEdit} className="btn btn-warning button-fix button-margin">Edit Burger</button>
+              <button onClick={this.handleDelete} className="btn btn-danger button-fix button-margin">Delete Burger</button>
+              </div> : <button className="btn btn-success button-fix button-margin" onClick={this.handleAdd}>Add To Cart</button> }
                 <div><b>Categories:</b> {currentProduct.categories && currentProduct.categories.map(category => {
                     return (
                       <Link to={`/categories/${category.id}`} key={category.id}>

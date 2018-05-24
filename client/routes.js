@@ -18,10 +18,10 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/categories" component={AllCategories} />
-        <Route path="/categories/:categoryId" component={SingleCategory} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route exact path="/categories" component={AllCategories} />
+        <Route path="/categories/:categoryId" component={SingleCategory} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/new-product" component={NewProduct} />
@@ -67,8 +67,7 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
+// The `withRouter` wrapper makes sure that updates are not blocked when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes))
 
 /**
