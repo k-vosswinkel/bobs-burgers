@@ -71,33 +71,44 @@ NAVBAR
 nav {
   display: inline-block;
   text-decoration: none;
-  color: #F92325;
+  display: flex;
+  color: white;
   width: 100%;
   height: 5em;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: rgb(57, 57, 57);
+  justify-content: flex-end;
 }
 
 nav a {
-  display: inline-block;
   text-decoration: none;
-  color: #db6702;
+  color: white;
   font-weight: bold;
   font-size: 1.3em;
-  align-self: center;
-}
-
-.all-nav {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #eee;
-  padding: 4px 0px 4px 0px;
-  background-color: rgb(255, 255, 255);
 }
 
 .nav-logo {
   height: 70px;
   padding: .6em 0 .6em .6em;
-  background-color: #FCDC25;
-  width: 100vw;
+  color: white;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 1.5em;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+}
+
+.nav-logo a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-logo a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: lightgray;
 }
 
 .nav-logo img {
@@ -107,19 +118,19 @@ nav a {
 
 .nav-items {
   display: flex;
-  align-content: center;
-  height: 3em;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .nav-items a {
   text-decoration: none;
-  padding: 1em 1.5em 0 .6em;
-  color: #e2534e;
+  padding: 0 1em 0 .6em;
+  color: white;
 }
 
 .nav-items a:visited {
   text-decoration: none;
-  color: #e2534e;
+  color: white;
 }
 
 .nav-items a:active {
@@ -158,6 +169,7 @@ HEADERS
 .page-header {
   display: flex;
   justify-content: space-between;
+  padding-top: 2em;
   margin-left: 20px;
   color: #DB6600;
   text-align: center;
@@ -175,7 +187,16 @@ HEADERS
   margin-top: 3em;
   margin-bottom: 1em;
 }
-
+.burger-splash {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+.splash-screen {
+  position: absolute;
+  width: 100%;
+}
 /*
 FORMS
 */
@@ -184,32 +205,74 @@ form > div > div {
   flex-direction: column;
 }
 
-.form-login {
-  padding: 20px;
-  width: 20em;
+.center-container {
   font-size: 1.5em;
-  background-color: rgba(255, 255, 255, 0.865);
   text-align: center;
-  margin: 6em auto 0em auto;
+  position: absolute;
+  top: 5em;
+  width: 100%;
+  margin: auto;
 }
 
-.form-login > a {
+.center-content-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  min-width: 15em;
+  padding: 1em;
+  width: 10em;
+  background-color: rgba(69, 69, 69, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.742);
+  color: white;
+}
+
+#splashbox {
+  /* height: 10em; */
+  font-family: 'IM Fell French Canon SC', serif;
+  font-size: 1.5em;
+  width: 20em;
+  min-width: 20em;
+}
+
+.title {
+  font-size: 1.7em;
+}
+
+.transparent-button {
+  border: 1px solid rgba(255, 255, 255, 0.742);
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 1px;
+}
+
+.transparent-button a {
+  color: white;
+  text-decoration: none;
+}
+
+.transparent-button:hover {
+  cursor: pointer;
+  background-color: rgba(46, 46, 46, 0.44);
+}
+
+.center-container > a {
   font-size: .9em;
 }
 
-.form-login button {
+.center-container button {
   font-size: .9em;
 }
 
 .white {
   color: white;
 }
-
+/*
 .opacity {
   height: 100%;
   width: 100%;
   z-index: -1;
-}
+} */
 
 .input-field {
   font-size: 1.1em;
@@ -228,7 +291,7 @@ CART & CHECKOUT
   font-size: 1.3em;
   padding-right: .8em;
   padding-left: .8em;
-  margin: 1em 1.5em 0 1em;
+  margin-right: 1.5em;
 }
 
 #cart-display {
@@ -392,6 +455,8 @@ LISTS
   border: none;
   text-decoration: none;
   color: black;
+  border-radius: 2px;
+  /* background-color: rgba(41, 41, 41, 0.591); */
 }
 
 .list-item a {
@@ -413,7 +478,7 @@ PRODUCTS
 */
 .page-body {
   display: flex;
-  padding: 5px;
+  padding: 1.5em 5px 5px 5px;
 }
 
 .section-body {
@@ -445,20 +510,19 @@ PRODUCTS
 }
 
 .product {
-  background-color: #fffdf4;
   padding: 10px;
-  border: solid 1px #84848496;
+  /* border: solid 1px #84848496; */
 }
 
 .product a {
-  color: #ef7878;
+  color: black;
   margin-top: 1em;
 }
 
 .productName {
   font-size: 22px;
   font-weight: 600;
-  color: #de6b23;
+  color: black;
 }
 
 .productInfo {

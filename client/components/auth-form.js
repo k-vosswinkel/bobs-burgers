@@ -10,24 +10,29 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div className="form-login">
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
-        </div>
+    <div className="splash-screen">
+      <img className="burger-splash" src="./burger-splash.jpg" />
+      <div className="center-container">
+      <div className="center-content-box">
+        <form onSubmit={handleSubmit} name={name}>
+          <div className="email-box">
+            <label htmlFor="email"><small>Email</small></label>
+            <input name="email" type="text" />
+          </div>
+          <div>
+            <label htmlFor="password"><small>Password</small></label>
+            <input name="password" type="password" />
+          </div>
+          <br />
+          <div>
+            <button type="submit" className="btn btn-warning">{displayName}</button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
         <br />
-        <div>
-          <button type="submit" className="btn btn-warning">{displayName}</button>
+        <a href="/auth/google"><img src="/btn_google_signin.png" alt="Google signin button" id="google-button" /></a>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <br />
-      <a href="/auth/google"><img src="/btn_google_signin.png" alt="Google signin button" id="google-button" /></a>
+      </div>
     </div>
   )
 }

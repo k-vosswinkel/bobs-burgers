@@ -4,7 +4,7 @@ import Routes from './routes'
 
 const App = () => {
   return (
-    <div className="opacity">
+    <div>
       <Navbar />
       <Routes />
     </div>

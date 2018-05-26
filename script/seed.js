@@ -116,14 +116,16 @@ async function seed() {
       description: 'A feta stuffed burger on a chive-tastic bun. Topped with a million diced chives and a creamy sour cream & mustard spread',
       price: 7.99,
       inventory: 6,
-      imgUrl: 'https://image.ibb.co/kFdwnn/baby_you_can_chive.png'
+      imgUrl: 'https://image.ibb.co/dOzuy8/burger2.png'
+      // imgUrl: 'https://image.ibb.co/kFdwnn/baby_you_can_chive.png'
     }).then(product => product.setCategories([2])),
     Product.create({
       name: 'Pickle My Funny Bone',
       description: 'Fried pickles take this burger to another level',
       price: 6.75,
       inventory: 10,
-      imgUrl: 'https://image.ibb.co/kRnpQ7/gourdon_hamsey.png'
+      // imgUrl: 'https://image.ibb.co/kRnpQ7/gourdon_hamsey.png'
+      imgUrl: 'https://image.ibb.co/cAKDQo/burger1.png'
     }).then(product => product.setCategories([1])),
     Product.create({
       name: 'Do the Brussel',
@@ -136,14 +138,14 @@ async function seed() {
       description: 'Swiss and Jarlsberg make this cheeseburger extra melty.',
       price: 6.99,
       inventory: 1,
-      imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
+      // imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
     }).then(product => product.setCategories([2])),
     Product.create({
       name: 'I\'ve Created A Muenster',
       description: 'Who can say no to melty cheese and mushrooms?',
       price: 9.99,
       inventory: 20,
-      imgUrl: 'https://image.ibb.co/njikyS/mission_acornplished.png'
+      imgUrl: 'https://image.ibb.co/f6oMd8/burger3.png'
     }).then(product => product.setCategories([1])),
     Product.create({
       name: 'It\'s Fun to Eat At The Rye-MCA',
@@ -162,14 +164,14 @@ async function seed() {
       description: 'Winner winnder burger dinner! This all-beef patty is topped with fresh mozarella, spinach, homemade black garlic mayo and a dash of Sriracha hot sauce.',
       price: 12.99,
       inventory: 9,
-      imgUrl: 'https://image.ibb.co/iEq9Q7/if_looks_could_kale.png'
+      // imgUrl: 'https://image.ibb.co/iEq9Q7/if_looks_could_kale.png'
     }).then(product => product.setCategories([2])),
     Product.create({
       name: 'Don\'t You Four Cheddar \'Bout Me',
       description: 'Lettuce, cheeseburger, bacon slices, onions. A gratuitous number of cheddars? No. Five would be crazy. But what are you going to do, three? No. Four\'s your number.',
       price: 4.00,
       inventory: 4,
-      imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
+      // imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
     }).then(product => product.setCategories([2]))
   ])
 

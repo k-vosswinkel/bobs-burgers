@@ -30,7 +30,7 @@ class EditUser extends Component {
     } else {
       return (
         <div>
-          <form className="section-body" onSubmit={this.handleSubmit}>
+          <form className="center-container" onSubmit={this.handleSubmit}>
             <label>Email:
             <input
                 name="email"

@@ -1,35 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editOrder, postOrder, emptyCart } from '../store'
-import CheckoutForm from './CheckoutForm';
+import { CheckoutForm } from './index';
 
 class Checkout extends Component {
 
   constructor(props) {
     super(props)
 
-    this.state = {
-      isSubmitted: false
-    }
+    this.state = { isSubmitted: false }
   }
 
   placeOrder = (order) => {
     this.props.editOrder(order);
-    this.setState({
-      isSubmitted: true
-    })
+    this.setState({ isSubmitted: true })
   }
 
   createOrder = (order) => {
     this.props.postOrder(order, this.props.allCartItems);
-    this.setState({
-      isSubmitted: true
-    })
+    this.setState({ isSubmitted: true })
     this.props.emptyCart();
   }
 
   render() {
-    const {currentUser, currentOrder, allCartItems} = this.props;
+    const { currentUser, currentOrder, allCartItems } = this.props;
     if (this.state.isSubmitted) {
       return <div className="form-login"><h1>Thank you for your order!</h1></div>
     }

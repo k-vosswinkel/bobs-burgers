@@ -23,7 +23,7 @@ class UserHome extends Component {
     })
     if (!userOrders.length){
       return (
-        <div className="form-login">
+        <div className="center-container">
           <h2 className="header">Welcome {this.state.email}!</h2>
           <div className="subHeader">You Have No Orders</div>
         </div>

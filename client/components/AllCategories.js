@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {fetchCategories} from '../store/allCategories'
-import AllProducts from './AllProducts'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchCategories } from '../store/allCategories'
+import { AllProducts } from './index'
 import { Link } from 'react-router-dom';
 
 class AllCategories extends Component {

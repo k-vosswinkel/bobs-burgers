@@ -1,8 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {fetchProducts} from '../store/allProducts';
-import {fetchCategories} from '../store/allCategories';
-import {fetchCurrentCategory} from '../store/currentCategory';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchProducts, fetchCategories, fetchCurrentCategory } from '../store';
 import { Link } from 'react-router-dom';
 
 // Component
