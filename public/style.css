@@ -35,6 +35,10 @@ label {
   display: block;
 }
 
+input {
+  color: black;
+}
+
 app {
   padding-left: 20px;
   font-family: "Arivo";
