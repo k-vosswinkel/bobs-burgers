@@ -11438,7 +11438,7 @@ var Checkout = function (_Component) {
       if (this.state.isSubmitted) {
         return _react2.default.createElement(
           'div',
-          { className: 'form-login' },
+          { className: 'center-container' },
           _react2.default.createElement(
             'h1',
             null,
@@ -11510,7 +11510,11 @@ var CheckoutForm = function (_Component) {
       evt.preventDefault();
       var _evt$target = evt.target,
           email = _evt$target.email,
-          shippingAddress = _evt$target.shippingAddress;
+          address1 = _evt$target.address1,
+          address2 = _evt$target.address2,
+          city = _evt$target.city,
+          state = _evt$target.state,
+          zip = _evt$target.zip;
 
       var order = void 0;
       if (this.props.order) {
@@ -11519,7 +11523,7 @@ var CheckoutForm = function (_Component) {
         order = {};
         order.email = email.value;
       }
-      order.shippingAddress = shippingAddress.value;
+      order.shippingAddress = address1.value + ', ' + address2.value + ', ' + city + ', ' + state + ' ' + zip;
       order.status = 'Created';
       this.props.placeOrder(order);
     }
@@ -11542,6 +11546,298 @@ var CheckoutForm = function (_Component) {
         _react2.default.createElement(
           'form',
           { id: 'checkout-form', onSubmit: this.handleOrder },
+          _react2.default.createElement(
+            'p',
+            { style: { fontWeight: 'bold', fontSize: '1.2em' } },
+            'Shipping Address '
+          ),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Address 1:'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'address1' }),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Address 2 (Optional):'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'address2' }),
+          _react2.default.createElement(
+            'label',
+            null,
+            'City'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'city' }),
+          _react2.default.createElement(
+            'label',
+            null,
+            'State'
+          ),
+          _react2.default.createElement(
+            'select',
+            { name: 'state' },
+            _react2.default.createElement(
+              'option',
+              { value: 'AL' },
+              'Alabama'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'AK' },
+              'Alaska'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'AZ' },
+              'Arizona'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'AR' },
+              'Arkansas'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'CA' },
+              'California'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'CO' },
+              'Colorado'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'CT' },
+              'Connecticut'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'DE' },
+              'Delaware'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'FL' },
+              'Florida'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'GA' },
+              'Georgia'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'HI' },
+              'Hawaii'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'ID' },
+              'Idaho'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'IL' },
+              'Illinois'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'IN' },
+              'Indiana'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'IA' },
+              'Iowa'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'KS' },
+              'Kansas'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'KY' },
+              'Kentucky'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'LA' },
+              'Louisiana'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'ME' },
+              'Maine'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'MD' },
+              'Maryland'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'MA' },
+              'Massachusetts'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'MI' },
+              'Michigan'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'MN' },
+              'Minnesota'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'MI' },
+              'Mississippi'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'MO' },
+              'Missouri'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'MT' },
+              'Montana'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'NE' },
+              'Nebraska'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'NV' },
+              'Nevada'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'NH' },
+              'New Hampshire'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'NJ' },
+              'New Jersey'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'NM' },
+              'New Mexico'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'NY' },
+              'New York'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'NC' },
+              'North Carolina'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'ND' },
+              'North Dakota'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'OH' },
+              'Ohio'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'OK' },
+              'Oklahoma'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'OR' },
+              'Oregon'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'PA' },
+              'Pennsylvania'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'RI' },
+              'Rhode Island'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'SC' },
+              'South Carolina'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'SD' },
+              'South Dakota'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'TN' },
+              'Tennessee'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'TX' },
+              'Texas'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'UT' },
+              'Utah'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'VT' },
+              'Vermont'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'VA' },
+              'Virginia'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'WA' },
+              'Washington'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'WV' },
+              'West Virginia'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'WI' },
+              'Wisconsin'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'WY' },
+              'Wyoming'
+            )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Zip Code'
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'zip' }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
           !this.props.email ? _react2.default.createElement(
             'div',
             null,
@@ -11552,13 +11848,6 @@ var CheckoutForm = function (_Component) {
             ),
             _react2.default.createElement('input', { type: 'email', name: 'email' })
           ) : null,
-          _react2.default.createElement(
-            'label',
-            null,
-            'Shipping Address: '
-          ),
-          _react2.default.createElement('input', { type: 'text', name: 'shippingAddress' }),
-          _react2.default.createElement('br', null),
           _react2.default.createElement('br', null),
           _react2.default.createElement('input', { type: 'submit', className: 'btn btn-success', value: 'Place Order' })
         ),
@@ -11572,13 +11861,18 @@ var CheckoutForm = function (_Component) {
               { key: product.product.id },
               _react2.default.createElement(SingleItem, { lineItem: product })
             );
-          })
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'Your Total: ',
-          total
+          }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'h4',
+              null,
+              'Your Total: ',
+              total
+            )
+          )
         )
       );
     }
