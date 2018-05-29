@@ -1083,72 +1083,54 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _navbar = __webpack_require__(134);
+var _AllCategories = __webpack_require__(118);
 
-Object.defineProperty(exports, 'Navbar', {
+Object.defineProperty(exports, 'AllCategories', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_navbar).default;
+    return _interopRequireDefault(_AllCategories).default;
   }
 });
 
-var _Home = __webpack_require__(124);
+var _AllOrders = __webpack_require__(119);
 
-Object.defineProperty(exports, 'Home', {
+Object.defineProperty(exports, 'AllOrders', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_Home).default;
+    return _interopRequireDefault(_AllOrders).default;
   }
 });
 
-var _userHome = __webpack_require__(136);
+var _AllProducts = __webpack_require__(50);
 
-Object.defineProperty(exports, 'UserHome', {
+Object.defineProperty(exports, 'AllProducts', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_userHome).default;
+    return _interopRequireDefault(_AllProducts).default;
   }
 });
 
-var _authForm = __webpack_require__(133);
+var _AllUsers = __webpack_require__(120);
+
+Object.defineProperty(exports, 'AllUsers', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_AllUsers).default;
+  }
+});
+
+var _AuthForm = __webpack_require__(233);
 
 Object.defineProperty(exports, 'Login', {
   enumerable: true,
   get: function get() {
-    return _authForm.Login;
+    return _AuthForm.Login;
   }
 });
 Object.defineProperty(exports, 'Signup', {
   enumerable: true,
   get: function get() {
-    return _authForm.Signup;
-  }
-});
-
-var _Reviews = __webpack_require__(127);
-
-Object.defineProperty(exports, 'Reviews', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_Reviews).default;
-  }
-});
-
-var _GuestCart = __webpack_require__(123);
-
-Object.defineProperty(exports, 'GuestCart', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_GuestCart).default;
-  }
-});
-
-var _UserCart = __webpack_require__(132);
-
-Object.defineProperty(exports, 'UserCart', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_UserCart).default;
+    return _AuthForm.Signup;
   }
 });
 
@@ -1179,39 +1161,30 @@ Object.defineProperty(exports, 'CheckoutForm', {
   }
 });
 
-var _AllProducts = __webpack_require__(50);
+var _GuestCart = __webpack_require__(123);
 
-Object.defineProperty(exports, 'AllProducts', {
+Object.defineProperty(exports, 'GuestCart', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_AllProducts).default;
+    return _interopRequireDefault(_GuestCart).default;
   }
 });
 
-var _SingleProduct = __webpack_require__(130);
+var _Home = __webpack_require__(124);
 
-Object.defineProperty(exports, 'SingleProduct', {
+Object.defineProperty(exports, 'Home', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_SingleProduct).default;
+    return _interopRequireDefault(_Home).default;
   }
 });
 
-var _NewProduct = __webpack_require__(125);
+var _Navbar = __webpack_require__(234);
 
-Object.defineProperty(exports, 'NewProduct', {
+Object.defineProperty(exports, 'Navbar', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_NewProduct).default;
-  }
-});
-
-var _AllCategories = __webpack_require__(118);
-
-Object.defineProperty(exports, 'AllCategories', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_AllCategories).default;
+    return _interopRequireDefault(_Navbar).default;
   }
 });
 
@@ -1224,21 +1197,39 @@ Object.defineProperty(exports, 'NewCategory', {
   }
 });
 
+var _NewProduct = __webpack_require__(125);
+
+Object.defineProperty(exports, 'NewProduct', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_NewProduct).default;
+  }
+});
+
+var _NewReview = __webpack_require__(126);
+
+Object.defineProperty(exports, 'NewReview', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_NewReview).default;
+  }
+});
+
+var _Reviews = __webpack_require__(127);
+
+Object.defineProperty(exports, 'Reviews', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Reviews).default;
+  }
+});
+
 var _SingleCategory = __webpack_require__(128);
 
 Object.defineProperty(exports, 'SingleCategory', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_SingleCategory).default;
-  }
-});
-
-var _AllOrders = __webpack_require__(119);
-
-Object.defineProperty(exports, 'AllOrders', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_AllOrders).default;
   }
 });
 
@@ -1251,21 +1242,12 @@ Object.defineProperty(exports, 'SingleOrder', {
   }
 });
 
-var _AllUsers = __webpack_require__(120);
+var _SingleProduct = __webpack_require__(130);
 
-Object.defineProperty(exports, 'AllUsers', {
+Object.defineProperty(exports, 'SingleProduct', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_AllUsers).default;
-  }
-});
-
-var _userEdit = __webpack_require__(135);
-
-Object.defineProperty(exports, 'EditUser', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_userEdit).default;
+    return _interopRequireDefault(_SingleProduct).default;
   }
 });
 
@@ -1275,6 +1257,33 @@ Object.defineProperty(exports, 'TransparentButton', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_TransparentButton).default;
+  }
+});
+
+var _UserCart = __webpack_require__(132);
+
+Object.defineProperty(exports, 'UserCart', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_UserCart).default;
+  }
+});
+
+var _UserEdit = __webpack_require__(235);
+
+Object.defineProperty(exports, 'UserEdit', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_UserEdit).default;
+  }
+});
+
+var _UserHome = __webpack_require__(236);
+
+Object.defineProperty(exports, 'UserHome', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_UserHome).default;
   }
 });
 
@@ -5122,7 +5131,7 @@ var AllProducts = function (_Component) {
             'There are no burgers at this time. '
           ) : _react2.default.createElement(
             'div',
-            { className: 'container all-products' },
+            { className: 'items-container all-products' },
             displayProducts && displayProducts.map(function (product) {
               return _react2.default.createElement(
                 'div',
@@ -5349,7 +5358,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(2);
 
-var _allCategories = __webpack_require__(19);
+var _store = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5455,7 +5464,7 @@ var mapState = function mapState(_ref) {
       currentCategory = _ref.currentCategory;
   return { allCategories: allCategories, currentCategory: currentCategory };
 };
-var mapDispatch = { postCategory: _allCategories.postCategory, editCategory: _allCategories.editCategory };
+var mapDispatch = { postCategory: _store.postCategory, editCategory: _store.editCategory };
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(NewCategory);
 
 /***/ }),
@@ -12005,11 +12014,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _index = __webpack_require__(11);
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _index = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12061,7 +12070,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(2);
 
-var _allProducts = __webpack_require__(54);
+var _store = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12296,7 +12305,7 @@ var mapState = function mapState(_ref) {
   var allCategories = _ref.allCategories;
   return { allCategories: allCategories };
 };
-var mapDispatch = { postProduct: _allProducts.postProduct, editProduct: _allProducts.editProduct };
+var mapDispatch = { postProduct: _store.postProduct, editProduct: _store.editProduct };
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(NewProduct);
 
 /***/ }),
@@ -12447,13 +12456,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(2);
 
-var _allReviews = __webpack_require__(55);
+var _store = __webpack_require__(6);
 
-var _singleProduct = __webpack_require__(144);
-
-var _NewReview = __webpack_require__(126);
-
-var _NewReview2 = _interopRequireDefault(_NewReview);
+var _index = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12500,8 +12505,8 @@ var Reviews = function (_Component) {
       } else {
         return _react2.default.createElement(
           'div',
-          { id: 'reviews-section' },
-          currentUser ? _react2.default.createElement(_NewReview2.default, { submitReview: this.submitReview, product: currentProduct, user: currentUser }) : null,
+          null,
+          currentUser ? _react2.default.createElement(_index.NewReview, { submitReview: this.submitReview, product: currentProduct, user: currentUser }) : null,
           _react2.default.createElement(
             'h5',
             null,
@@ -12579,7 +12584,7 @@ var mapState = function mapState(_ref2) {
   return { currentProduct: currentProduct, allReviews: allReviews, currentReview: currentReview, currentUser: currentUser };
 };
 
-var mapDispatch = { fetchCurrentProduct: _singleProduct.fetchCurrentProduct, fetchReviews: _allReviews.fetchReviews, postReview: _allReviews.postReview, deleteReview: _allReviews.deleteReview };
+var mapDispatch = { fetchCurrentProduct: _store.fetchCurrentProduct, fetchReviews: _store.fetchReviews, postReview: _store.postReview, deleteReview: _store.deleteReview };
 
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Reviews);
 
@@ -12600,19 +12605,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _allCategories = __webpack_require__(19);
-
-var _currentCategory = __webpack_require__(28);
-
-var _NewCategory = __webpack_require__(52);
-
-var _NewCategory2 = _interopRequireDefault(_NewCategory);
-
-var _AllProducts = __webpack_require__(50);
-
-var _AllProducts2 = _interopRequireDefault(_AllProducts);
-
 var _reactRedux = __webpack_require__(2);
+
+var _store = __webpack_require__(6);
+
+var _index = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12673,7 +12670,7 @@ var SingleCategory = function (_Component) {
       if (!currentCategory) return _react2.default.createElement('div', null); // the product id is invalid or the data isnt loaded yet
 
       if (this.state.isEditing) {
-        return _react2.default.createElement(_NewCategory2.default, { category: this.state.currentCategory, handleEdit: this.handleEdit });
+        return _react2.default.createElement(_index.NewCategory, { category: this.state.currentCategory, handleEdit: this.handleEdit });
       } else {
         return _react2.default.createElement(
           'div',
@@ -12708,7 +12705,7 @@ var SingleCategory = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'page-body wide-list' },
-            _react2.default.createElement(_AllProducts2.default, { products: products })
+            _react2.default.createElement(_index.AllProducts, { products: products })
           )
         );
       }
@@ -12725,7 +12722,7 @@ var mapState = function mapState(_ref) {
   return { currentCategory: currentCategory, currentUser: currentUser };
 };
 
-var mapDispatch = { fetchCurrentCategory: _currentCategory.fetchCurrentCategory, deleteCategory: _allCategories.deleteCategory };
+var mapDispatch = { fetchCurrentCategory: _store.fetchCurrentCategory, deleteCategory: _store.deleteCategory };
 
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(SingleCategory);
 
@@ -13062,13 +13059,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = __webpack_require__(11);
-
 var _reactRedux = __webpack_require__(2);
+
+var _reactRouterDom = __webpack_require__(10);
 
 var _store = __webpack_require__(6);
 
-var _reactRouterDom = __webpack_require__(10);
+var _index = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13157,122 +13154,123 @@ var SingleProduct = function (_Component) {
         return _react2.default.createElement(
           'div',
           null,
+          _react2.default.createElement('div', { className: 'header-padding' }),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'container' },
             _react2.default.createElement(
               'div',
-              { className: 'page-header' },
+              { className: 'row w-100' },
               _react2.default.createElement(
                 'div',
-                { className: 'page-header-sidebar' },
+                { className: 'col-md-6' },
                 _react2.default.createElement(
                   'h2',
                   null,
                   currentProduct.name
-                )
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'page-body' },
-            _react2.default.createElement(
-              'div',
-              { className: 'single-page-content product-page' },
-              _react2.default.createElement('img', { src: currentProduct.imgUrl }),
-              _react2.default.createElement(
-                'h4',
-                null,
-                ' Burger Details '
+                ),
+                _react2.default.createElement('img', { src: currentProduct.imgUrl })
               ),
               _react2.default.createElement(
                 'div',
-                null,
+                { className: 'col-md-6' },
                 _react2.default.createElement(
-                  'b',
+                  'h4',
                   null,
-                  'Description:'
+                  ' Burger Details '
                 ),
-                ' ',
-                currentProduct.description
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
                 _react2.default.createElement(
-                  'b',
+                  'div',
                   null,
-                  'Price:'
+                  _react2.default.createElement(
+                    'b',
+                    null,
+                    'Description:'
+                  ),
+                  ' ',
+                  currentProduct.description
                 ),
-                ' ',
-                currentProduct.price
-              ),
-              currentProduct.inventory > 0 ? _react2.default.createElement(
-                'div',
-                null,
                 _react2.default.createElement(
-                  'b',
+                  'div',
                   null,
-                  'Number of Burgers Remaining:'
+                  _react2.default.createElement(
+                    'b',
+                    null,
+                    'Price:'
+                  ),
+                  ' ',
+                  currentProduct.price
                 ),
-                ' ',
-                currentProduct.inventory
-              ) : _react2.default.createElement(
-                'div',
-                null,
-                ' No burgers at the moment. Check back soon!'
-              ),
-              currentUser.isAdmin ? _react2.default.createElement(
-                'div',
-                { className: 'page-header-sidebar' },
-                _react2.default.createElement(
+                currentProduct.inventory > 0 ? _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'b',
+                    null,
+                    'Number of Burgers Remaining:'
+                  ),
+                  ' ',
+                  currentProduct.inventory
+                ) : _react2.default.createElement(
+                  'div',
+                  null,
+                  ' No burgers at the moment. Check back soon!'
+                ),
+                currentUser.isAdmin ? _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'button',
+                    { className: 'btn btn-success button-fix button-margin', onClick: this.handleAdd },
+                    'Add To Cart'
+                  ),
+                  _react2.default.createElement(
+                    'button',
+                    { onClick: this.handleEdit, className: 'btn btn-warning button-fix button-margin' },
+                    'Edit Burger'
+                  ),
+                  _react2.default.createElement(
+                    'button',
+                    { onClick: this.handleDelete, className: 'btn btn-danger button-fix button-margin' },
+                    'Delete Burger'
+                  )
+                ) : _react2.default.createElement(
                   'button',
                   { className: 'btn btn-success button-fix button-margin', onClick: this.handleAdd },
                   'Add To Cart'
                 ),
                 _react2.default.createElement(
-                  'button',
-                  { onClick: this.handleEdit, className: 'btn btn-warning button-fix button-margin' },
-                  'Edit Burger'
-                ),
-                _react2.default.createElement(
-                  'button',
-                  { onClick: this.handleDelete, className: 'btn btn-danger button-fix button-margin' },
-                  'Delete Burger'
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'b',
+                    null,
+                    'Categories:'
+                  ),
+                  currentProduct.categories && currentProduct.categories.map(function (category) {
+                    return _react2.default.createElement(
+                      _reactRouterDom.Link,
+                      { to: '/categories/' + category.id, key: category.id },
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        category.name
+                      )
+                    );
+                  })
                 )
-              ) : _react2.default.createElement(
-                'button',
-                { className: 'btn btn-success button-fix button-margin', onClick: this.handleAdd },
-                'Add To Cart'
-              ),
+              )
+            ),
+            _react2.default.createElement('div', { className: 'w-100' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
               _react2.default.createElement(
                 'div',
-                null,
-                _react2.default.createElement(
-                  'b',
-                  null,
-                  'Categories:'
-                ),
-                ' ',
-                currentProduct.categories && currentProduct.categories.map(function (category) {
-                  return _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: '/categories/' + category.id, key: category.id },
-                    _react2.default.createElement(
-                      'li',
-                      null,
-                      category.name
-                    )
-                  );
-                })
+                { className: 'col' },
+                _react2.default.createElement(_index.Reviews, null)
               )
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(_index.Reviews, null)
           )
         );
       }
@@ -13304,11 +13302,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _reactRouterDom = __webpack_require__(10);
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13350,9 +13348,7 @@ var _reactRedux = __webpack_require__(2);
 
 var _store = __webpack_require__(6);
 
-var _CartDisplay = __webpack_require__(51);
-
-var _CartDisplay2 = _interopRequireDefault(_CartDisplay);
+var _index = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13416,7 +13412,7 @@ var UserCart = function (_Component) {
           { className: 'btn btn-danger white', onClick: this.handleClick },
           'Cart'
         ),
-        this.state.visible ? _react2.default.createElement(_CartDisplay2.default, { hideCart: this.handleClick, products: currentOrder.lineItems, handleAdd: this.addLineItem, handleReduce: this.reduceLineItem }) : null
+        this.state.visible ? _react2.default.createElement(_index.CartDisplay, { hideCart: this.handleClick, products: currentOrder.lineItems, handleAdd: this.addLineItem, handleReduce: this.reduceLineItem }) : null
       );
     }
   }]);
@@ -13434,581 +13430,10 @@ var mapDispatch = { fetchCurrentOrder: _store.fetchCurrentOrder, editLineItem: _
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(UserCart);
 
 /***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Signup = exports.Login = undefined;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(2);
-
-var _propTypes = __webpack_require__(3);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _store = __webpack_require__(6);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * COMPONENT
- */
-var AuthForm = function AuthForm(props) {
-  var name = props.name,
-      displayName = props.displayName,
-      handleSubmit = props.handleSubmit,
-      error = props.error;
-
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'splash-screen' },
-    _react2.default.createElement('img', { className: 'burger-splash', src: './burger-splash.jpg' }),
-    _react2.default.createElement(
-      'div',
-      { className: 'center-container' },
-      _react2.default.createElement(
-        'div',
-        { className: 'center-content-box' },
-        _react2.default.createElement(
-          'form',
-          { onSubmit: handleSubmit, name: name },
-          _react2.default.createElement(
-            'div',
-            { className: 'email-box' },
-            _react2.default.createElement(
-              'label',
-              { htmlFor: 'email' },
-              _react2.default.createElement(
-                'small',
-                null,
-                'Email'
-              )
-            ),
-            _react2.default.createElement('input', { name: 'email', type: 'text' })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              { htmlFor: 'password' },
-              _react2.default.createElement(
-                'small',
-                null,
-                'Password'
-              )
-            ),
-            _react2.default.createElement('input', { name: 'password', type: 'password' })
-          ),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { type: 'submit', className: 'btn btn-warning' },
-              displayName
-            )
-          ),
-          error && error.response && _react2.default.createElement(
-            'div',
-            null,
-            ' ',
-            error.response.data,
-            ' '
-          )
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'a',
-          { href: '/auth/google' },
-          _react2.default.createElement('img', { src: '/btn_google_signin.png', alt: 'Google signin button', id: 'google-button' })
-        )
-      )
-    )
-  );
-};
-
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
-var mapLogin = function mapLogin(state) {
-  return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.currentUser.error
-  };
-};
-
-var mapSignup = function mapSignup(state) {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.currentUser.error
-  };
-};
-
-var mapDispatch = function mapDispatch(dispatch) {
-  return {
-    handleSubmit: function handleSubmit(evt) {
-      evt.preventDefault();
-      var formName = evt.target.name;
-      var email = evt.target.email.value;
-      var password = evt.target.password.value;
-      dispatch((0, _store.auth)(email, password, formName));
-    }
-  };
-};
-
-var Login = exports.Login = (0, _reactRedux.connect)(mapLogin, mapDispatch)(AuthForm);
-var Signup = exports.Signup = (0, _reactRedux.connect)(mapSignup, mapDispatch)(AuthForm);
-
-/**
- * PROP TYPES
- */
-AuthForm.propTypes = {
-  name: _propTypes2.default.string.isRequired,
-  displayName: _propTypes2.default.string.isRequired,
-  handleSubmit: _propTypes2.default.func.isRequired,
-  error: _propTypes2.default.object
-};
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(3);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactRedux = __webpack_require__(2);
-
-var _reactRouterDom = __webpack_require__(10);
-
-var _store = __webpack_require__(6);
-
-var _index = __webpack_require__(11);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Navbar = function Navbar(_ref) {
-  var handleClick = _ref.handleClick,
-      isLoggedIn = _ref.isLoggedIn,
-      isAdmin = _ref.isAdmin;
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'nav',
-      null,
-      _react2.default.createElement(
-        'div',
-        { className: 'nav-logo' },
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/' },
-          'The Burger Emporium'
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'nav-items' },
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/categories' },
-          'All Burgers'
-        ),
-        isLoggedIn ? _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/account' },
-            'My Account'
-          ),
-          _react2.default.createElement(
-            'a',
-            { href: '#', onClick: handleClick },
-            'Logout'
-          )
-        ) : _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/login' },
-            'Login'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/signup' },
-            'Sign Up'
-          )
-        ),
-        isAdmin ? _react2.default.createElement(
-          'div',
-          { className: 'nav-items' },
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/orders' },
-            'All Orders'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/users' },
-            'All Users'
-          )
-        ) : null,
-        isLoggedIn ? _react2.default.createElement(_index.UserCart, null) : _react2.default.createElement(_index.GuestCart, null)
-      )
-    )
-  );
-};
-
-/**
- * CONTAINER
- */
-var mapState = function mapState(state) {
-  return {
-    //Use '!!' with currentUser to coerce id into a truthy/falsey value; since Admin is already a boolean
-    //we don't need the double bang! :D
-    isLoggedIn: !!state.currentUser.id,
-    isAdmin: state.currentUser.isAdmin
-  };
-};
-
-var mapDispatch = function mapDispatch(dispatch) {
-  return {
-    handleClick: function handleClick() {
-      dispatch((0, _store.logout)());
-    }
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Navbar);
-
-/**
- * PROP TYPES
- */
-
-Navbar.propTypes = {
-  handleClick: _propTypes2.default.func.isRequired,
-  isLoggedIn: _propTypes2.default.bool.isRequired
-};
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(2);
-
-var _store = __webpack_require__(6);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var EditUser = function (_Component) {
-  _inherits(EditUser, _Component);
-
-  function EditUser(props) {
-    _classCallCheck(this, EditUser);
-
-    var _this = _possibleConstructorReturn(this, (EditUser.__proto__ || Object.getPrototypeOf(EditUser)).call(this, props));
-
-    _this.handleSubmit = function (event) {
-      event.preventDefault();
-      var email = event.target.email.value;
-      var isAdmin = event.target.admin.value;
-      var user = {
-        id: _this.props.userToEdit.id,
-        email: email,
-        isAdmin: isAdmin
-      };
-      _this.props.updateUserToEdit(user);
-    };
-
-    return _this;
-  }
-
-  _createClass(EditUser, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.fetchUserToEdit(this.props.match.params.userId);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var userToEdit = this.props.userToEdit;
-      if (!userToEdit.email) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          'No User Selected'
-        );
-      } else {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'form',
-            { className: 'center-container', onSubmit: this.handleSubmit },
-            _react2.default.createElement(
-              'label',
-              null,
-              'Email:',
-              _react2.default.createElement('input', {
-                name: 'email',
-                defaultValue: userToEdit.email
-              })
-            ),
-            _react2.default.createElement(
-              'label',
-              null,
-              'Admin:',
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                name: 'admin',
-                value: userToEdit.isAdmin
-              })
-            ),
-            _react2.default.createElement(
-              'button',
-              { className: 'btn btn-success', type: 'submit' },
-              'Update'
-            )
-          )
-        );
-      }
-    }
-  }]);
-
-  return EditUser;
-}(_react.Component);
-
-// Container
-
-
-var mapState = function mapState(_ref) {
-  var allUsers = _ref.allUsers,
-      userToEdit = _ref.userToEdit;
-  return { allUsers: allUsers, userToEdit: userToEdit };
-};
-var mapDispatch = { fetchUserToEdit: _store.fetchUserToEdit, updateUserToEdit: _store.updateUserToEdit };
-
-exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(EditUser);
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(3);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactRedux = __webpack_require__(2);
-
-var _allOrders = __webpack_require__(53);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//Component
-var UserHome = function (_Component) {
-  _inherits(UserHome, _Component);
-
-  function UserHome(props) {
-    _classCallCheck(this, UserHome);
-
-    var _this = _possibleConstructorReturn(this, (UserHome.__proto__ || Object.getPrototypeOf(UserHome)).call(this, props));
-
-    _this.state = {
-      email: props.email
-    };
-    return _this;
-  }
-
-  _createClass(UserHome, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.fetchOrders();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var userOrders = this.props.orders.filter(function (order) {
-        return order.userId === _this2.props.userId && order.status !== 'Pending';
-      });
-      if (!userOrders.length) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'center-container' },
-          _react2.default.createElement(
-            'h2',
-            { className: 'header' },
-            'Welcome ',
-            this.state.email,
-            '!'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'subHeader' },
-            'You Have No Orders'
-          )
-        );
-      } else {
-        return _react2.default.createElement(
-          'div',
-          { className: 'orders-list' },
-          _react2.default.createElement(
-            'h2',
-            { className: 'header' },
-            'Welcome, ',
-            this.state.email
-          ),
-          _react2.default.createElement(
-            'h2',
-            { className: 'subHeader' },
-            'Your Orders:'
-          ),
-          userOrders.map(function (order) {
-            return _react2.default.createElement(
-              'div',
-              { key: order.id, className: 'order-item product col-xs-2' },
-              _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  'Account email: ',
-                  order.email
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  'Shipping address: ',
-                  order.shippingAddress
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  'Order status: ',
-                  order.status
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  'Date placed: ',
-                  order.orderDate.slice(0, 10)
-                )
-              )
-            );
-          })
-        );
-      }
-    }
-  }]);
-
-  return UserHome;
-}(_react.Component);
-
-//Container
-
-
-var mapState = function mapState(state) {
-  return {
-    userId: state.currentUser.id,
-    email: state.currentUser.email,
-    orders: state.allOrders
-  };
-};
-
-var mapDispatch = { fetchOrders: _allOrders.fetchOrders };
-
-exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(UserHome);
-
-//Prop Types
-
-UserHome.propTypes = {
-  email: _propTypes2.default.string
-};
-
-/***/ }),
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
 /* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14135,7 +13560,7 @@ var Routes = function (_Component) {
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/orders', component: _components.AllOrders }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/orders/:orderId', component: _components.SingleOrder }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/users', component: _components.AllUsers }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:userId', component: _components.EditUser })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:userId', component: _components.UserEdit })
         ),
         _react2.default.createElement(_reactRouterDom.Route, { component: _components.Home })
       );
@@ -14657,59 +14082,7 @@ var updateUserToEdit = exports.updateUserToEdit = function updateUserToEdit(user
 };
 
 /***/ }),
-/* 144 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fetchCurrentProduct = undefined;
-
-var _axios = __webpack_require__(7);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// action types
-var GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT';
-
-// action creator
-var getSingleProduct = function getSingleProduct(product) {
-  return { type: GET_SINGLE_PRODUCT, product: product };
-};
-
-// reducer
-
-exports.default = function () {
-  var currentProduct = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments[1];
-
-  switch (action.type) {
-    case GET_SINGLE_PRODUCT:
-      return action.product;
-    default:
-      return currentProduct;
-  }
-};
-
-// thunks
-
-
-var fetchCurrentProduct = exports.fetchCurrentProduct = function fetchCurrentProduct(productId) {
-  return function (dispatch) {
-    return _axios2.default.get('/api/products/' + productId).then(function (foundProduct) {
-      dispatch(getSingleProduct(foundProduct.data));
-    }).catch(function (err) {
-      return console.error('error fetching product id: ' + productId, err);
-    });
-  };
-};
-
-/***/ }),
+/* 144 */,
 /* 145 */
 /***/ (function(module, exports) {
 
@@ -40765,6 +40138,581 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Signup = exports.Login = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(2);
+
+var _propTypes = __webpack_require__(3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _store = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * COMPONENT
+ */
+var AuthForm = function AuthForm(props) {
+  var name = props.name,
+      displayName = props.displayName,
+      handleSubmit = props.handleSubmit,
+      error = props.error;
+
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'splash-screen' },
+    _react2.default.createElement('img', { className: 'burger-splash', src: './burger-splash.jpg' }),
+    _react2.default.createElement(
+      'div',
+      { className: 'center-container' },
+      _react2.default.createElement(
+        'div',
+        { className: 'center-content-box' },
+        _react2.default.createElement(
+          'form',
+          { onSubmit: handleSubmit, name: name },
+          _react2.default.createElement(
+            'div',
+            { className: 'email-box' },
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'email' },
+              _react2.default.createElement(
+                'small',
+                null,
+                'Email'
+              )
+            ),
+            _react2.default.createElement('input', { name: 'email', type: 'text' })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'password' },
+              _react2.default.createElement(
+                'small',
+                null,
+                'Password'
+              )
+            ),
+            _react2.default.createElement('input', { name: 'password', type: 'password' })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { type: 'submit', className: 'btn btn-warning' },
+              displayName
+            )
+          ),
+          error && error.response && _react2.default.createElement(
+            'div',
+            null,
+            ' ',
+            error.response.data,
+            ' '
+          )
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'a',
+          { href: '/auth/google' },
+          _react2.default.createElement('img', { src: '/btn_google_signin.png', alt: 'Google signin button', id: 'google-button' })
+        )
+      )
+    )
+  );
+};
+
+/**
+ * CONTAINER
+ *   Note that we have two different sets of 'mapStateToProps' functions -
+ *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
+ *   function, and share the same Component. This is a good example of how we
+ *   can stay DRY with interfaces that are very similar to each other!
+ */
+var mapLogin = function mapLogin(state) {
+  return {
+    name: 'login',
+    displayName: 'Login',
+    error: state.currentUser.error
+  };
+};
+
+var mapSignup = function mapSignup(state) {
+  return {
+    name: 'signup',
+    displayName: 'Sign Up',
+    error: state.currentUser.error
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    handleSubmit: function handleSubmit(evt) {
+      evt.preventDefault();
+      var formName = evt.target.name;
+      var email = evt.target.email.value;
+      var password = evt.target.password.value;
+      dispatch((0, _store.auth)(email, password, formName));
+    }
+  };
+};
+
+var Login = exports.Login = (0, _reactRedux.connect)(mapLogin, mapDispatch)(AuthForm);
+var Signup = exports.Signup = (0, _reactRedux.connect)(mapSignup, mapDispatch)(AuthForm);
+
+/**
+ * PROP TYPES
+ */
+AuthForm.propTypes = {
+  name: _propTypes2.default.string.isRequired,
+  displayName: _propTypes2.default.string.isRequired,
+  handleSubmit: _propTypes2.default.func.isRequired,
+  error: _propTypes2.default.object
+};
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRedux = __webpack_require__(2);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _store = __webpack_require__(6);
+
+var _index = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Navbar = function Navbar(_ref) {
+  var handleClick = _ref.handleClick,
+      isLoggedIn = _ref.isLoggedIn,
+      isAdmin = _ref.isAdmin;
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'nav',
+      null,
+      _react2.default.createElement(
+        'div',
+        { className: 'nav-logo' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/' },
+          'The Burger Emporium'
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'nav-items' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/categories' },
+          'All Burgers'
+        ),
+        isLoggedIn ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/account' },
+            'My Account'
+          ),
+          _react2.default.createElement(
+            'a',
+            { href: '#', onClick: handleClick },
+            'Logout'
+          )
+        ) : _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/login' },
+            'Login'
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/signup' },
+            'Sign Up'
+          )
+        ),
+        isAdmin ? _react2.default.createElement(
+          'div',
+          { className: 'nav-items' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/orders' },
+            'All Orders'
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/users' },
+            'All Users'
+          )
+        ) : null,
+        isLoggedIn ? _react2.default.createElement(_index.UserCart, null) : _react2.default.createElement(_index.GuestCart, null)
+      )
+    )
+  );
+};
+
+/**
+ * CONTAINER
+ */
+var mapState = function mapState(state) {
+  return {
+    //Use '!!' with currentUser to coerce id into a truthy/falsey value; since Admin is already a boolean
+    //we don't need the double bang! :D
+    isLoggedIn: !!state.currentUser.id,
+    isAdmin: state.currentUser.isAdmin
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    handleClick: function handleClick() {
+      dispatch((0, _store.logout)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Navbar);
+
+/**
+ * PROP TYPES
+ */
+
+Navbar.propTypes = {
+  handleClick: _propTypes2.default.func.isRequired,
+  isLoggedIn: _propTypes2.default.bool.isRequired
+};
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(2);
+
+var _store = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserEdit = function (_Component) {
+  _inherits(UserEdit, _Component);
+
+  function UserEdit(props) {
+    _classCallCheck(this, UserEdit);
+
+    var _this = _possibleConstructorReturn(this, (UserEdit.__proto__ || Object.getPrototypeOf(UserEdit)).call(this, props));
+
+    _this.handleSubmit = function (event) {
+      event.preventDefault();
+      var email = event.target.email.value;
+      var isAdmin = event.target.admin.value;
+      var user = {
+        id: _this.props.userToEdit.id,
+        email: email,
+        isAdmin: isAdmin
+      };
+      _this.props.updateUserToEdit(user);
+    };
+
+    return _this;
+  }
+
+  _createClass(UserEdit, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchUserToEdit(this.props.match.params.userId);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var userToEdit = this.props.userToEdit;
+      if (!userToEdit.email) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          'No User Selected'
+        );
+      } else {
+        return _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'form',
+            { className: 'center-container', onSubmit: this.handleSubmit },
+            _react2.default.createElement(
+              'label',
+              null,
+              'Email:',
+              _react2.default.createElement('input', {
+                name: 'email',
+                defaultValue: userToEdit.email
+              })
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              'Admin:',
+              _react2.default.createElement('input', {
+                type: 'checkbox',
+                name: 'admin',
+                value: userToEdit.isAdmin
+              })
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-success', type: 'submit' },
+              'Update'
+            )
+          )
+        );
+      }
+    }
+  }]);
+
+  return UserEdit;
+}(_react.Component);
+
+// Container
+
+
+var mapState = function mapState(_ref) {
+  var allUsers = _ref.allUsers,
+      userToEdit = _ref.userToEdit;
+  return { allUsers: allUsers, userToEdit: userToEdit };
+};
+var mapDispatch = { fetchUserToEdit: _store.fetchUserToEdit, updateUserToEdit: _store.updateUserToEdit };
+
+exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(UserEdit);
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRedux = __webpack_require__(2);
+
+var _store = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//Component
+var UserHome = function (_Component) {
+  _inherits(UserHome, _Component);
+
+  function UserHome(props) {
+    _classCallCheck(this, UserHome);
+
+    var _this = _possibleConstructorReturn(this, (UserHome.__proto__ || Object.getPrototypeOf(UserHome)).call(this, props));
+
+    _this.state = {
+      email: props.email
+    };
+    return _this;
+  }
+
+  _createClass(UserHome, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchOrders();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var userOrders = this.props.orders.filter(function (order) {
+        return order.userId === _this2.props.userId && order.status !== 'Pending';
+      });
+      if (!userOrders.length) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'center-container' },
+          _react2.default.createElement(
+            'h2',
+            { className: 'header' },
+            'Welcome ',
+            this.state.email,
+            '!'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'subHeader' },
+            'You Have No Orders'
+          )
+        );
+      } else {
+        return _react2.default.createElement(
+          'div',
+          { className: 'orders-list' },
+          _react2.default.createElement(
+            'h2',
+            { className: 'header' },
+            'Welcome, ',
+            this.state.email
+          ),
+          _react2.default.createElement(
+            'h2',
+            { className: 'subHeader' },
+            'Your Orders:'
+          ),
+          userOrders.map(function (order) {
+            return _react2.default.createElement(
+              'div',
+              { key: order.id, className: 'order-item product col-xs-2' },
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'Account email: ',
+                  order.email
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'Shipping address: ',
+                  order.shippingAddress
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'Order status: ',
+                  order.status
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'Date placed: ',
+                  order.orderDate.slice(0, 10)
+                )
+              )
+            );
+          })
+        );
+      }
+    }
+  }]);
+
+  return UserHome;
+}(_react.Component);
+
+//Container
+
+
+var mapState = function mapState(state) {
+  return {
+    userId: state.currentUser.id,
+    email: state.currentUser.email,
+    orders: state.allOrders
+  };
+};
+
+var mapDispatch = { fetchOrders: _store.fetchOrders };
+
+exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(UserHome);
+
+//Prop Types
+
+UserHome.propTypes = {
+  email: _propTypes2.default.string
+};
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,5 @@
-import { TransparentButton } from './index';
 import React from 'react';
+import { TransparentButton } from './index';
 
 const Home = () => {
   return (

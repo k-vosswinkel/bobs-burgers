@@ -37,7 +37,7 @@ class AllProducts extends Component {
         <div>
         {(displayProducts && displayProducts.length === 0)
         ? <h5>There are no burgers at this time. </h5>
-        : <div className="container all-products">
+        : <div className="items-container all-products">
           {displayProducts && displayProducts.map(product => {
             return (
                 <div className="list-item product" key={product.id}>

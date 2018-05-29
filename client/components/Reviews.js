@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {postReview, deleteReview, fetchReviews} from '../store/allReviews';
-import {fetchCurrentProduct} from '../store/singleProduct';
-import NewReview from './NewReview';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { postReview, deleteReview, fetchReviews, fetchCurrentProduct } from '../store';
+import { NewReview } from './index';
 
 class Reviews extends Component {
 
@@ -21,7 +20,7 @@ class Reviews extends Component {
     if (!currentProduct.reviews) {return null}
     else {
       return (
-      <div id="reviews-section">
+      <div>
         {currentUser
           ? <NewReview submitReview={this.submitReview} product={currentProduct} user={currentUser} />
           : null}

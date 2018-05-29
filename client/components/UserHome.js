@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import { fetchOrders } from '../store/allOrders'
+import { connect } from 'react-redux'
+import { fetchOrders } from '../store'
 
 //Component
 class UserHome extends Component {
