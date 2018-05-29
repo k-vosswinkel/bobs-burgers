@@ -55,6 +55,18 @@ img {
   margin: auto;
 }
 
+.product-image {
+  height: 250px;
+  width: 250px;
+  max-width: initial;
+  max-height: initial;
+}
+
+.product-description {
+  font-size: 1.3em;
+  line-height: 200%;
+}
+
 .wide-list {
   width: 80%;
 }
@@ -277,12 +289,6 @@ form > div > div {
 .white {
   color: white;
 }
-/*
-.opacity {
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-} */
 
 .input-field {
   font-size: 1.1em;
@@ -466,7 +472,6 @@ LISTS
   text-decoration: none;
   color: black;
   border-radius: 2px;
-  /* background-color: rgba(41, 41, 41, 0.591); */
 }
 
 .list-item a {

@@ -18,6 +18,7 @@ class SingleProduct extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     const productId = Number(this.props.match.params.productId)
     this.props.fetchCurrentProduct(productId)
   }
@@ -79,25 +80,26 @@ class SingleProduct extends Component {
           <div className="row w-100">
             <div className="col-md-6">
               <h2>{currentProduct.name}</h2>
-              <img src={ currentProduct.imgUrl } />
+              <img className="product-image" src={ currentProduct.imgUrl } />
             </div>
-            <div className="col-md-6">
-              <h4> Burger Details </h4>
+            <div className="col-md-6 product-description">
+              <h3> Burger Details </h3>
               <div><b>Description:</b> {currentProduct.description}</div>
               <div><b>Price:</b> {currentProduct.price}</div>
               {
                 currentProduct.inventory > 0
-                ? <div><b>Number of Burgers Remaining:</b> {currentProduct.inventory}</div>
+                ?
+                <button className="btn btn-success button-fix button-margin" onClick={this.handleAdd}>Add To Cart</button>
                 : <div> No burgers at the moment. Check back soon!</div>
               }
               {
                 currentUser.isAdmin
                 ? <div>
-                    <button className="btn btn-success button-fix button-margin" onClick={this.handleAdd}>Add To Cart</button>
+                    <div><b>Number of Burgers Remaining:</b> {currentProduct.inventory}</div>
                     <button onClick={this.handleEdit} className="btn btn-warning button-fix button-margin">Edit Burger</button>
                     <button onClick={this.handleDelete} className="btn btn-danger button-fix button-margin">Delete Burger</button>
                   </div>
-                : <button className="btn btn-success button-fix button-margin" onClick={this.handleAdd}>Add To Cart</button>
+                : null
               }
               <div>
                 <b>Categories:</b>
