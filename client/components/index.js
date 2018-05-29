@@ -8,7 +8,7 @@ export {default as Checkout} from './Checkout';
 export {default as CheckoutForm} from './CheckoutForm';
 export {default as GuestCart} from './GuestCart';
 export {default as Home} from './Home';
-export {default as Navbar} from './Nav-bar';
+export {default as Navbar} from './Navbar';
 export {default as NewCategory} from './NewCategory';
 export {default as NewProduct} from './NewProduct';
 export {default as NewReview} from './NewReview';
