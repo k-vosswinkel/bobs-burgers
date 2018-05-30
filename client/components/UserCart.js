@@ -9,12 +9,16 @@ class UserCart extends Component {
     this.state = { visible: false }
   }
 
+  componentDidMount(){
+    // this.props.fetchCu
+  }
+
   handleClick = () => {
     !this.state.visible ? this.setState({visible: true}) : this.setState({visible: false});
   }
 
   addLineItem = (lineItem) => {
-    const {currentOrder} = this.props;
+    const { currentOrder } = this.props;
     let newLineItem = {
       quantity: lineItem.quantity + 1,
       id: lineItem.id
@@ -39,6 +43,7 @@ class UserCart extends Component {
 
   render() {
     const {currentOrder} = this.props;
+    console.log('current order', currentOrder);
       return (
         <div className="cart-button">
           <button className="btn btn-danger white" onClick={this.handleClick}>Cart</button>

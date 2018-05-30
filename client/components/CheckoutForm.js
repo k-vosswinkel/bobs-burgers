@@ -11,15 +11,12 @@ export default class CheckoutForm extends Component {
     evt.preventDefault();
     const { email, address1, address2, city, state, zip } = evt.target;
     let order;
-    if (this.props.order) {
-      order = this.props.order;
-    }
-    else {
-      order = {};
-      order.email = email.value;
-    }
-    order.shippingAddress = `${address1.value}, ${address2.value}, ${city}, ${state} ${zip}`;
+    this.props.order ? order = this.props.order : order = {};
+      // order.email = this.props.email;
+    this.props.email ? order.email = this.props.email : order.email = email.value;
+    order.shippingAddress = `${address1.value}, ${address2.value}, ${city.value}, ${state.value} ${zip.value}`;
     order.status = 'Created';
+    console.log(order);
     this.props.placeOrder(order);
   }
 
@@ -97,9 +94,9 @@ export default class CheckoutForm extends Component {
           <input type="submit" className="btn btn-success" value="Place Order" />
         </form>
         <ul>
-          { products.map(product => {
+          { products.map((product, i) => {
               total += (product.quantity * product.product.price);
-              return <li key={product.product.id}><SingleItem lineItem={product} /></li>
+              return <li key={i}><SingleItem lineItem={product} /></li>
             })
           }
           <br />

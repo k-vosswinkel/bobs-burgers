@@ -34,7 +34,8 @@ const randOrder = () => {
     email: chance.email(),
     shippingAddress: chance.address(),
     userId: chance.integer({ min: 1, max: 51 }),
-    productId: chance.integer({ min: 1, max: 10 })
+    productId: chance.integer({ min: 1, max: 10 }),
+    // status: 'Completed'
   })
 }
 
@@ -117,14 +118,12 @@ async function seed() {
       price: 7.99,
       inventory: 6,
       imgUrl: 'https://image.ibb.co/dOzuy8/burger2.png'
-      // imgUrl: 'https://image.ibb.co/kFdwnn/baby_you_can_chive.png'
     }).then(product => product.setCategories([2])),
     Product.create({
       name: 'Pickle My Funny Bone',
       description: 'Fried pickles take this burger to another level',
       price: 6.75,
       inventory: 10,
-      // imgUrl: 'https://image.ibb.co/kRnpQ7/gourdon_hamsey.png'
       imgUrl: 'https://image.ibb.co/cAKDQo/burger1.png'
     }).then(product => product.setCategories([1])),
     Product.create({
@@ -138,7 +137,6 @@ async function seed() {
       description: 'Swiss and Jarlsberg make this cheeseburger extra melty.',
       price: 6.99,
       inventory: 1,
-      // imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
     }).then(product => product.setCategories([2])),
     Product.create({
       name: 'I\'ve Created A Muenster',
@@ -164,14 +162,12 @@ async function seed() {
       description: 'Winner winnder burger dinner! This all-beef patty is topped with fresh mozarella, spinach, homemade black garlic mayo and a dash of Sriracha hot sauce.',
       price: 12.99,
       inventory: 9,
-      // imgUrl: 'https://image.ibb.co/iEq9Q7/if_looks_could_kale.png'
     }).then(product => product.setCategories([2])),
     Product.create({
       name: 'Don\'t You Four Cheddar \'Bout Me',
       description: 'Lettuce, cheeseburger, bacon slices, onions. A gratuitous number of cheddars? No. Five would be crazy. But what are you going to do, three? No. Four\'s your number.',
       price: 4.00,
       inventory: 4,
-      // imgUrl: 'https://image.ibb.co/djnmL7/dont_you_four_cheddar.png'
     }).then(product => product.setCategories([2]))
   ])
 
@@ -181,16 +177,10 @@ async function seed() {
 
   const lineItems = await Promise.all(generateLineItems())
 
-
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${products.length} users, ${categories.length} categories, ${users.length} users, ${orders.length} orders, ${reviews.length} reviews, and ${lineItems.length} line items`)
   console.log(`seeded successfully`)
 }
 
-// Execute the `seed` function
-// `Async` functions always return a promise, so we can use `catch` to handle any errors
-// that might occur inside of `seed`
 seed()
   .catch(err => {
     console.error(err.message)
@@ -203,9 +193,4 @@ seed()
     console.log('db connection closed')
   })
 
-/*
- * note: everything outside of the async function is totally synchronous
- * The console.log below will occur before any of the logs that occur inside
- * of the async function
- */
 console.log('seeding...')
