@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserToEdit, updateUserToEdit } from '../store'
 
-class EditUser extends Component {
+class UserEdit extends Component {
   constructor(props) {
     super(props);
   }
@@ -56,4 +56,4 @@ class EditUser extends Component {
 const mapState = ({ allUsers, userToEdit }) => ({ allUsers, userToEdit })
 const mapDispatch = { fetchUserToEdit, updateUserToEdit }
 
-export default connect(mapState, mapDispatch)(EditUser);
+export default connect(mapState, mapDispatch)(UserEdit);
